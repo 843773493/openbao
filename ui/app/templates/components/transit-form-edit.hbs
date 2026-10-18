@@ -1,7 +1,7 @@
 <form data-test-transit-edit-form onsubmit={{@createOrUpdateKey}}>
   <div class="box is-sideless is-fullwidth is-marginless">
     <MessageError @model={{@key}} />
-    <NamespaceReminder @mode="edit" @noun="transit key" />
+    <NamespaceReminder @mode="edit" @noun={{t "transit key"}} />
     <div class="field">
       <div class="b-checkbox">
         <input
@@ -12,7 +12,7 @@
           onchange={{@setValueOnKey}}
         />
         <label for="key-allows-delete" class="is-label">
-          Allow deletion
+          {{t "Allow deletion"}}
         </label>
       </div>
     </div>
@@ -20,15 +20,15 @@
       <TtlPicker
         @initialValue={{or @key.autoRotatePeriod "30d"}}
         @initialEnabled={{not (eq @key.autoRotatePeriod 0)}}
-        @label="Auto-rotation period"
-        @helperTextDisabled="Key will never be automatically rotated"
-        @helperTextEnabled="Key will be automatically rotated every"
+        @label={{t "Auto-rotation period"}}
+        @helperTextDisabled={{t "Key will never be automatically rotated"}}
+        @helperTextEnabled={{t "Key will be automatically rotated every"}}
         @onChange={{@handleAutoRotateChange}}
-        @errorMessage={{if @autoRotateInvalid "Duration must be longer than 1 hour"}}
+        @errorMessage={{t (if @autoRotateInvalid "Duration must be longer than 1 hour")}}
       />
     </div>
     <div class="field">
-      <label for="key-min-decrypt-version" class="is-label">Minimum decryption version</label>
+      <label for="key-min-decrypt-version" class="is-label">{{t "Minimum decryption version"}}</label>
       <div class="control is-expanded">
         <div class="select is-fullwidth">
           <select
@@ -45,14 +45,15 @@
         </div>
       </div>
       <p class="help">
-        The minimum decryption version required to reverse transformations performed with the encryption key. Results from
-        lower key versions may be rewrapped with the new key version using the
+        {{t
+          "The minimum decryption version required to reverse transformations performed with the encryption key. Results from lower key versions may be rewrapped with the new key version using the"
+        }}
         <code>rewrap</code>
-        action.
+        {{t "action."}}
       </p>
     </div>
     <div class="field">
-      <label for="key-min-encrypt-version" class="is-label">Minimum encryption version</label>
+      <label for="key-min-encrypt-version" class="is-label">{{t "Minimum encryption version"}}</label>
       <div class="control is-expanded">
         <div class="select is-fullwidth">
           <select
@@ -62,7 +63,7 @@
           >
             <option selected={{eq @key.minEncryptionVersion 0}} value={{0}}>
               <code>Latest</code>
-              (currently
+              {{t "(currently"}}
               {{@key.latestVersion}})
             </option>
             {{#each @key.encryptionKeyVersions as |version|}}
@@ -74,11 +75,11 @@
         </div>
       </div>
       <p class="help">
-        The minimum version of the key that can be used to encrypt plaintext, sign payloads, or generate HMACs. You will be
-        able to specify which version of the key to use for each of these actions. The value specified here must be greater
-        than or equal to that specified in the
-        <b>Minimum Decryption Version</b>
-        selection above.
+        {{t
+          "The minimum version of the key that can be used to encrypt plaintext, sign payloads, or generate HMACs. You will be able to specify which version of the key to use for each of these actions. The value specified here must be greater than or equal to that specified in the"
+        }}
+        <b>{{t "Minimum Decryption Version"}}</b>
+        {{t "selection above."}}
       </p>
     </div>
   </div>
@@ -87,19 +88,19 @@
       {{#if @capabilities.canUpdate}}
         <div class="control">
           <button type="submit" disabled={{@requestInFlight}} class="button is-primary {{if @requestInFlight 'is-loading'}}">
-            Update transit key
+            {{t "Update transit key"}}
           </button>
         </div>
       {{/if}}
       <div class="control">
         <SecretLink @mode="show" @secret={{@key.id}} class="button">
-          Cancel
+          {{t "Cancel"}}
         </SecretLink>
       </div>
     </div>
     {{#if (and @key.canDelete @capabilities.canDelete)}}
       <ConfirmAction @buttonClasses="button" @onConfirmAction={{@deleteKey}}>
-        Delete transit key
+        {{t "Delete transit key"}}
       </ConfirmAction>
     {{/if}}
   </div>

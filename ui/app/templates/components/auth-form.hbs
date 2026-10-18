@@ -39,7 +39,7 @@
               @query={{hash with="token"}}
               data-test-auth-method-link="other"
             >
-              Other
+              {{t "Other"}}
             </LinkTo>
           </li>
         </ul>
@@ -47,7 +47,7 @@
     {{/if}}
     <div class="box is-marginless is-shadowless">
       <MessageError
-        @errorMessage={{if (and this.cluster.standby this.hasCSPError) this.cspErrorText this.error}}
+        @errorMessage={{t (if (and this.cluster.standby this.hasCSPError) this.cspErrorText this.error)}}
         data-test-auth-error
       />
       <div class="has-bottom-margin-s">
@@ -58,7 +58,7 @@
       </div>
       {{#if (or (not this.hasMethodsWithPath) (not this.selectedAuthIsPath))}}
         <Select
-          @label="Method"
+          @label={{t "Method"}}
           @name="auth-method"
           @options={{this.authMethods}}
           @valueAttribute={{"type"}}
@@ -91,7 +91,7 @@
         <form id="auth-form" onsubmit={{action "doSubmit" null}}>
           {{#if (eq this.providerName "github")}}
             <div class="field">
-              <label for="token" class="is-label">GitHub token</label>
+              <label for="token" class="is-label">{{t "GitHub token"}}</label>
               <div class="control">
                 <Input
                   @type="password"
@@ -107,7 +107,7 @@
             </div>
           {{else if (eq this.providerName "token")}}
             <div class="field">
-              <label for="token" class="is-label">Token</label>
+              <label for="token" class="is-label">{{t "Token"}}</label>
               <div class="control">
                 <Input
                   @type="password"
@@ -122,7 +122,7 @@
             </div>
           {{else}}
             <div class="field">
-              <label for="username" class="is-label">Username</label>
+              <label for="username" class="is-label">{{t "Username"}}</label>
               <div class="control">
                 <Input
                   @value={{this.username}}
@@ -136,7 +136,7 @@
               </div>
             </div>
             <div class="field">
-              <label for="password" class="is-label">Password</label>
+              <label for="password" class="is-label">{{t "Password"}}</label>
               <div class="control">
                 <Input
                   @value={{this.password}}
@@ -165,14 +165,16 @@
             class="button is-primary {{if this.authenticate.isRunning 'is-loading'}}"
             id="auth-submit"
           >
-            Sign In
+            {{t "Sign In"}}
           </button>
           {{#if (and this.delayAuthMessageReminder.isIdle this.showLoading)}}
             <AlertInline
               @paddingTop={{true}}
               @sizeSmall={{true}}
               @type="info"
-              @message="If login takes longer than usual, you may need to check your device for an MFA notification, or contact your administrator if login times out."
+              @message={{t
+                "If login takes longer than usual, you may need to check your device for an MFA notification, or contact your administrator if login times out."
+              }}
               data-test-auth-message="push"
             />
           {{/if}}

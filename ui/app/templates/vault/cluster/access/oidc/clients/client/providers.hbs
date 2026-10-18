@@ -3,11 +3,13 @@
   <Oidc::ProviderList @model={{this.model}} />
 {{else}}
   <EmptyState
-    @title="No available providers"
-    @message="Edit an existing provider or create a new one to allow this application access for authentication requests."
+    @title={{t "No available providers"}}
+    @message={{t
+      "Edit an existing provider or create a new one to allow this application access for authentication requests."
+    }}
   >
     <LinkTo @route="vault.cluster.access.oidc.providers">
-      View providers
+      {{t "View providers"}}
     </LinkTo>
   </EmptyState>
 {{/if}}

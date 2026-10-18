@@ -1,11 +1,12 @@
 <WizardSection
-  @headerText="RADIUS"
+  @headerText={{t "RADIUS"}}
   @headerIcon="user"
-  @docText="Docs: RADIUS Authentication"
+  @docText={{t "Docs: RADIUS Authentication"}}
   @docPath="/docs/auth/radius.html"
 >
   <p>
-    The RADIUS Auth Method allows users to authenticate with OpenBao using an existing RADIUS server that accepts the PAP
-    authentication scheme.
+    {{t
+      "The RADIUS Auth Method allows users to authenticate with OpenBao using an existing RADIUS server that accepts the PAP authentication scheme."
+    }}
   </p>
 </WizardSection>

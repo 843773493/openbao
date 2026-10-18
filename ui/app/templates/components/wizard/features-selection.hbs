@@ -1,19 +1,21 @@
-<WizardContent @headerText="OpenBao Web UI" @glyph="tour" @selectProgress={{this.selectProgress}}>
+<WizardContent @headerText={{t "OpenBao Web UI"}} @glyph="tour" @selectProgress={{this.selectProgress}}>
   <h2 class="title is-6">
-    Choosing where to go
+    {{t "Choosing where to go"}}
   </h2>
   <p>
-    You did it! You now have access to your OpenBao and can start entering your data. We can help you get started with any of
-    the options below.
+    {{t
+      "You did it! You now have access to your OpenBao and can start entering your data. We can help you get started with any of the options below."
+    }}
   </p>
   <div class="access-information">
     <Icon @name="info" class="has-text-info" />
     <p>
-      OpenBao only shows links to pages that you have access to based on your policies. Contact your administrator if you
-      need access changes.
+      {{t
+        "OpenBao only shows links to pages that you have access to based on your policies. Contact your administrator if you need access changes."
+      }}
     </p>
   </div>
-  <h3 class="feature-header">Walk me through setting up:</h3>
+  <h3 class="feature-header">{{t "Walk me through setting up:"}}</h3>
   <form id="features-form" class="feature-selection" {{action "saveFeatures" on="submit"}}>
     {{#each this.allFeatures as |feature|}}
       {{#if feature.show}}
@@ -44,7 +46,7 @@
             </button>
             {{#if feature.disabled}}
               <Info-Tooltip data-test-tooltip>
-                You do not have permissions to tour some parts of this feature
+                {{t "You do not have permissions to tour some parts of this feature"}}
               </Info-Tooltip>
             {{/if}}
           </div>
@@ -60,13 +62,13 @@
     {{/each}}
     <span class="selection-summary">
       <button type="submit" class="button is-primary" disabled={{this.cannotStartWizard}} data-test-start-button>
-        Start
+        {{t "Start"}}
       </button>
       {{#if this.selectedFeatures}}
         <span class="time-estimate">
-          <Icon @name="clock" class="has-text-grey" />About
+          <Icon @name="clock" class="has-text-grey" />{{t "About"}}
           {{this.estimatedTime}}
-          minutes
+          {{t "minutes"}}
         </span>
       {{/if}}
     </span>

@@ -11,11 +11,11 @@
 </PageHeader>
 
 <div class="tabs-container box is-bottomless is-marginless is-paddingless">
-  <nav class="tabs" aria-label="kubernetes tabs">
+  <nav class="tabs" aria-label={{t "kubernetes tabs"}}>
     <ul>
-      <LinkTo @route="overview" data-test-tab="overview" @model={{(current-mount-path)}}>Overview</LinkTo>
-      <LinkTo @route="roles" data-test-tab="roles" @model={{(current-mount-path)}}>Roles</LinkTo>
-      <LinkTo @route="configuration" data-test-tab="config" @model={{(current-mount-path)}}>Configuration</LinkTo>
+      <LinkTo @route="overview" data-test-tab="overview" @model={{(current-mount-path)}}>{{t "Overview"}}</LinkTo>
+      <LinkTo @route="roles" data-test-tab="roles" @model={{(current-mount-path)}}>{{t "Roles"}}</LinkTo>
+      <LinkTo @route="configuration" data-test-tab="config" @model={{(current-mount-path)}}>{{t "Configuration"}}</LinkTo>
     </ul>
   </nav>
 </div>
@@ -23,7 +23,7 @@
 <Toolbar>
   {{#if @filterRoles}}
     <ToolbarFilters>
-      <NavigateInput @filter={{@rolesFilterValue}} @placeholder="Filter roles" @urls={{this.urls}} />
+      <NavigateInput @filter={{@rolesFilterValue}} @placeholder={{t "Filter roles"}} @urls={{this.urls}} />
     </ToolbarFilters>
   {{/if}}
   <ToolbarActions>

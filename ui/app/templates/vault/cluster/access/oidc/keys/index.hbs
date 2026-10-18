@@ -1,7 +1,7 @@
 <Toolbar>
   <ToolbarActions>
     <ToolbarLink @route="vault.cluster.access.oidc.keys.create" @type="add" data-test-oidc-key-create>
-      Create key
+      {{t "Create key"}}
     </ToolbarLink>
   </ToolbarActions>
 </Toolbar>
@@ -33,7 +33,7 @@
                     @disabled={{eq model.canRead false}}
                     data-test-oidc-key-menu-link="details"
                   >
-                    Details
+                    {{t "Details"}}
                   </LinkTo>
                 </li>
                 <li>
@@ -43,7 +43,7 @@
                     @disabled={{eq model.canEdit false}}
                     data-test-oidc-key-menu-link="edit"
                   >
-                    Edit
+                    {{t "Edit"}}
                   </LinkTo>
                 </li>
               </ul>

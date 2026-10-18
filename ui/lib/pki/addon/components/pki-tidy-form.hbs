@@ -1,11 +1,14 @@
 <hr class="is-marginless has-background-gray-200" />
 
-<p class="has-top-margin-m has-bottom-margin-l">Tidying cleans up the storage backend and/or CRL by removing certificates
-  that have expired and are past a certain buffer period beyond their expiration time.
-  <DocLink @path="/api-docs/secret/pki#{{if (eq @tidyType 'manual') 'tidy' 'configure-automatic-tidy'}}">Learn more</DocLink>
+<p class="has-top-margin-m has-bottom-margin-l">{{t
+    "Tidying cleans up the storage backend and/or CRL by removing certificates that have expired and are past a certain buffer period beyond their expiration time."
+  }}
+  <DocLink @path="/api-docs/secret/pki#{{if (eq @tidyType 'manual') 'tidy' 'configure-automatic-tidy'}}">{{t
+      "Learn more"
+    }}</DocLink>
 </p>
 
-<MessageError @errorMessage={{this.errorBanner}} class="has-top-margin-s" />
+<MessageError @errorMessage={{t this.errorBanner}} class="has-top-margin-s" />
 
 <form class="has-bottom-margin-s" {{on "submit" (perform this.save)}} data-test-tidy-form={{@tidyType}}>
   {{#if (and (eq @tidyType "auto") this.intervalDurationAttr)}}
@@ -13,10 +16,10 @@
       <TtlPicker
         data-test-input={{attr.name}}
         @onChange={{fn this.handleTtl attr}}
-        @label={{attr.options.label}}
+        @label={{t attr.options.label}}
         @labelDisabled={{attr.options.labelDisabled}}
-        @helperTextDisabled={{attr.options.helperTextDisabled}}
-        @helperTextEnabled={{attr.options.helperTextEnabled}}
+        @helperTextDisabled={{t attr.options.helperTextDisabled}}
+        @helperTextEnabled={{t attr.options.helperTextEnabled}}
         @initialEnabled={{get @tidy attr.options.mapToBoolean}}
         @initialValue={{get @tidy attr.name}}
       />
@@ -33,10 +36,10 @@
             <TtlPicker
               data-test-input={{attr.name}}
               @onChange={{fn this.handleTtl attr}}
-              @label={{attr.options.label}}
+              @label={{t attr.options.label}}
               @labelDisabled={{attr.options.labelDisabled}}
-              @helperTextDisabled={{attr.options.helperTextDisabled}}
-              @helperTextEnabled={{attr.options.helperTextEnabled}}
+              @helperTextDisabled={{t attr.options.helperTextDisabled}}
+              @helperTextEnabled={{t attr.options.helperTextEnabled}}
               @initialEnabled={{get @tidy attr.options.mapToBoolean}}
               @initialValue={{get @tidy attr.name}}
             />
@@ -69,11 +72,11 @@
       {{on "click" @onCancel}}
       data-test-pki-tidy-cancel
     >
-      Cancel
+      {{t "Cancel"}}
     </button>
     {{#if this.invalidFormAlert}}
       <div class="control">
-        <AlertInline @type="danger" @paddingTop={{true}} @message={{this.invalidFormAlert}} @mimicRefresh={{true}} />
+        <AlertInline @type="danger" @paddingTop={{true}} @message={{t this.invalidFormAlert}} @mimicRefresh={{true}} />
       </div>
     {{/if}}
   </div>

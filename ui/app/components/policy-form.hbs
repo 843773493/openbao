@@ -1,10 +1,10 @@
 <form {{on "submit" (perform this.save)}} data-test-policy-form>
   <div class="box is-bottomless is-fullwidth is-marginless">
-    <MessageError @errorMessage={{this.errorBanner}} />
-    <NamespaceReminder @mode={{if @model.isNew "create" "edit"}} @noun="policy" />
+    <MessageError @errorMessage={{t this.errorBanner}} />
+    <NamespaceReminder @mode={{if @model.isNew "create" "edit"}} @noun={{t "policy"}} />
     {{#if @model.isNew}}
       <div class="field">
-        <label for="policy-name" class="is-label">Name</label>
+        <label for="policy-name" class="is-label">{{t "Name"}}</label>
         <div class="control">
           <Input
             @type="text"
@@ -20,7 +20,7 @@
     <div class="field">
       {{#if @model.isNew}}
         <Toolbar>
-          <label class="is-label">Policy</label>
+          <label class="is-label">{{t "Policy"}}</label>
           <ToolbarActions>
             <div class="toolbar-separator"></div>
             <div class="control is-flex">
@@ -33,7 +33,7 @@
                 {{on "change" (fn (mut this.showFileUpload) (not this.showFileUpload))}}
                 data-test-policy-edit-toggle
               />
-              <label for="fileUploadToggle">Upload file</label>
+              <label for="fileUploadToggle">{{t "Upload file"}}</label>
             </div>
           </ToolbarActions>
         </Toolbar>
@@ -41,7 +41,7 @@
           <TextFile @uploadOnly={{true}} @onChange={{this.setPolicyFromFile}} />
         {{else}}
           <JsonEditor
-            @title="Policy"
+            @title={{t "Policy"}}
             @helpText="You can use Alt+Tab (Option+Tab on MacOS) in the code editor to skip to the next field"
             @showToolbar={{false}}
             @value={{@model.policy}}
@@ -54,7 +54,7 @@
       {{else}}
         {{! EDITING - no file upload toggle}}
         <JsonEditor
-          @title="Policy"
+          @title={{t "Policy"}}
           @helpText="You can use Alt+Tab (Option+Tab on MacOS) in the code editor to skip to the next field"
           @value={{@model.policy}}
           @valueUpdated={{action (mut @model.policy)}}
@@ -70,11 +70,11 @@
   </div>
   <div class="has-bottom-margin-m">
     <p>
-      More information about
+      {{t "More information about"}}
       {{uppercase @model.policyType}}
-      policies can be found
+      {{t "policies can be found"}}
       <DocLink @path={{"/docs/concepts/policies#capabilities"}}>
-        here.
+        {{t "here."}}
       </DocLink>
     </p>
   </div>
@@ -95,7 +95,7 @@
         {{on "click" this.cancel}}
         data-test-policy-cancel
       >
-        Cancel
+        {{t "Cancel"}}
       </button>
     </div>
   </div>

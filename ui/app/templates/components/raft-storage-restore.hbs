@@ -5,7 +5,7 @@
         <li>
           <span class="sep">&#x0002f;</span>
           <LinkTo @route="vault.cluster.storage">
-            Raft Storage
+            {{t "Raft Storage"}}
           </LinkTo>
         </li>
       </ul>
@@ -13,7 +13,7 @@
   </p.top>
   <p.levelLeft>
     <h1 class="title is-3">
-      Restore Snapshot
+      {{t "Restore Snapshot"}}
     </h1>
   </p.levelLeft>
 </PageHeader>
@@ -25,21 +25,21 @@
     <div class="box is-sideless is-fullwidth is-marginless">
       <AlertBanner
         @type="warning"
-        @title="Uploading your file..."
-        @message="Raft snapshots can be very large files. Uploading the snapshot may take some time."
+        @title={{t "Uploading your file..."}}
+        @message={{t "Raft snapshots can be very large files. Uploading the snapshot may take some time."}}
       />
     </div>
     <div class="box is-fullwidth is-shadowless">
       <button type="button" class="button" onclick={{action "cancelUpload"}}>
-        Cancel upload
+        {{t "Cancel upload"}}
       </button>
     </div>
   {{else}}
     <div class="box is-sideless is-fullwidth is-marginless">
       <AlertBanner
         @type="warning"
-        @title="This might take a while"
-        @message="Raft snapshots can be very large files. Uploading the snapshot may take some time."
+        @title={{t "This might take a while"}}
+        @message={{t "Raft snapshots can be very large files. Uploading the snapshot may take some time."}}
       />
       <FileToArrayBuffer @onChange={{action (mut this.file)}} />
       <div class="b-checkbox">
@@ -51,15 +51,15 @@
           onchange={{action (mut this.forceRestore) value="target.checked"}}
         />
         <label for="force-restore" class="is-label">
-          Force restore
+          {{t "Force restore"}}
         </label>
         <p class="checkbox-help-text">
-          Bypass checks to ensure the AutoUnseal or Shamir keys are consistent with the snapshot data.
+          {{t "Bypass checks to ensure the AutoUnseal or Shamir keys are consistent with the snapshot data."}}
         </p>
       </div>
     </div>
     <FormSaveButtons
-      @saveButtonText="Restore"
+      @saveButtonText={{t "Restore"}}
       @isSaving={{this.restore.isRunning}}
       @cancelLinkParams={{array "vault.cluster.storage"}}
     />

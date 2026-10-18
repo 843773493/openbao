@@ -1,14 +1,14 @@
 <div class="field" ...attributes {{did-insert this.createKvData @value}}>
   <FormFieldLabel
-    @label={{@label}}
+    @label={{t @label}}
     @helpText={{@helpText}}
-    @subText={{@subText}}
+    @subText={{t @subText}}
     class={{@labelClass}}
     data-test-kv-label={{true}}
   />
   {{#if @validationError}}
     <div>
-      <AlertInline @type="danger" @message={{@validationError}} @paddingTop={{true}} />
+      <AlertInline @type="danger" @message={{t @validationError}} @paddingTop={{true}} />
     </div>
   {{/if}}
   {{#if this.kvData}}
@@ -18,7 +18,7 @@
           <Input
             data-test-kv-key={{true}}
             @value={{row.name}}
-            placeholder={{this.placeholders.key}}
+            placeholder={{t this.placeholders.key}}
             {{on "change" (fn this.updateRow row index)}}
             class="input"
           />
@@ -33,7 +33,7 @@
               class="input {{if @validationError 'has-error-border'}}"
               @value={{row.value}}
               wrap="off"
-              placeholder={{this.placeholders.value}}
+              placeholder={{t this.placeholders.value}}
               rows={{1}}
               {{on "change" (fn this.updateRow row index)}}
               {{on "keyup" this.handleKeyUp}}
@@ -43,14 +43,14 @@
         <div class="column is-narrow">
           {{#if (eq this.kvData.length (inc index))}}
             <button type="button" {{action "addRow"}} class="button is-outlined is-primary" data-test-kv-add-row={{true}}>
-              Add
+              {{t "Add"}}
             </button>
           {{else}}
             <button
               class="button has-text-grey is-expanded is-icon"
               type="button"
               {{action "deleteRow" row index}}
-              aria-label="Delete row"
+              aria-label={{t "Delete row"}}
               data-test-kv-delete-row={{index}}
             >
               <Icon @name="trash" />
@@ -62,7 +62,9 @@
     {{#if this.hasDuplicateKeys}}
       <AlertBanner
         @type="warning"
-        @message="More than one key shares the same name. Please be sure to have unique key names or some data may be lost when saving."
+        @message={{t
+          "More than one key shares the same name. Please be sure to have unique key names or some data may be lost when saving."
+        }}
         @class="is-marginless"
         data-test-duplicate-error-warnings
       />

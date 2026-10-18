@@ -7,7 +7,7 @@
         {{on "click" (fn (mut this.showRotationModal) true)}}
         data-test-pki-issuer-rotate-root
       >
-        Rotate this root
+        {{t "Rotate this root"}}
         <Icon @name="rotate-cw" />
       </button>
     {{/if}}
@@ -18,7 +18,7 @@
         @models={{array (current-mount-path) @issuer.id}}
         data-test-pki-issuer-cross-sign
       >
-        Cross-sign issuers
+        {{t "Cross-sign issuers"}}
       </ToolbarLink>
     {{/if}}
     {{#if @canSignIntermediate}}
@@ -28,7 +28,7 @@
         @models={{array (current-mount-path) @issuer.id}}
         data-test-pki-issuer-sign-int
       >
-        Sign Intermediate
+        {{t "Sign Intermediate"}}
       </ToolbarLink>
     {{/if}}
     <BasicDropdown @class="popup-menu" @horizontalPosition="auto-right" @verticalPosition="below" as |D|>
@@ -38,11 +38,11 @@
         @htmlTag="button"
         data-test-issuer-download
       >
-        Download
+        {{t "Download"}}
         <Chevron @direction="down" @isButton={{true}} />
       </D.Trigger>
       <D.Content @defaultClass="popup-menu-content">
-        <nav class="box menu" aria-label="snapshots actions">
+        <nav class="box menu" aria-label={{t "snapshots actions"}}>
           <ul class="menu-list">
             {{#if @pem}}
               {{! should never be null, but if it is we don't want to let users download an empty file }}
@@ -54,7 +54,7 @@
                   @extension="pem"
                   data-test-issuer-download-type="pem"
                 >
-                  PEM format
+                  {{t "PEM format"}}
                 </DownloadButton>
               </li>
             {{/if}}
@@ -68,7 +68,7 @@
                   @extension="der"
                   data-test-issuer-download-type="der"
                 >
-                  DER format
+                  {{t "DER format"}}
                 </DownloadButton>
               </li>
             {{/if}}
@@ -83,7 +83,7 @@
         @models={{array (current-mount-path) @issuer.id}}
         data-test-pki-issuer-configure
       >
-        Configure
+        {{t "Configure"}}
       </ToolbarLink>
     {{/if}}
   </ToolbarActions>
@@ -91,11 +91,11 @@
 
 {{#if @issuer.isDefault}}
   <p class="has-top-margin-m">
-    This is your default issuer certificate. You will see it in your
+    {{t "This is your default issuer certificate. You will see it in your"}}
     <LinkTo @route="issuers.index" @model={{(current-mount-path)}}>
-      list of Issuers.
+      {{t "list of Issuers."}}
     </LinkTo>
-    You may also want to configure its usage and other behaviors.
+    {{t "You may also want to configure its usage and other behaviors."}}
   </p>
 {{/if}}
 <main data-test-issuer-details>
@@ -109,7 +109,10 @@
         {{/if}}
         {{#each fields as |attr|}}
           {{#if attr.options.masked}}
-            <InfoTableRow @label={{or attr.options.label (humanize (dasherize attr.name))}} @value={{get @issuer attr.name}}>
+            <InfoTableRow
+              @label={{t (or attr.options.label (humanize (dasherize attr.name)))}}
+              @value={{get @issuer attr.name}}
+            >
               <MaskedInput
                 @name={{or attr.options.label (humanize (dasherize attr.name))}}
                 @value={{get @issuer attr.name}}
@@ -118,7 +121,10 @@
               />
             </InfoTableRow>
           {{else if (eq attr.name "keyId")}}
-            <InfoTableRow @label={{or attr.options.label (humanize (dasherize attr.name))}} @value={{get @issuer attr.name}}>
+            <InfoTableRow
+              @label={{t (or attr.options.label (humanize (dasherize attr.name)))}}
+              @value={{get @issuer attr.name}}
+            >
               {{#if @issuer.keyId}}
                 <LinkTo
                   @route="keys.key.details"
@@ -130,7 +136,7 @@
             </InfoTableRow>
           {{else}}
             <InfoTableRow
-              @label={{or attr.options.label (humanize (dasherize attr.name))}}
+              @label={{t (or attr.options.label (humanize (dasherize attr.name)))}}
               @value={{get @issuer attr.name}}
               @formatDate={{if attr.options.formatDate "MMM d yyyy HH:mm:ss a zzzz"}}
               @alwaysRender={{true}}
@@ -150,12 +156,13 @@
     data-test-parsing-error-alert-banner
     class="has-top-margin-m"
     @type="info"
-    @title="There was an error parsing certificate metadata"
+    @title={{t "There was an error parsing certificate metadata"}}
   >
-    OpenBao cannot display unparsed values, but this will not interfere with the certificate's functionality. However, if you
-    wish to cross-sign this issuer it must be done manually using the CLI.
+    {{t
+      "OpenBao cannot display unparsed values, but this will not interfere with the certificate's functionality. However, if you wish to cross-sign this issuer it must be done manually using the CLI."
+    }}
     {{#if this.parsingErrors}}
-      <p class="sub-text is-font-mono">Parsing error(s): {{this.parsingErrors}} </p>
+      <p class="sub-text is-font-mono">{{t "Parsing error(s):"}} {{this.parsingErrors}} </p>
     {{/if}}
   </AlertBanner>
 {{/if}}
@@ -163,30 +170,31 @@
 {{! ROOT ROTATION MODAL }}
 <Modal
   @type="rotation"
-  @title="Rotate this root"
+  @title={{t "Rotate this root"}}
   @onClose={{fn (mut this.showRotationModal) false}}
   @isActive={{this.showRotationModal}}
   @showCloseButton={{true}}
 >
   <section class="modal-card-body">
-    <h3 class="title is-5">Root rotation</h3>
+    <h3 class="title is-5">{{t "Root rotation"}}</h3>
     <p class="has-text-grey has-bottom-padding-s">
-      Root rotation is an impactful process. Please be ready to ensure that the new root is properly distributed to
-      end-users’ trust stores. You can also do this manually by
+      {{t
+        "Root rotation is an impactful process. Please be ready to ensure that the new root is properly distributed to end-users’ trust stores. You can also do this manually by"
+      }}
       <DocLink @path="/docs/secrets/pki/rotation-primitives#suggested-root-rotation-procedure">
-        following our documentation.
+        {{t "following our documentation."}}
       </DocLink>
     </p>
-    <h3 class="title is-5 has-top-bottom-margin">How root rotation will work</h3>
+    <h3 class="title is-5 has-top-bottom-margin">{{t "How root rotation will work"}}</h3>
     <p class="has-text-grey">
       <ol class="has-left-margin-m has-bottom-margin-s">
-        <li>The new root will be generated using defaults from the old one that you can customize.</li>
-        <li>You will identify intermediates, which OpenBao will then cross-sign.</li>
+        <li>{{t "The new root will be generated using defaults from the old one that you can customize."}}</li>
+        <li>{{t "You will identify intermediates, which OpenBao will then cross-sign."}}</li>
       </ol>
-      Then, you can begin re-issuing leaf certs and phase out the old root.
+      {{t "Then, you can begin re-issuing leaf certs and phase out the old root."}}
     </p>
     <div class="has-top-margin-l has-tall-padding">
-      <img src={{img-path "~/pki-rotate-root.png"}} alt="pki root rotation diagram" />
+      <img src={{img-path "~/pki-rotate-root.png"}} alt={{t "pki root rotation diagram"}} />
     </div>
   </section>
   <footer class="modal-card-foot modal-card-foot-outlined">
@@ -196,10 +204,10 @@
       {{on "click" (transition-to "vault.cluster.secrets.backend.pki.issuers.issuer.rotate-root")}}
       data-test-root-rotate-step-one
     >
-      Generate new root
+      {{t "Generate new root"}}
     </button>
     <button type="button" class="button is-secondary" {{on "click" (fn (mut this.showRotationModal) false)}}>
-      Cancel
+      {{t "Cancel"}}
     </button>
   </footer>
 </Modal>

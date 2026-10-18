@@ -2,7 +2,7 @@
   <p.levelLeft>
     <h1 class="title is-3">
       <Icon @name="code" class="has-text-grey-light" />
-      Vault API explorer
+      {{t "Vault API explorer"}}
     </h1>
   </p.levelLeft>
 </PageHeader>
@@ -10,7 +10,7 @@
   <ToolbarFilters>
     <div class="field is-marginless">
       <p class="control has-icons-left">
-        <label for="swagger-result-filter" class="sr-only">Filter operations by path</label>
+        <label for="swagger-result-filter" class="sr-only">{{t "Filter operations by path"}}</label>
         <input
           id="swagger-result-filter"
           {{on "input" (action "proxyEvent")}}
@@ -18,24 +18,24 @@
           value={{@initialFilter}}
           disabled={{this.swaggerLoading}}
           class="filter input"
-          placeholder="Filter ops by path"
+          placeholder={{t "Filter ops by path"}}
           data-test-filter-input
         />
         <Icon @name="search" class="search-icon has-text-grey-light" />
       </p>
     </div>
-    <AlertInline @type="info" @message="All API paths are prefixed with /v1/" class="is-marginless input-hint" />
+    <AlertInline @type="info" @message={{t "All API paths are prefixed with /v1/"}} class="is-marginless input-hint" />
   </ToolbarFilters>
 </Toolbar>
 
 <div class="box is-fullwidth is-sideless">
   <NamespaceReminder as |R|>
-    Requests use the header
-    <code>X-Vault-Namespace: {{R.namespace.path}}</code>. You can also use
+    {{t "Requests use the header"}}
+    <code>X-Vault-Namespace: {{R.namespace.path}}</code>{{t ". You can also use"}}
     <code>{{R.namespace.path}}</code>
-    as an API prefix. See
-    <DocLink @path="/api-docs#namespaces">docs</DocLink>
-    for examples.
+    {{t "as an API prefix. See"}}
+    <DocLink @path="/api-docs#namespaces">{{t "docs"}}</DocLink>
+    {{t "for examples."}}
   </NamespaceReminder>
   <div id="{{this.elementId}}-swagger" class="swagger-ember"></div>
 </div>

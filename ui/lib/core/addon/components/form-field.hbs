@@ -3,9 +3,9 @@
   {{#unless this.hideLabel}}
     <FormFieldLabel
       for={{@attr.name}}
-      @label={{this.labelString}}
+      @label={{t this.labelString}}
       @helpText={{(if this.showHelpText @attr.options.helpText)}}
-      @subText={{@attr.options.subText}}
+      @subText={{t @attr.options.subText}}
       @docLink={{@attr.options.docLink}}
     />
   {{/unless}}
@@ -42,7 +42,7 @@
           >
             {{#if @attr.options.noDefault}}
               <option value="">
-                Select one
+                {{t "Select one"}}
               </option>
             {{/if}}
             {{#each (path-or-array @attr.options.possibleValues @model) as |val|}}
@@ -55,7 +55,7 @@
         {{#if this.validationError}}
           <AlertInline
             @type="danger"
-            @message={{this.validationError}}
+            @message={{t this.validationError}}
             @paddingTop={{true}}
             data-test-field-validation={{@attr.name}}
           />
@@ -74,9 +74,9 @@
       />
 
       <label for={{@attr.name}} class="is-label">
-        {{this.labelString}}
+        {{t this.labelString}}
         {{#if (and this.showHelpText @attr.options.helpText)}}
-          <InfoTooltip>{{@attr.options.helpText}}</InfoTooltip>
+          <InfoTooltip>{{t @attr.options.helpText}}</InfoTooltip>
         {{/if}}
       </label>
     </div>
@@ -88,9 +88,9 @@
         @onChange={{this.setAndBroadcast}}
         @inputValue={{get @model this.valuePath}}
         @wildcardLabel={{@attr.options.wildcardLabel}}
-        @label={{this.labelString}}
+        @label={{t this.labelString}}
         @labelClass={{if @attr.options.isSectionHeader "title is-4" "is-label"}}
-        @subText={{@attr.options.subText}}
+        @subText={{t @attr.options.subText}}
         @helpText={{@attr.options.helpText}}
         @fallbackComponent={{@attr.options.fallbackComponent}}
         @selectLimit={{@attr.options.selectLimit}}
@@ -100,12 +100,12 @@
       />
     </div>
     {{#if this.validationError}}
-      <AlertInline @type="danger" @message={{this.validationError}} @paddingTop={{true}} />
+      <AlertInline @type="danger" @message={{t this.validationError}} @paddingTop={{true}} />
     {{/if}}
   {{else if (eq @attr.options.editType "mountAccessor")}}
     <MountAccessorSelect
       @name={{@attr.name}}
-      @label={{this.labelString}}
+      @label={{t this.labelString}}
       @helpText={{@attr.options.helpText}}
       @value={{get @model this.valuePath}}
       @onChange={{this.setAndBroadcast}}
@@ -115,10 +115,10 @@
     <KvObjectEditor
       @value={{get @model this.valuePath}}
       @onChange={{this.setAndBroadcast}}
-      @label={{this.labelString}}
+      @label={{t this.labelString}}
       @labelClass="title {{if (eq @mode 'create') 'is-5' 'is-4'}}"
       @helpText={{@attr.options.helpText}}
-      @subText={{@attr.options.subText}}
+      @subText={{t @attr.options.subText}}
       @onKeyUp={{this.handleKeyUp}}
       @validationError={{this.validationError}}
       class={{if (not-eq @mode "customMetadata") "form-section"}}
@@ -127,7 +127,7 @@
     {{! File Input }}
     <div class="has-bottom-margin-m">
       <TextFile
-        @label={{this.labelString}}
+        @label={{t this.labelString}}
         @helpText={{@attr.options.helpText}}
         @onChange={{this.setFile}}
         @validationError={{this.validationError}}
@@ -140,10 +140,10 @@
         <TtlPicker
           data-test-input={{@attr.name}}
           @onChange={{this.setAndBroadcastTtl}}
-          @label={{this.labelString}}
-          @helperTextDisabled={{or @attr.options.helperTextDisabled "OpenBao will use the default lease duration."}}
-          @helperTextEnabled={{or @attr.options.helperTextEnabled "Lease will expire after"}}
-          @description={{@attr.helpText}}
+          @label={{t this.labelString}}
+          @helperTextDisabled={{t (or @attr.options.helperTextDisabled "OpenBao will use the default lease duration.")}}
+          @helperTextEnabled={{t (or @attr.options.helperTextEnabled "Lease will expire after")}}
+          @description={{t @attr.helpText}}
           @initialValue={{initialValue}}
           @initialEnabled={{if (eq initialValue "0s") false initialValue}}
           @hideToggle={{@attr.options.hideToggle}}
@@ -168,16 +168,16 @@
       @checked={{this.showInput}}
       data-test-toggle={{@attr.name}}
     >
-      <span class="ttl-picker-label is-large">{{this.labelString}}</span><br />
+      <span class="ttl-picker-label is-large">{{t this.labelString}}</span><br />
       <div class="description has-text-grey">
         {{#if this.showInput}}
           <span>
-            {{@attr.options.subText}}
+            {{t @attr.options.subText}}
             {{#if @attr.options.docLink}}
               <DocLink @path={{@attr.options.docLink}}>
-                See our documentation
+                {{t "See our documentation"}}
               </DocLink>
-              for help.
+              {{t "for help."}}
             {{/if}}
           </span>
         {{else}}
@@ -185,9 +185,9 @@
             {{or @attr.options.defaultSubText "OpenBao will use the engine default."}}
             {{#if @attr.options.docLink}}
               <DocLink @path={{@attr.options.docLink}}>
-                See our documentation
+                {{t "See our documentation"}}
               </DocLink>
-              for help.
+              {{t "for help."}}
             {{/if}}
           </span>
         {{/if}}
@@ -208,12 +208,12 @@
   {{else if (eq @attr.options.editType "stringArray")}}
     <StringList
       data-test-input={{@attr.name}}
-      @label={{this.labelString}}
+      @label={{t this.labelString}}
       @helpText={{if this.showHelpText @attr.options.helpText}}
       @inputValue={{get @model this.valuePath}}
       @onChange={{this.setAndBroadcast}}
       @attrName={{@attr.name}}
-      @subText="{{@attr.options.subText}} Add one item per row."
+      @subText={{t "{arg0} Add one item per row." arg0=(@attr.options.subText)}}
     />
   {{else if (eq @attr.options.sensitive true)}}
     <MaskedInput
@@ -224,7 +224,7 @@
       @onKeyUp={{@onKeyUp}}
     />
     {{#if this.validationError}}
-      <AlertInline @type="danger" @message={{this.validationError}} @paddingTop={{true}} />
+      <AlertInline @type="danger" @message={{t this.validationError}} @paddingTop={{true}} />
     {{/if}}
   {{else if (or (eq @attr.type "number") (eq @attr.type "string"))}}
     <div class="control">
@@ -238,7 +238,7 @@
           class="textarea {{if this.validationError 'has-error-border'}}"
         ></textarea>
         {{#if this.validationError}}
-          <AlertInline @type="danger" @message={{this.validationError}} @paddingTop={{true}} />
+          <AlertInline @type="danger" @message={{t this.validationError}} @paddingTop={{true}} />
         {{/if}}
       {{else if (eq @attr.options.editType "password")}}
         <Input
@@ -256,7 +256,7 @@
         {{#let (get @model this.valuePath) as |value|}}
           <JsonEditor
             data-test-input={{@attr.name}}
-            @title={{this.labelString}}
+            @title={{t this.labelString}}
             @value={{if
               value
               (if (eq @attr.options.mode "ruby") value (stringify (jsonify value)))
@@ -275,7 +275,7 @@
                 onClick={{this.setAndBroadcast}}
                 data-test-json-clear-button
               >
-                Clear
+                {{t "Clear"}}
                 <Icon @name="reload" />
               </button>
             {{/if}}
@@ -283,12 +283,12 @@
         {{/let}}
         {{#if @attr.options.subText}}
           <p class="sub-text">
-            {{@attr.options.subText}}
+            {{t @attr.options.subText}}
             {{#if @attr.options.docLink}}
               <DocLink @path={{@attr.options.docLink}}>
-                See our documentation
+                {{t "See our documentation"}}
               </DocLink>
-              for help.
+              {{t "for help."}}
             {{/if}}
           </p>
         {{/if}}
@@ -310,16 +310,16 @@
         />
         {{#if @attr.options.validationAttr}}
           {{#if (and (get @model this.valuePath) (not (get @model @attr.options.validationAttr)))}}
-            <AlertInline @type="danger" @message={{@attr.options.invalidMessage}} />
+            <AlertInline @type="danger" @message={{t @attr.options.invalidMessage}} />
           {{/if}}
         {{/if}}
         {{#if this.validationError}}
-          <AlertInline @type="danger" @message={{this.validationError}} @paddingTop={{true}} />
+          <AlertInline @type="danger" @message={{t this.validationError}} @paddingTop={{true}} />
         {{/if}}
         {{#if this.validationWarning}}
           <AlertInline
             @type="warning"
-            @message={{this.validationWarning}}
+            @message={{t this.validationWarning}}
             @paddingTop={{true}}
             data-test-validation-warning
           />
@@ -338,17 +338,17 @@
         data-test-input={{@attr.name}}
       />
       <label for={{@attr.name}} class="is-label">
-        {{this.labelString}}
+        {{t this.labelString}}
         {{#if (and this.showHelpText @attr.options.helpText)}}
-          <InfoTooltip>{{@attr.options.helpText}}</InfoTooltip>
+          <InfoTooltip>{{t @attr.options.helpText}}</InfoTooltip>
         {{/if}}
       </label>
       {{#if @attr.options.subText}}
         <p class="sub-text">
-          {{@attr.options.subText}}
+          {{t @attr.options.subText}}
           {{#if @attr.options.docLink}}
             <DocLink @path={{@attr.options.docLink}}>
-              Learn more here.
+              {{t "Learn more here."}}
             </DocLink>
           {{/if}}
         </p>
@@ -356,7 +356,7 @@
     </div>
   {{else if (eq @attr.type "object")}}
     <JsonEditor
-      @title={{this.labelString}}
+      @title={{t this.labelString}}
       @value={{if (get @model this.valuePath) (stringify (get @model this.valuePath)) this.emptyData}}
       @valueUpdated={{fn this.codemirrorUpdated false}}
       @helpText={{@attr.options.helpText}}

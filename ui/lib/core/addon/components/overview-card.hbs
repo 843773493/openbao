@@ -1,6 +1,6 @@
 <div class="selectable-card is-rounded no-flex" data-test-selectable-card-container={{@cardTitle}}>
   <div class="is-flex-between is-fullwidth card-details" data-test-selectable-card={{@cardTitle}}>
-    <h3 class="title is-5">{{@cardTitle}}</h3>
+    <h3 class="title is-5">{{t @cardTitle}}</h3>
     {{#if @actionText}}
       {{#if @actionModel}}
         <LinkTo
@@ -10,7 +10,7 @@
           @query={{hash @actionQuery}}
           data-test-action-text={{@actionText}}
         >
-          {{@actionText}}
+          {{t @actionText}}
           <Icon @name="chevron-right" />
         </LinkTo>
       {{else}}
@@ -20,12 +20,12 @@
           @query={{hash @actionQuery}}
           data-test-action-text={{@actionText}}
         >
-          {{@actionText}}
+          {{t @actionText}}
           <Icon @name="chevron-right" />
         </LinkTo>
       {{/if}}
     {{/if}}
   </div>
-  <p class="has-text-grey is-size-8 {{unless @actionText 'has-top-margin-s'}}">{{@subText}}</p>
+  <p class="has-text-grey is-size-8 {{unless @actionText 'has-top-margin-s'}}">{{t @subText}}</p>
   {{yield}}
 </div>

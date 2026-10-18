@@ -11,11 +11,11 @@
   <p.levelLeft>
     <h1 class="title is-3" data-test-secret-header="true">
       {{#if (eq this.mode "create")}}
-        Create Alphabet
+        {{t "Create Alphabet"}}
       {{else if (eq this.mode "edit")}}
-        Edit Alphabet
+        {{t "Edit Alphabet"}}
       {{else}}
-        Alphabet
+        {{t "Alphabet"}}
         <code>{{this.model.id}}</code>
       {{/if}}
     </h1>
@@ -27,7 +27,7 @@
     <ToolbarActions>
       {{#if this.capabilities.canDelete}}
         <button type="button" class="toolbar-link" onclick={{action "delete"}} data-test-transformation-alphabet-delete>
-          Delete alphabet
+          {{t "Delete alphabet"}}
         </button>
         <div class="toolbar-separator"></div>
       {{/if}}
@@ -38,7 +38,7 @@
           data-test-edit-link={{true}}
           @replace={{true}}
         >
-          Edit alphabet
+          {{t "Edit alphabet"}}
         </ToolbarSecretLink>
       {{/if}}
     </ToolbarActions>
@@ -49,14 +49,14 @@
   <form onsubmit={{action "createOrUpdate" this.mode}}>
     <div class="box is-sideless is-fullwidth is-marginless">
       <MessageError @model={{this.model}} />
-      <NamespaceReminder @mode={{this.mode}} @noun="transform alphabet" />
+      <NamespaceReminder @mode={{this.mode}} @noun={{t "transform alphabet"}} />
       {{#each this.model.attrs as |attr|}}
         {{#if (and (eq attr.name "name") (eq this.mode "edit"))}}
           <label for={{attr.name}} class="is-label">
-            {{attr.options.label}}
+            {{t attr.options.label}}
           </label>
           {{#if attr.options.subText}}
-            <p class="sub-text">{{attr.options.subText}}</p>
+            <p class="sub-text">{{t attr.options.subText}}</p>
           {{/if}}
           <input
             data-test-input={{attr.name}}
@@ -82,9 +82,9 @@
           data-test-alphabet-transform-create={{true}}
         >
           {{#if (eq this.mode "create")}}
-            Create alphabet
+            {{t "Create alphabet"}}
           {{else if (eq this.mode "edit")}}
-            Save
+            {{t "Save"}}
           {{/if}}
         </button>
         <SecretLink
@@ -92,7 +92,7 @@
           class="button"
           @secret={{concat this.model.idPrefix this.model.id}}
         >
-          Cancel
+          {{t "Cancel"}}
         </SecretLink>
       </div>
     </div>
@@ -107,19 +107,19 @@
     {{#each this.model.attrs as |attr|}}
       {{#if (eq attr.type "object")}}
         <InfoTableRow
-          @label={{capitalize (or attr.options.label (humanize (dasherize attr.name)))}}
+          @label={{t (capitalize (or attr.options.label (humanize (dasherize attr.name))))}}
           @value={{stringify (get this.model attr.name)}}
         />
       {{else if (eq attr.type "array")}}
         <InfoTableRow
-          @label={{capitalize (or attr.options.label (humanize (dasherize attr.name)))}}
+          @label={{t (capitalize (or attr.options.label (humanize (dasherize attr.name))))}}
           @value={{get this.model attr.name}}
           @type={{attr.type}}
           @isLink={{eq attr.name "transformations"}}
         />
       {{else}}
         <InfoTableRow
-          @label={{capitalize (or attr.options.label (humanize (dasherize attr.name)))}}
+          @label={{t (capitalize (or attr.options.label (humanize (dasherize attr.name))))}}
           @value={{get this.model attr.name}}
         />
       {{/if}}

@@ -1,12 +1,12 @@
 <form onsubmit={{action @doSubmit (hash ciphertext=@ciphertext context=@context nonce=@nonce)}}>
   <div class="box is-sideless is-fullwidth is-marginless">
     <div class="content has-bottom-margin-l">
-      <p>You can decrypt ciphertext using <code>{{@key.name}}</code> as the encryption key.</p>
+      <p>{{t "You can decrypt ciphertext using"}} <code>{{@key.name}}</code> {{t "as the encryption key."}}</p>
     </div>
     <div class="field">
       <div id="ciphertext-control" class="control">
         <JsonEditor
-          @title="Ciphertext"
+          @title={{t "Ciphertext"}}
           @valueUpdated={{action (mut @ciphertext)}}
           @mode="ruby"
           @data-test-transit-input="ciphertext"
@@ -16,7 +16,7 @@
     {{#if @key.derived}}
       <div class="field">
         <label for="context" class="is-label">
-          Context
+          {{t "Context"}}
         </label>
         <div class="field has-addons">
           <div class="control">
@@ -30,7 +30,7 @@
     {{/if}}
     {{#if (eq @key.convergentEncryptionVersion 1)}}
       <div class="field">
-        <label for="nonce" class="is-label">Nonce</label>
+        <label for="nonce" class="is-label">{{t "Nonce"}}</label>
         <div class="field has-addons">
           <div class="control">
             <Input @type="text" id="nonce" @value={{@nonce}} class="input" data-test-transit-input="nonce" />
@@ -45,40 +45,40 @@
   <div class="field is-grouped box is-fullwidth is-bottomless">
     <div class="control">
       <button type="submit" class="button is-primary" id="decrypt" data-test-button-decrypt>
-        Decrypt
+        {{t "Decrypt"}}
       </button>
     </div>
   </div>
 </form>
 {{#if @isModalActive}}
-  <Modal @title="Copy your unwrapped data" @onClose={{action (mut @isModalActive) false}} @isActive={{@isModalActive}}>
+  <Modal @title={{t "Copy your unwrapped data"}} @onClose={{action (mut @isModalActive) false}} @isActive={{@isModalActive}}>
     <section class="modal-card-body">
       <div class="box is-shadowless is-fullwidth is-sideless">
-        <h2 class="title is-6">Plaintext</h2>
+        <h2 class="title is-6">{{t "Plaintext"}}</h2>
         <div class="copy-text level">
           <code class="level-left" data-test-encrypted-value="plaintext">{{@plaintext}}</code>
           <CopyButton
             class="button is-compact is-transparent level-right"
             data-test-button="modal-copy"
-            @text={{@plaintext}}
+            @text={{t @plaintext}}
             @buttonType="button"
             @onSuccess={{action (set-flash-message "Plaintext copied!")}}
           >
-            <Icon @name="clipboard-copy" aria-label="Copy" />
+            <Icon @name="clipboard-copy" aria-label={{t "Copy"}} />
           </CopyButton>
         </div>
-        <p class="help">Plaintext is base64 encoded</p>
+        <p class="help">{{t "Plaintext is base64 encoded"}}</p>
       </div>
     </section>
     <footer class="modal-card-foot">
       <CopyButton
         class="button is-primary copy-close"
         data-test-button="modal-copy-close"
-        @text={{@plaintext}}
+        @text={{t @plaintext}}
         @buttonType="button"
         @onSuccess={{action @toggleModal "Plaintext copied!"}}
       >
-        Copy &amp; Close
+        {{t "Copy & Close"}}
       </CopyButton>
     </footer>
   </Modal>

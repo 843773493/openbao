@@ -12,7 +12,7 @@
         {{capitalize (pluralize this.identityType)}}
       </LinkTo>
       <LinkTo @route="vault.cluster.access.identity.aliases.index" @model={{pluralize this.identityType}}>
-        Aliases
+        {{t "Aliases"}}
       </LinkTo>
     </ul>
   </nav>
@@ -30,7 +30,7 @@
         @model={{pluralize this.identityType}}
         data-test-entity-merge-link={{true}}
       >
-        Merge
+        {{t "Merge"}}
         {{pluralize this.identityType}}
       </ToolbarLink>
     {{/if}}
@@ -40,7 +40,7 @@
       @type="add"
       data-test-entity-create-link={{true}}
     >
-      Create
+      {{t "Create"}}
       {{this.identityType}}
     </ToolbarLink>
   </ToolbarActions>

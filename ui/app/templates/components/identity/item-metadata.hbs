@@ -18,13 +18,13 @@
   </div>
 {{else}}
   <EmptyState
-    @title="No metadata for {{@model.name}}"
+    @title={{t "No metadata for {arg0}" arg0=(@model.name)}}
     @message="You can store custom data that you want to associate with a {{lowercase
       (humanize @model.identityType)
     }}. Edit this {{lowercase (humanize @model.identityType)}} to get started."
   >
     <LinkTo @route="vault.cluster.access.identity.edit" @model={{@model.id}} class="link">
-      Edit
+      {{t "Edit"}}
       {{lowercase (humanize @model.identityType)}}
     </LinkTo>
     {{! TODO Add a link to a tutorial for 'auth-methods/identity' }}

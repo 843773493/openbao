@@ -4,7 +4,7 @@
   </p.top>
   <p.levelLeft>
     <h1 class="title is-3" data-test-pki-engine-page-title>
-      {{this.title}}
+      {{t this.title}}
     </h1>
   </p.levelLeft>
 </PageHeader>
@@ -20,10 +20,10 @@
             <div>
               <h3 class="box-label-header title is-6">
                 <Icon @size="24" @name={{option.icon}} />
-                {{option.label}}
+                {{t option.label}}
               </h3>
               <p class="help has-text-grey-dark">
-                {{option.description}}
+                {{t option.description}}
               </p>
             </div>
             <div>
@@ -55,9 +55,9 @@
   {{#if @config.privateKey}}
     <div class="has-top-margin-m">
       <AlertBanner
-        @title="Next steps"
+        @title={{t "Next steps"}}
         @type="warning"
-        @message="The private_key is only available once. Make sure you copy and save it now."
+        @message={{t "The private_key is only available once. Make sure you copy and save it now."}}
       />
     </div>
   {{/if}}
@@ -78,17 +78,17 @@
   />
 {{else}}
   <EmptyState
-    @title="Choose an option"
-    @message="To see configuration options, choose your desired output above."
+    @title={{t "Choose an option"}}
+    @message={{t "To see configuration options, choose your desired output above."}}
     data-test-configuration-empty-state
   />
   <div class="field is-grouped box is-fullwidth is-bottomless">
     <div class="control">
       <button type="button" class="button is-primary" disabled={{true}} data-test-pki-config-save>
-        Done
+        {{t "Done"}}
       </button>
       <button type="button" class="button has-left-margin-s" {{on "click" @onCancel}} data-test-pki-config-cancel>
-        Cancel
+        {{t "Cancel"}}
       </button>
     </div>
   </div>

@@ -1,7 +1,7 @@
 <form {{on "submit" (perform this.save)}}>
   <div class="box is-sideless is-fullwidth is-marginless">
-    <MessageError @errorMessage={{this.errorBanner}} class="has-top-margin-s" />
-    <NamespaceReminder @mode={{if @model.isNew "generate" "update"}} @noun="PKI key" />
+    <MessageError @errorMessage={{t this.errorBanner}} class="has-top-margin-s" />
+    <NamespaceReminder @mode={{if @model.isNew "generate" "update"}} @noun={{t "PKI key"}} />
     {{#if @model.isNew}}
       {{#each @model.formFieldGroups as |fieldGroup|}}
         {{#each-in fieldGroup as |group fields|}}
@@ -46,14 +46,14 @@
       {{on "click" @onCancel}}
       data-test-pki-key-cancel
     >
-      Cancel
+      {{t "Cancel"}}
     </button>
     {{#if this.invalidFormAlert}}
       <div class="control">
         <AlertInline
           @type="danger"
           @paddingTop={{true}}
-          @message={{this.invalidFormAlert}}
+          @message={{t this.invalidFormAlert}}
           @mimicRefresh={{true}}
           data-test-pki-key-validation-error
         />

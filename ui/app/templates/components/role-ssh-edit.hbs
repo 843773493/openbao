@@ -11,11 +11,11 @@
   <p.levelLeft>
     <h1 class="title is-3" data-test-secret-header="true">
       {{#if (eq this.mode "create")}}
-        Create an SSH role
+        {{t "Create an SSH role"}}
       {{else if (eq this.mode "edit")}}
-        Edit SSH role
+        {{t "Edit SSH role"}}
       {{else}}
-        SSH role
+        {{t "SSH role"}}
         <code>{{this.model.id}}</code>
       {{/if}}
     </h1>
@@ -27,7 +27,7 @@
     <ToolbarActions>
       {{#if this.model.canDelete}}
         <ConfirmAction @buttonClasses="toolbar-link" @onConfirmAction={{action "delete"}}>
-          Delete role
+          {{t "Delete role"}}
         </ConfirmAction>
         <div class="toolbar-separator"></div>
       {{/if}}
@@ -38,16 +38,16 @@
           data-test-backend-credentials={{true}}
           @replace={{true}}
         >
-          Generate Credential
+          {{t "Generate Credential"}}
         </ToolbarSecretLink>
       {{else}}
         <ToolbarSecretLink @secret={{this.model.id}} @mode="sign" data-test-backend-credentials={{true}} @replace={{true}}>
-          Sign Keys
+          {{t "Sign Keys"}}
         </ToolbarSecretLink>
       {{/if}}
       {{#if (or this.model.canUpdate this.model.canDelete)}}
         <ToolbarSecretLink @secret={{this.model.id}} @mode="edit" data-test-edit-link={{true}} @replace={{true}}>
-          Edit role
+          {{t "Edit role"}}
         </ToolbarSecretLink>
       {{/if}}
     </ToolbarActions>
@@ -58,20 +58,20 @@
   <form onsubmit={{action "createOrUpdate" "create"}}>
     <div class="box is-sideless is-fullwidth is-marginless">
       <MessageError @model={{this.model}} />
-      <NamespaceReminder @mode={{this.mode}} @noun="SSH role" />
+      <NamespaceReminder @mode={{this.mode}} @noun={{t "SSH role"}} />
       <FormFieldGroupsLoop @model={{this.model}} @mode={{this.mode}} />
     </div>
     <div class="field is-grouped-split box is-fullwidth is-bottomless">
       <div class="control">
         <button type="submit" disabled={{this.buttonDisabled}} class="button is-primary" data-test-role-ssh-create={{true}}>
           {{#if (eq this.mode "create")}}
-            Create role
+            {{t "Create role"}}
           {{else if (eq this.mode "edit")}}
-            Save
+            {{t "Save"}}
           {{/if}}
         </button>
         <SecretLink @mode={{if (eq this.mode "create") "list" "show"}} class="button" @secret={{this.model.id}}>
-          Cancel
+          {{t "Cancel"}}
         </SecretLink>
       </div>
     </div>
@@ -81,12 +81,12 @@
     {{#each this.model.showFields as |attr|}}
       {{#if (eq attr.type "object")}}
         <InfoTableRow
-          @label={{capitalize (or attr.options.label (humanize (dasherize attr.name)))}}
+          @label={{t (capitalize (or attr.options.label (humanize (dasherize attr.name))))}}
           @value={{stringify (get this.model attr.name)}}
         />
       {{else}}
         <InfoTableRow
-          @label={{capitalize (or attr.options.label (humanize (dasherize attr.name)))}}
+          @label={{t (capitalize (or attr.options.label (humanize (dasherize attr.name))))}}
           @value={{get this.model attr.name}}
         />
       {{/if}}

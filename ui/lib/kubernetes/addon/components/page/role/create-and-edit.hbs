@@ -12,15 +12,16 @@
 <hr class="is-marginless has-background-gray-200" />
 
 <p class="has-top-margin-m">
-  A role in OpenBao dictates what will be generated for Kubernetes and what kind of rules will be used to do so. It is not a
-  Kubernetes role.
+  {{t
+    "A role in OpenBao dictates what will be generated for Kubernetes and what kind of rules will be used to do so. It is not a Kubernetes role."
+  }}
 </p>
 
 <div class="is-flex-row has-top-margin-s">
   {{#each this.generationPreferences as |pref|}}
     <RadioCard
-      @title={{pref.title}}
-      @description={{pref.description}}
+      @title={{t pref.title}}
+      @description={{t pref.description}}
       @icon="token"
       @value={{pref.value}}
       @groupValue={{@model.generationPreference}}
@@ -32,7 +33,7 @@
 
 <div class="has-top-margin-xl has-bottom-margin-l">
   <h2 class="title is-4">
-    Role options
+    {{t "Role options"}}
   </h2>
   <hr class="is-marginless has-background-gray-200" />
 </div>
@@ -40,7 +41,7 @@
 {{#if @model.generationPreference}}
   <form id="role" {{on "submit" this.onSave}} data-test-policy-form>
     {{#if this.errorBanner}}
-      <MessageError @errorMessage={{this.errorBanner}} class="has-top-margin-s" />
+      <MessageError @errorMessage={{t this.errorBanner}} class="has-top-margin-s" />
     {{/if}}
 
     {{#each @model.filteredFormFields as |field|}}
@@ -51,22 +52,22 @@
       <ToggleButton
         data-test-field="annotations"
         @isOpen={{this.showAnnotations}}
-        @openLabel="Hide annotations and labels"
-        @closedLabel="Annotations and labels"
+        @openLabel={{t "Hide annotations and labels"}}
+        @closedLabel={{t "Annotations and labels"}}
         @onClick={{fn (mut this.showAnnotations)}}
       />
       {{#if this.showAnnotations}}
         <div class="box" data-test-annotations>
           {{#each this.extraFields as |field|}}
             <div class={{if (eq field.type "labels") "has-top-margin-xl"}}>
-              <h2 class="title is-4">Extra {{field.type}}</h2>
+              <h2 class="title is-4">{{t "Extra"}} {{field.type}}</h2>
               <p>
-                {{field.description}}
-                See
+                {{t field.description}}
+                {{t "See"}}
                 <ExternalLink @href="https://kubernetes.io/docs/concepts/overview/working-with-objects/{{field.type}}/">
-                  Kubernetes
+                  {{t "Kubernetes"}}
                   {{singularize field.type}}
-                  documentation here
+                  {{t "documentation here"}}
                 </ExternalLink>.
               </p>
               <KvObjectEditor
@@ -85,18 +86,18 @@
     {{#if (eq @model.generationPreference "full")}}
       <div class="has-top-margin-m has-bottom-margin-l" data-test-generated-role-rules>
         <h2 class="title is-4">
-          Generated role rules
+          {{t "Generated role rules"}}
         </h2>
         <FormFieldLabel
           for="templates"
-          @label="Role rules template"
-          @subText="Start with a template for role rules based on your use case"
+          @label={{t "Role rules template"}}
+          @subText={{t "Start with a template for role rules based on your use case"}}
         />
         <div class="select is-fullwidth">
           <select id="templates" data-test-select-template {{on "change" this.selectTemplate}}>
             {{#each this.roleRulesTemplates as |template|}}
               <option selected={{eq this.selectedTemplateId template.id}} value={{template.id}}>
-                {{template.label}}
+                {{t template.label}}
               </option>
             {{/each}}
           </select>
@@ -105,14 +106,14 @@
           <JsonEditor
             class="has-top-margin-l"
             data-test-rules
-            @title="Role rules"
+            @title={{t "Role rules"}}
             @value={{template.rules}}
             @mode="ruby"
             @valueUpdated={{fn (mut template.rules)}}
             @helpText={{sanitized-html this.roleRulesHelpText}}
           >
             <button type="button" class="toolbar-link" {{on "click" this.resetRoleRules}} data-test-restore-example>
-              Restore example
+              {{t "Restore example"}}
               <Icon @name="reload" />
             </button>
           </JsonEditor>
@@ -121,15 +122,15 @@
     {{/if}}
     {{#if this.invalidFormAlert}}
       <div class="control" data-test-invalid-form-alert>
-        <AlertInline @type="danger" @paddingTop={{true}} @message={{this.invalidFormAlert}} @mimicRefresh={{true}} />
+        <AlertInline @type="danger" @paddingTop={{true}} @message={{t this.invalidFormAlert}} @mimicRefresh={{true}} />
       </div>
     {{/if}}
   </form>
 {{else}}
   <EmptyState
     class="is-shadowless"
-    @title="Choose an option above"
-    @message="To configure a OpenBao role, choose what should be generated in Kubernetes by OpenBao."
+    @title={{t "Choose an option above"}}
+    @message={{t "To configure a OpenBao role, choose what should be generated in Kubernetes by OpenBao."}}
   />
 {{/if}}
 
@@ -143,9 +144,9 @@
     disabled={{or (not @model.generationPreference) this.save.isRunning}}
     data-test-save
   >
-    Save
+    {{t "Save"}}
   </button>
   <button type="button" class="button has-left-margin-s" data-test-cancel {{on "click" this.cancel}}>
-    Back
+    {{t "Back"}}
   </button>
 </div>

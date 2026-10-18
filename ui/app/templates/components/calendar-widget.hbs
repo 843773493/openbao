@@ -8,7 +8,7 @@
   <D.Content @defaultClass={{concat "popup-menu-content calendar-content" (if this.showCalendar " calendar-open")}}>
     <nav class="box menu">
       <div class="calendar-title is-subtitle-gray">
-        DATE OPTIONS
+        {{t "DATE OPTIONS"}}
       </div>
       <ul class="menu-list">
         <li class="action">
@@ -19,7 +19,7 @@
             name="currentMonth"
             {{on "click" (fn this.handleDateShortcut D.actions)}}
           >
-            Current month
+            {{t "Current month"}}
           </button>
         </li>
         <li class="action">
@@ -30,7 +30,7 @@
             name="reset"
             {{on "click" (fn this.handleDateShortcut D.actions)}}
           >
-            Current billing period
+            {{t "Current billing period"}}
           </button>
         </li>
         <li class="action">
@@ -42,7 +42,7 @@
           >
             <div class="level is-mobile">
               <span class="level-left">
-                Custom end month
+                {{t "Custom end month"}}
               </span>
               <Chevron class="has-text-grey-light level-right" />
             </div>
@@ -93,7 +93,7 @@
             }}
               <div class={{"calendar-tooltip"}}>
                 <p>
-                  {{this.tooltipText}}
+                  {{t this.tooltipText}}
                 </p>
               </div>
               <div class="chart-tooltip-arrow"></div>

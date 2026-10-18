@@ -1,8 +1,8 @@
 <form {{on "submit" (perform this.save)}}>
   <div class="box is-sideless is-fullwidth is-marginless">
-    <MessageError @errorMessage={{this.errorBanner}} class="has-top-margin-s" />
+    <MessageError @errorMessage={{t this.errorBanner}} class="has-top-margin-s" />
     {{! ARG TODO write a test for namespace reminder }}
-    <NamespaceReminder @mode={{if @role.isNew "create" "update"}} @noun="PKI role" />
+    <NamespaceReminder @mode={{if @role.isNew "create" "update"}} @noun={{t "PKI role"}} />
     {{#each @role.formFieldGroups as |fieldGroup|}}
       {{#each-in fieldGroup as |group fields|}}
         {{! DEFAULT VIEW }}
@@ -12,9 +12,9 @@
               <div class="has-top-margin-m {{unless this.showDefaultIssuer 'has-bottom-margin-xs' 'has-bottom-margin-m'}}">
                 <FormFieldLabel
                   for={{attr.name}}
-                  @label="Issuer ref"
+                  @label={{t "Issuer ref"}}
                   @helpText={{(if this.showHelpText attr.options.helpText)}}
-                  @subText={{attr.options.subText}}
+                  @subText={{t attr.options.subText}}
                 />
                 <Toggle
                   @name={{concat attr.name "-toggle"}}
@@ -23,7 +23,7 @@
                   @checked={{this.showDefaultIssuer}}
                   @onChange={{this.toggleShowDefaultIssuer}}
                 >
-                  <span class="has-text-grey">Use default issuer</span>
+                  <span class="has-text-grey">{{t "Use default issuer"}}</span>
                 </Toggle>
               </div>
               {{#unless this.showDefaultIssuer}}
@@ -57,8 +57,8 @@
           {{#let (camelize (concat "show" group)) as |prop|}}
             <ToggleButton
               @isOpen={{get @role prop}}
-              @openLabel={{concat "Hide " group}}
-              @closedLabel={{group}}
+              @openLabel={{t (concat "Hide " group)}}
+              @closedLabel={{t group}}
               @onClick={{fn (mut (get @role prop))}}
               class="is-block"
               data-test-toggle-group={{group}}
@@ -71,8 +71,8 @@
                     <div class="has-bottom-margin-s">
                       <FormFieldLabel
                         for={{toggleGroup.header.name}}
-                        @label={{toggleGroup.header.label}}
-                        @subText={{toggleGroup.header.text}}
+                        @label={{t toggleGroup.header.label}}
+                        @subText={{t toggleGroup.header.text}}
                         @docLink={{toggleGroup.header.docLink}}
                       />
                     </div>
@@ -99,7 +99,7 @@
                   {{#if toggleGroup.footer}}
                     <p class="sub-text">
                       <Icon @name="info" />
-                      {{toggleGroup.footer.text}}
+                      {{t toggleGroup.footer.text}}
                       {{#if toggleGroup.footer.docLink}}
                         <DocLink @path={{toggleGroup.footer.docLink}}>
                           {{toggleGroup.footer.docText}}
@@ -131,14 +131,14 @@
       {{on "click" @onCancel}}
       data-test-pki-role-cancel
     >
-      Cancel
+      {{t "Cancel"}}
     </button>
     {{#if this.modelValidations.targets.errors}}
-      <AlertInline @type="danger" @message={{join ", " this.modelValidations.targets.errors}} @paddingTop={{true}} />
+      <AlertInline @type="danger" @message={{t (join ", " this.modelValidations.targets.errors)}} @paddingTop={{true}} />
     {{/if}}
     {{#if this.invalidFormAlert}}
       <div class="control">
-        <AlertInline @type="danger" @paddingTop={{true}} @message={{this.invalidFormAlert}} @mimicRefresh={{true}} />
+        <AlertInline @type="danger" @paddingTop={{true}} @message={{t this.invalidFormAlert}} @mimicRefresh={{true}} />
       </div>
     {{/if}}
   </div>

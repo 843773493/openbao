@@ -12,22 +12,22 @@
       <div class="has-left-margin-s">
         <h1 class="is-size-4 has-text-semibold has-text-grey has-line-height-1">
           {{#if (eq this.model.httpStatus 403)}}
-            Not authorized
+            {{t "Not authorized"}}
           {{else if (eq this.model.httpStatus 404)}}
-            Page not found
+            {{t "Page not found"}}
           {{else}}
-            Error
+            {{t "Error"}}
           {{/if}}
         </h1>
-        <p class="has-text-grey is-size-8">Error {{this.model.httpStatus}}</p>
+        <p class="has-text-grey is-size-8">{{t "Error"}} {{this.model.httpStatus}}</p>
       </div>
     </div>
 
     <p class="has-text-grey has-top-margin-m has-bottom-padding-l has-border-bottom-light" data-test-error-description>
       {{#if (eq this.model.httpStatus 404)}}
-        Sorry, we were unable to find any content at that URL. Double check it or go back home.
+        {{t "Sorry, we were unable to find any content at that URL. Double check it or go back home."}}
       {{else}}
-        {{this.model.message}}
+        {{t this.model.message}}
         {{join ". " this.model.errors}}
       {{/if}}
     </p>
@@ -35,10 +35,10 @@
     <div class="is-flex-between has-top-margin-s">
       <ExternalLink @href="/" @sameTab={{true}} class="is-no-underline is-flex-center has-text-semibold">
         <Chevron @direction="left" />
-        Go home
+        {{t "Go home"}}
       </ExternalLink>
       <DocLink @path="/api-docs#http-status-codes">
-        Learn more
+        {{t "Learn more"}}
       </DocLink>
     </div>
   </div>

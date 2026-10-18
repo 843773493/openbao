@@ -6,7 +6,7 @@
 >
   {{#unless @promptConfig}}
     <ToolbarLink @route="roles.create" @type="add" data-test-toolbar-roles-action @model={{(current-mount-path)}}>
-      Create role
+      {{t "Create role"}}
     </ToolbarLink>
   {{/unless}}
 </TabPageHeader>
@@ -15,15 +15,15 @@
   <ConfigCta />
 {{else if (not @roles)}}
   {{#if @filterValue}}
-    <EmptyState @title="There are no roles matching &quot;{{@filterValue}}&quot;" />
+    <EmptyState @title={{t 'There are no roles matching "{arg0}"' arg0=(@filterValue)}} />
   {{else}}
     <EmptyState
       data-test-config-cta
-      @title="No roles yet"
-      @message="When created, roles will be listed here. Create a role to start generating service account tokens."
+      @title={{t "No roles yet"}}
+      @message={{t "When created, roles will be listed here. Create a role to start generating service account tokens."}}
     >
       <LinkTo class="has-top-margin-xs" @route="roles.create" @model={{(current-mount-path)}}>
-        Create role
+        {{t "Create role"}}
       </LinkTo>
     </EmptyState>
   {{/if}}
@@ -39,7 +39,7 @@
           {{#if role.rolesPath.isLoading}}
             <li class="action">
               <button disabled type="button" class="link button is-loading is-transparent">
-                loading
+                {{t "loading"}}
               </button>
             </li>
           {{else}}
@@ -51,7 +51,7 @@
                 @models={{array (current-mount-path) role}}
                 @disabled={{eq role.canRead false}}
               >
-                Details
+                {{t "Details"}}
               </LinkTo>
             </li>
             <li class="action">
@@ -62,16 +62,18 @@
                 @models={{array (current-mount-path) role}}
                 @disabled={{not role.canEdit}}
               >
-                Edit
+                {{t "Edit"}}
               </LinkTo>
             </li>
             <li class="action">
               <Menu.Message
                 data-test-delete
                 @id={{role.id}}
-                @triggerText="Delete"
-                @title="Are you sure?"
-                @message="Deleting this role means that you’ll need to recreate it in order to generate credentials again."
+                @triggerText={{t "Delete"}}
+                @title={{t "Are you sure?"}}
+                @message={{t
+                  "Deleting this role means that you’ll need to recreate it in order to generate credentials again."
+                }}
                 @onConfirm={{fn this.onDelete role}}
               />
             </li>

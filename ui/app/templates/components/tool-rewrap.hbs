@@ -1,7 +1,7 @@
 <PageHeader as |p|>
   <p.levelLeft>
     <h1 class="title is-3">
-      Rewrap token
+      {{t "Rewrap token"}}
     </h1>
   </p.levelLeft>
 </PageHeader>
@@ -9,7 +9,7 @@
 {{#if @rewrap_token}}
   <div class="box is-sideless is-fullwidth is-marginless">
     <div class="field">
-      <label for="wrap-info" class="is-label">Rewrapped token</label>
+      <label for="wrap-info" class="is-label">{{t "Rewrapped token"}}</label>
       <div class="control">
         <Textarea
           @value={{@rewrap_token}}
@@ -25,28 +25,28 @@
   <div class="field is-grouped box is-fullwidth is-bottomless">
     <div class="control">
       <CopyButton
-        @text={{@rewrap_token}}
+        @text={{t @rewrap_token}}
         class="button is-primary"
         @buttonType="button"
         @onSuccess={{action (set-flash-message "Token copied!")}}
       >
-        Copy
+        {{t "Copy"}}
       </CopyButton>
     </div>
     <div class="control">
       <button {{on "click" this.onClear}} type="button" class="button">
-        Back
+        {{t "Back"}}
       </button>
     </div>
   </div>
 {{else}}
   <div class="box is-sideless is-fullwidth is-marginless">
-    <NamespaceReminder @mode="perform" @noun={{@selectedAction}} />
+    <NamespaceReminder @mode="perform" @noun={{t @selectedAction}} />
     <MessageError @errors={{@errors}} />
     <div class="field">
-      <label for="token" class="is-label">Wrapped token</label>
+      <label for="token" class="is-label">{{t "Wrapped token"}}</label>
       <div class="has-text-grey is-size-8 has-bottom-margin-xs">
-        Enter your wrapped token here to rewrap it and refresh its TTL.
+        {{t "Enter your wrapped token here to rewrap it and refresh its TTL."}}
       </div>
       <div class="control">
         <Input @value={{@token}} class="input" id="token" name="token" data-test-tools-input="wrapping-token" />
@@ -56,7 +56,7 @@
   <div class="field is-grouped box is-fullwidth is-bottomless">
     <div class="control">
       <button type="submit" data-test-tools-submit="true" class="button is-primary">
-        Rewrap token
+        {{t "Rewrap token"}}
       </button>
     </div>
   </div>

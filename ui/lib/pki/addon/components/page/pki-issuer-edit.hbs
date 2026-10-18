@@ -1,11 +1,11 @@
 <form {{on "submit" (perform this.save)}}>
   <div class="box is-sideless is-fullwidth is-marginless">
-    <MessageError @errorMessage={{this.error}} />
+    <MessageError @errorMessage={{t this.error}} />
     {{#each @model.formFields as |field|}}
       {{#if (eq field.name "issuingCertificates")}}
         <div class="has-top-margin-m has-bottom-margin-s">
           <h2 class="title is-4">
-            Issuer URLs
+            {{t "Issuer URLs"}}
           </h2>
         </div>
       {{/if}}
@@ -20,7 +20,7 @@
                 @checked={{includes option.value this.usageValues}}
                 {{on "change" (fn this.setUsage option.value)}}
               />
-              <label for={{option.value}} class="has-left-margin-s">{{option.label}}</label>
+              <label for={{option.value}} class="has-left-margin-s">{{t option.label}}</label>
             </div>
           {{/each}}
         {{else if (eq field.name "leafNotAfterBehavior")}}
@@ -35,7 +35,7 @@
                 {{#each field.options.valueOptions as |value|}}
                   <option selected={{eq @model.leafNotAfterBehavior value}} value={{value}}>
                     {{capitalize (if (eq value "err") "error" value)}}
-                    if the computed NotAfter exceeds that of this issuer
+                    {{t "if the computed NotAfter exceeds that of this issuer"}}
                   </option>
                 {{/each}}
               </select>
@@ -52,7 +52,7 @@
       disabled={{this.save.isRunning}}
       data-test-save
     >
-      Update
+      {{t "Update"}}
     </button>
     <button
       type="button"
@@ -61,14 +61,14 @@
       {{on "click" this.cancel}}
       data-test-cancel
     >
-      Cancel
+      {{t "Cancel"}}
     </button>
     {{#if this.error}}
       <div class="control">
         <AlertInline
           @type="danger"
           @paddingTop={{true}}
-          @message="There was an error submitting this form."
+          @message={{t "There was an error submitting this form."}}
           @mimicRefresh={{true}}
         />
       </div>

@@ -9,7 +9,7 @@
           class="link link-plain tab has-text-weight-semibold {{unless this.showExamplePolicy ' is-active'}}"
           {{on "click" (fn (mut this.showExamplePolicy) false)}}
         >
-          Your Policy
+          {{t "Your Policy"}}
         </button>
       </li>
       <li class={{if this.showExamplePolicy "active"}}>
@@ -20,7 +20,7 @@
           class="link link-plain tab has-text-weight-semibold {{if this.showExamplePolicy ' is-active'}}"
           {{on "click" (fn (mut this.showExamplePolicy) true)}}
         >
-          Example Policy
+          {{t "Example Policy"}}
         </button>
       </li>
     </ul>
@@ -29,9 +29,11 @@
 {{#if this.showExamplePolicy}}
   <div class="has-bottom-margin-s">
     <p>
-      ACL Policies are written in Hashicorp Configuration Language (
-      <ExternalLink @href="https://github.com/hashicorp/hcl">HCL</ExternalLink>
-      ) or JSON and describe which paths in OpenBao a user or machine is allowed to access. Here is an example policy:
+      {{t "ACL Policies are written in Hashicorp Configuration Language ("}}
+      <ExternalLink @href="https://github.com/hashicorp/hcl">{{t "HCL"}}</ExternalLink>
+      {{t
+        ") or JSON and describe which paths in OpenBao a user or machine is allowed to access. Here is an example policy:"
+      }}
     </p>
   </div>
   <JsonEditor
@@ -43,7 +45,7 @@
 {{else}}
   <Select
     @name="policyType"
-    @label="Type"
+    @label={{t "Type"}}
     @options={{this.policyOptions}}
     @isFullwidth={{true}}
     @selectedValue={{this.policy.policyType}}
@@ -53,6 +55,6 @@
   {{#if this.policy.policyType}}
     <PolicyForm @onSave={{this.onSave}} @model={{this.policy}} @onCancel={{@onCancel}} />
   {{else}}
-    <EmptyState @title="No policy type selected" @message="Select a policy type to continue creating." />
+    <EmptyState @title={{t "No policy type selected"}} @message={{t "Select a policy type to continue creating."}} />
   {{/if}}
 {{/if}}

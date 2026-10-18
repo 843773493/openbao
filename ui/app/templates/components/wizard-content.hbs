@@ -5,7 +5,7 @@
         <ul class="menu-list">
           <li class="action">
             <button type="button" class="button link" onclick={{action "dismissWizard"}}>
-              Dismiss
+              {{t "Dismiss"}}
             </button>
           </li>
         </ul>
@@ -14,7 +14,7 @@
   {{/unless}}
   <h1 class="title is-5">
     <Icon @name={{this.glyph}} />
-    {{this.headerText}}
+    {{t this.headerText}}
   </h1>
   {{#if this.showProgress}}
     <ToolTip @verticalPosition="below" as |T|>
@@ -24,10 +24,10 @@
       <T.Content @defaultClass="tool-tip">
         <div class="box">
           {{#if this.currentTutorialProgress}}
-            {{this.currentTutorialProgress.text}}
+            {{t this.currentTutorialProgress.text}}
           {{else}}
             <p>{{capitalize this.currentFeatureProgress.feature}}</p>
-            {{this.currentFeatureProgress.text}}
+            {{t this.currentFeatureProgress.text}}
           {{/if}}
         </div>
       </T.Content>

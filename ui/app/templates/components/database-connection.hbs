@@ -5,9 +5,9 @@
   <p.levelLeft>
     <h1 class="title is-3" data-test-secret-header="true">
       {{#if (eq @mode "create")}}
-        Create Connection
+        {{t "Create Connection"}}
       {{else if (eq @mode "edit")}}
-        Edit Connection
+        {{t "Edit Connection"}}
       {{else}}
         {{@model.id}}
       {{/if}}
@@ -26,19 +26,21 @@
             onclick={{action (mut this.isDeleteModalActive) true}}
             data-test-database-connection-delete
           >
-            Delete connection
+            {{t "Delete connection"}}
           </button>
         {{/if}}
         {{#if @model.canReset}}
           <ConfirmAction
             @buttonClasses="toolbar-link"
             @onConfirmAction={{action "reset"}}
-            @confirmTitle="Reset connection?"
-            @confirmMessage="This will close the connection and its underlying plugin and restart it with the configuration stored in the barrier."
-            @confirmButtonText="Reset"
+            @confirmTitle={{t "Reset connection?"}}
+            @confirmMessage={{t
+              "This will close the connection and its underlying plugin and restart it with the configuration stored in the barrier."
+            }}
+            @confirmButtonText={{t "Reset"}}
             data-test-database-connection-reset
           >
-            Reset connection
+            {{t "Reset connection"}}
           </ConfirmAction>
         {{/if}}
         {{#if (or @model.canReset @model.canDelete)}}
@@ -49,12 +51,14 @@
           <ConfirmAction
             @buttonClasses="toolbar-link"
             @onConfirmAction={{this.rotate}}
-            @confirmTitle="Rotate credentials?"
-            @confirmMessage='This will rotate the "root" user credentials stored for the database connection. The password will not be accessible once rotated.'
-            @confirmButtonText="Rotate"
+            @confirmTitle={{t "Rotate credentials?"}}
+            @confirmMessage={{t
+              'This will rotate the "root" user credentials stored for the database connection. The password will not be accessible once rotated.'
+            }}
+            @confirmButtonText={{t "Rotate"}}
             data-test-database-connection-rotate
           >
-            Rotate root credentials
+            {{t "Rotate root credentials"}}
           </ConfirmAction>
           {{! template-lint-enable }}
         {{/if}}
@@ -66,12 +70,12 @@
             @queryParams={{hash initialKey=@model.name itemType="role"}}
             data-test-secret-create={{true}}
           >
-            Add role
+            {{t "Add role"}}
           </ToolbarSecretLink>
         {{/if}}
         {{#if @model.canEdit}}
           <ToolbarSecretLink @secret={{@model.id}} @mode="edit" data-test-edit-link={{true}} @replace={{true}}>
-            Edit configuration
+            {{t "Edit configuration"}}
           </ToolbarSecretLink>
         {{/if}}
       </ToolbarActions>
@@ -83,13 +87,14 @@
 
   {{#if (eq @model.plugin_name "vault-plugin-database-oracle")}}
     <AlertBanner @type="warning">
-      Please ensure that your Oracle plugin has the default name of
-      <b>vault-plugin-database-oracle</b>. Custom naming is not supported in the UI at this time. If the plugin is already
-      named vault-plugin-database-oracle, disregard this warning.
+      {{t "Please ensure that your Oracle plugin has the default name of"}}
+      <b>{{t "vault-plugin-database-oracle"}}</b>{{t
+        ". Custom naming is not supported in the UI at this time. If the plugin is already named vault-plugin-database-oracle, disregard this warning."
+      }}
     </AlertBanner>
   {{/if}}
 
-  <form {{on "submit" this.handleCreateConnection}} aria-label="create connection form">
+  <form {{on "submit" this.handleCreateConnection}} aria-label={{t "create connection form"}}>
     {{#each @model.fieldAttrs as |attr|}}
       {{#if (not-eq attr.options.readOnly true)}}
         <FormField data-test-field={{true}} @attr={{attr}} @model={{@model}} />
@@ -99,7 +104,7 @@
     {{! Plugin Config Section }}
     <div class="form-section box is-shadowless is-fullwidth">
       <fieldset class="form-fieldset">
-        <legend class="title is-5">Plugin config</legend>
+        <legend class="title is-5">{{t "Plugin config"}}</legend>
         {{#if @model.pluginFieldGroups}}
           {{#each @model.pluginFieldGroups as |fieldGroup|}}
             {{#each-in fieldGroup as |group fields|}}
@@ -123,8 +128,8 @@
                 {{#let (camelize (concat "show" group)) as |prop|}}
                   <ToggleButton
                     @isOpen={{get this prop}}
-                    @openLabel={{concat "Hide " group}}
-                    @closedLabel={{group}}
+                    @openLabel={{t (concat "Hide " group)}}
+                    @closedLabel={{t group}}
                     @onClick={{fn (mut (get this prop))}}
                     class="is-block"
                     data-test-toggle-group={{group}}
@@ -141,7 +146,7 @@
             {{/each-in}}
           {{/each}}
         {{else}}
-          <EmptyState @title="No plugin selected" @message="Select a plugin type to be able to configure it." />
+          <EmptyState @title={{t "No plugin selected"}} @message={{t "Select a plugin type to be able to configure it."}} />
         {{/if}}
       </fieldset>
     </div>
@@ -150,9 +155,9 @@
     {{! template-lint-configure simple-unless "warn"  }}
     {{#unless (and @model.plugin_name (not @model.statementFields))}}
       <div class="form-section box is-shadowless is-fullwidth">
-        <h3 class="title is-5">Statements</h3>
+        <h3 class="title is-5">{{t "Statements"}}</h3>
         {{#if (eq @model.statementFields null)}}
-          <EmptyState @title="No plugin selected" @message="Select a plugin type to be able to configure it." />
+          <EmptyState @title={{t "No plugin selected"}} @message={{t "Select a plugin type to be able to configure it."}} />
         {{else}}
           {{#each @model.statementFields as |attr|}}
             <FormField data-test-field={{true}} @attr={{attr}} @model={{@model}} />
@@ -165,19 +170,19 @@
       <div class="field is-grouped">
         <div class="control">
           <button data-test-secret-save type="submit" disabled={{this.buttonDisabled}} class="button is-primary">
-            Create database
+            {{t "Create database"}}
           </button>
         </div>
         <div class="control">
           <SecretLink @mode="list" class="button">
-            Cancel
+            {{t "Cancel"}}
           </SecretLink>
         </div>
       </div>
     </div>
   </form>
 {{else if (and (eq @mode "edit") @model.isAvailablePlugin)}}
-  <form {{on "submit" this.handleUpdateConnection}} aria-label="plugin config form">
+  <form {{on "submit" this.handleUpdateConnection}} aria-label={{t "plugin config form"}}>
     {{#each @model.fieldAttrs as |attr|}}
       {{#if (or (eq attr.name "name") (eq attr.name "plugin_name"))}}
         <ReadonlyFormField @attr={{attr}} @value={{get @model attr.name}} />
@@ -189,7 +194,7 @@
     {{! Plugin Config Edit }}
     <div class="form-section box is-shadowless is-fullwidth">
       <fieldset class="form-fieldset">
-        <legend class="title is-5">Plugin config</legend>
+        <legend class="title is-5">{{t "Plugin config"}}</legend>
         {{#each @model.pluginFieldGroups as |fieldGroup|}}
           {{#each-in fieldGroup as |group fields|}}
             {{#if (eq group "default")}}
@@ -215,7 +220,7 @@
                           @checked={{this.showPasswordField}}
                           data-test-toggle={{attr.name}}
                         >
-                          <span class="ttl-picker-label has-text-grey">Update password</span><br />
+                          <span class="ttl-picker-label has-text-grey">{{t "Update password"}}</span><br />
                           <div class="description has-text-grey">
                             <span>
                               {{if
@@ -251,8 +256,8 @@
               {{#let (camelize (concat "show" group)) as |prop|}}
                 <ToggleButton
                   @isOpen={{get this prop}}
-                  @openLabel={{concat "Hide " group}}
-                  @closedLabel={{group}}
+                  @openLabel={{t (concat "Hide " group)}}
+                  @closedLabel={{t group}}
                   @onClick={{fn (mut (get this prop))}}
                   class="is-block"
                   data-test-toggle-group={{group}}
@@ -275,7 +280,7 @@
     {{#if (not (and @model.plugin_name (not @model.statementFields)))}}
       <div class="form-section box is-shadowless is-fullwidth">
         <fieldset class="form-fieldset">
-          <legend class="title is-5">Statements</legend>
+          <legend class="title is-5">{{t "Statements"}}</legend>
           {{#each @model.statementFields as |attr|}}
             <FormField data-test-field={{true}} @attr={{attr}} @model={{@model}} />
           {{/each}}
@@ -287,12 +292,12 @@
       <div class="field is-grouped">
         <div class="control">
           <button data-test-secret-save type="submit" disabled={{this.buttonDisabled}} class="button is-primary">
-            Save
+            {{t "Save"}}
           </button>
         </div>
         <div class="control">
           <SecretLink @mode="list" class="button">
-            Cancel
+            {{t "Cancel"}}
           </SecretLink>
         </div>
       </div>
@@ -300,17 +305,19 @@
   </form>
 {{else if (eq @model.isAvailablePlugin false)}}
   <EmptyState
-    @title="Database type unavailable"
-    @subTitle="Not supported in the UI"
+    @title={{t "Database type unavailable"}}
+    @subTitle={{t "Not supported in the UI"}}
     @icon="skip"
-    @message="This database type cannot be viewed in the UI. You will have to use the API or CLI to perform actions here."
+    @message={{t
+      "This database type cannot be viewed in the UI. You will have to use the API or CLI to perform actions here."
+    }}
     @bottomBorder={{true}}
   >
     <LinkTo @route="vault.cluster.secrets.backend.list-root" @model={{(current-mount-path)}} class="link">
       <Chevron @direction="left" />
-      Go back
+      {{t "Go back"}}
     </LinkTo>
-    <DocLink @path="/api-docs/secret/databases">Documentation</DocLink>
+    <DocLink @path="/api-docs/secret/databases">{{t "Documentation"}}</DocLink>
   </EmptyState>
 {{else}}
   {{#each @model.showAttrs as |attr|}}
@@ -319,14 +326,14 @@
         <InfoTableRow
           @alwaysRender={{not (is-empty-value (get @model attr.name) hasDefault=defaultDisplay)}}
           @defaultShown={{defaultDisplay}}
-          @label={{capitalize (or attr.options.label (humanize (dasherize attr.name)))}}
+          @label={{t (capitalize (or attr.options.label (humanize (dasherize attr.name))))}}
           @value={{stringify (get @model attr.name)}}
         />
       {{else if (eq attr.type "array")}}
         <InfoTableRow
           @alwaysRender={{not (is-empty-value (get @model attr.name) hasDefault=defaultDisplay)}}
           @defaultShown={{defaultDisplay}}
-          @label={{capitalize (or attr.options.label (humanize (dasherize attr.name)))}}
+          @label={{t (capitalize (or attr.options.label (humanize (dasherize attr.name))))}}
           @value={{get @model attr.name}}
           @isLink={{true}}
           @queryParam="role"
@@ -336,7 +343,7 @@
         <InfoTableRow
           @alwaysRender={{not (is-empty-value (get @model attr.name) hasDefault=defaultDisplay)}}
           @defaultShown={{defaultDisplay}}
-          @label={{capitalize (or attr.options.label (humanize (dasherize attr.name)))}}
+          @label={{t (capitalize (or attr.options.label (humanize (dasherize attr.name))))}}
           @value={{get @model attr.name}}
         />
       {{/if}}
@@ -345,7 +352,7 @@
 {{/if}}
 
 <Modal
-  @title="Rotate your root credentials?"
+  @title={{t "Rotate your root credentials?"}}
   @onClose={{this.continueWithoutRotate}}
   @isActive={{this.showSaveModal}}
   @type="info"
@@ -353,11 +360,12 @@
 >
   <section class="modal-card-body">
     <p class="has-bottom-margin-s">
-      It’s best practice to rotate the root credential immediately after the initial configuration of each database. Once
-      rotated,
-      <strong>only OpenBao knows the new root password</strong>.
+      {{t
+        "It’s best practice to rotate the root credential immediately after the initial configuration of each database. Once rotated,"
+      }}
+      <strong>{{t "only OpenBao knows the new root password"}}</strong>.
     </p>
-    <p>Would you like to rotate your new credentials? You can also do this later.</p>
+    <p>{{t "Would you like to rotate your new credentials? You can also do this later."}}</p>
   </section>
   <footer class="modal-card-foot modal-card-foot-outlined">
     <button
@@ -366,25 +374,26 @@
       {{on "click" this.continueWithRotate}}
       data-test-enable-rotate-connection
     >
-      Rotate and enable
+      {{t "Rotate and enable"}}
     </button>
     <button type="button" class="button is-secondary" {{on "click" this.continueWithoutRotate}} data-test-enable-connection>
-      Enable without rotating
+      {{t "Enable without rotating"}}
     </button>
   </footer>
 </Modal>
 
 <ConfirmationModal
-  @title="Delete connection?"
+  @title={{t "Delete connection?"}}
   @onClose={{action (mut this.isDeleteModalActive) false}}
   @isActive={{this.isDeleteModalActive}}
   @confirmText={{@model.name}}
-  @toConfirmMsg="deleting the connection"
+  @toConfirmMsg={{t "deleting the connection"}}
   @onConfirm={{action "delete"}}
 >
   <p>
-    Deleting the connection means that any associated roles won't be able to generate credentials until the connection is
-    reconfigured.
+    {{t
+      "Deleting the connection means that any associated roles won't be able to generate credentials until the connection is reconfigured."
+    }}
   </p>
-  <MessageError @model={{this.model}} @errorMessage={{this.error}} />
+  <MessageError @model={{this.model}} @errorMessage={{t this.error}} />
 </ConfirmationModal>

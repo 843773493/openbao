@@ -5,11 +5,11 @@
   <p.levelLeft>
     <h1 class="title is-3" data-test-secret-header="true">
       {{#if this.isDistributing}}
-        Distribute key
+        {{t "Distribute key"}}
       {{else if (eq @mode "create")}}
-        Create key
+        {{t "Create key"}}
       {{else if (eq @mode "edit")}}
-        Edit key
+        {{t "Edit key"}}
       {{else}}
         {{@model.id}}
       {{/if}}
@@ -31,7 +31,7 @@
               @query={{hash tab=""}}
               data-test-tab="Details"
             >
-              Details
+              {{t "Details"}}
             </LinkTo>
           </li>
           <li class={{if (eq @tab "versions") "active"}}>
@@ -41,7 +41,7 @@
               @query={{hash tab="versions"}}
               data-test-tab="Versions"
             >
-              Versions
+              {{t "Versions"}}
             </LinkTo>
           </li>
         </ul>
@@ -56,7 +56,7 @@
             {{on "click" (fn (mut this.isDistributing) true)}}
             data-test-keymgmt-key-distribute
           >
-            Distribute key
+            {{t "Distribute key"}}
           </button>
         {{/unless}}
         {{#if @model.canDelete}}
@@ -67,20 +67,22 @@
             {{on "click" (fn (mut this.isDeleteModalOpen) true)}}
             data-test-keymgmt-key-destroy
           >
-            Destroy key
+            {{t "Destroy key"}}
           </button>
         {{/if}}
         {{#if @model.provider}}
           <ConfirmAction
             @buttonClasses="toolbar-link"
             @onConfirmAction={{perform this.removeKey}}
-            @confirmTitle="Remove this key?"
-            @confirmMessage="This will remove all versions of the key from the KMS provider. The key will stay in OpenBao."
-            @confirmButtonText="Remove"
+            @confirmTitle={{t "Remove this key?"}}
+            @confirmMessage={{t
+              "This will remove all versions of the key from the KMS provider. The key will stay in OpenBao."
+            }}
+            @confirmButtonText={{t "Remove"}}
             @isRunning={{this.removeKey.isRunning}}
             data-test-keymgmt-key-remove
           >
-            Remove key
+            {{t "Remove key"}}
           </ConfirmAction>
         {{/if}}
         {{#if (or @model.canDelete @model.provider)}}
@@ -89,13 +91,13 @@
         <ConfirmAction
           @buttonClasses="toolbar-link"
           @onConfirmAction={{perform this.rotateKey}}
-          @confirmTitle="Rotate this key?"
-          @confirmMessage="After rotation, all key actions will default to using the newest version of the key."
-          @confirmButtonText="Rotate"
+          @confirmTitle={{t "Rotate this key?"}}
+          @confirmMessage={{t "After rotation, all key actions will default to using the newest version of the key."}}
+          @confirmButtonText={{t "Rotate"}}
           @isRunning={{this.rotateKey.isRunning}}
           data-test-keymgmt-key-rotate
         >
-          Rotate key
+          {{t "Rotate key"}}
         </ConfirmAction>
         {{#if @model.canEdit}}
           <ToolbarSecretLink
@@ -105,7 +107,7 @@
             @queryParams={{hash itemType="key"}}
             @data-test-edit-link={{true}}
           >
-            Edit key
+            {{t "Edit key"}}
           </ToolbarSecretLink>
         {{/if}}
       </ToolbarActions>
@@ -139,7 +141,7 @@
                 class="button"
                 data-test-keymgmt-key-cancel
               >
-                Cancel
+                {{t "Cancel"}}
               </LinkTo>
             </div>
           </div>
@@ -152,7 +154,7 @@
         <div class="columns is-mobile">
           <div class="column is-3 has-text-weight-bold">
             <Icon @name="history" class="has-text-grey-light" />
-            <span>Version {{version.id}}</span>
+            <span>{{t "Version"}} {{version.id}}</span>
           </div>
           <div class="column is-3 has-text-grey">
             {{date-from-now version.creation_time addSuffix=true}}
@@ -160,7 +162,7 @@
           <div class="column is-6 is-flex-center">
             {{#if (eq @model.minEnabledVersion version.id)}}
               <Icon @name="check-circle-fill" class="has-text-success" />
-              <span data-test-keymgmt-key-current-min>Current mininum enabled version</span>
+              <span data-test-keymgmt-key-current-min>{{t "Current mininum enabled version"}}</span>
             {{/if}}
           </div>
         </div>
@@ -168,11 +170,11 @@
     {{/each}}
   {{else}}
     <div class="has-top-margin-xl has-bottom-margin-s">
-      <h2 class="title is-5 has-border-bottom-light">Key Details</h2>
+      <h2 class="title is-5 has-border-bottom-light">{{t "Key Details"}}</h2>
       {{#each @model.showFields as |attr|}}
         <InfoTableRow
           @alwaysRender={{true}}
-          @label={{capitalize (or attr.options.label (humanize (dasherize attr.name)))}}
+          @label={{t (capitalize (or attr.options.label (humanize (dasherize attr.name))))}}
           @value={{get @model attr.name}}
           @defaultShown={{attr.options.defaultShown}}
           @formatDate={{if (eq attr.type "date") "MMM d yyyy, h:mm:ss aaa"}}
@@ -181,36 +183,38 @@
     </div>
     <div class="has-top-margin-xl has-bottom-margin-s">
       <h2 class="title is-5 {{if @model.distribution 'has-border-bottom-light' 'is-borderless'}}">
-        Distribution Details
+        {{t "Distribution Details"}}
       </h2>
       {{#if @model.provider.permissionsError}}
         <EmptyState
-          @title="You are not authorized"
-          @subTitle="Error 403"
-          @message={{concat
-            "You must be granted permissions to see whether this key is distributed. Ask your administrator if you think you should have access to LIST /"
-            @model.backend
-            "/key/"
-            @model.name
-            "/kms."
+          @title={{t "You are not authorized"}}
+          @subTitle={{t "Error 403"}}
+          @message={{t
+            (concat
+              "You must be granted permissions to see whether this key is distributed. Ask your administrator if you think you should have access to LIST /"
+              @model.backend
+              "/key/"
+              @model.name
+              "/kms."
+            )
           }}
           @icon="minus-circle"
         />
       {{else if (is-empty-value @model.provider)}}
         <EmptyState
-          @title="Key not distributed"
-          @message="When this key is distributed to a destination, those details will appear here."
+          @title={{t "Key not distributed"}}
+          @message={{t "When this key is distributed to a destination, those details will appear here."}}
           data-test-keymgmt-dist-empty-state
         >
           {{#if @model.canListProviders}}
             <button type="button" class="link" {{on "click" (fn (mut this.isDistributing) true)}}>
-              Distribute key
+              {{t "Distribute key"}}
               <Icon @name="chevron-right" />
             </button>
           {{/if}}
         </EmptyState>
       {{else}}
-        <InfoTableRow @label="Distributed" @value={{@model.provider}}>
+        <InfoTableRow @label={{t "Distributed"}} @value={{@model.provider}}>
           <LinkTo @route="vault.cluster.secrets.backend.show" @model={{@model.provider}} @query={{hash itemType="provider"}}>
             <Icon @name="check-circle-fill" class="has-text-success" />{{@model.provider}}
           </LinkTo>
@@ -219,27 +223,29 @@
           {{#each @model.distFields as |attr|}}
             <InfoTableRow
               @alwaysRender={{true}}
-              @label={{capitalize (or attr.label (humanize (dasherize attr.name)))}}
+              @label={{t (capitalize (or attr.label (humanize (dasherize attr.name))))}}
               @value={{if
                 (eq attr.name "protection")
                 (uppercase (get @model.distribution attr.name))
                 (get @model.distribution attr.name)
               }}
               @defaultShown={{attr.defaultShown}}
-              @helperText={{attr.subText}}
+              @helperText={{t attr.subText}}
               @formatDate={{if (eq attr.type "date") "MMM d yyyy, h:mm:ss aaa"}}
             />
           {{/each}}
         {{else}}
           <EmptyState
-            @title="You are not authorized"
-            @subTitle="Error 403"
-            @message={{concat
-              "You must be granted permissions to view distribution details for this key. Ask your administrator if you think you should have access to GET /"
-              @model.backend
-              "/key/"
-              @model.name
-              "/kms."
+            @title={{t "You are not authorized"}}
+            @subTitle={{t "Error 403"}}
+            @message={{t
+              (concat
+                "You must be granted permissions to view distribution details for this key. Ask your administrator if you think you should have access to GET /"
+                @model.backend
+                "/key/"
+                @model.name
+                "/kms."
+              )
             }}
             @icon="minus-circle"
           />
@@ -250,18 +256,19 @@
 {{/if}}
 
 <ConfirmationModal
-  @title="Destroy key?"
+  @title={{t "Destroy key?"}}
   @onClose={{fn (mut this.isDeleteModalOpen) false}}
   @isActive={{this.isDeleteModalOpen}}
   @confirmText={{@model.name}}
-  @toConfirmMsg="deleting the key"
+  @toConfirmMsg={{t "deleting the key"}}
   @onConfirm={{fn this.deleteKey @model.id}}
 >
   <p>
-    Destroying the
+    {{t "Destroying the"}}
     <strong>{{@model.name}}</strong>
-    key means that the underlying data will be lost and the key will become unusable for cryptographic operations. It is
-    unrecoverable.
+    {{t
+      "key means that the underlying data will be lost and the key will become unusable for cryptographic operations. It is unrecoverable."
+    }}
   </p>
-  <MessageError @model={{this.model}} @errorMessage={{this.error}} />
+  <MessageError @model={{this.model}} @errorMessage={{t this.error}} />
 </ConfirmationModal>

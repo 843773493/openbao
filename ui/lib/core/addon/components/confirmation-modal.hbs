@@ -1,13 +1,13 @@
-<Modal @title={{@title}} @onClose={{@onClose}} @isActive={{@isActive}} @type={{this.type}} @showCloseButton={{true}}>
+<Modal @title={{t @title}} @onClose={{@onClose}} @isActive={{@isActive}} @type={{this.type}} @showCloseButton={{true}}>
   <section class="modal-card-body">
     {{yield}}
     <div class="modal-confirm-section">
       <p class="has-text-weight-semibold is-size-6">
-        Confirm
+        {{t "Confirm"}}
       </p>
-      <p class="sub-text has-top-bottom-margin-xxs">Type
+      <p class="sub-text has-top-bottom-margin-xxs">{{t "Type"}}
         <strong>{{this.confirmText}}</strong>
-        to confirm
+        {{t "to confirm"}}
         {{this.toConfirmMsg}}</p>
       <Input
         @type="text"
@@ -28,10 +28,10 @@
       {{on "click" @onConfirm}}
       data-test-confirm-button={{or @title true}}
     >
-      {{this.buttonText}}
+      {{t this.buttonText}}
     </button>
     <button type="button" class="button is-secondary" {{on "click" @onClose}} data-test-cancel-button>
-      Cancel
+      {{t "Cancel"}}
     </button>
   </footer>
 </Modal>

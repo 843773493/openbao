@@ -4,11 +4,11 @@
       <ConfirmAction
         @buttonClasses="toolbar-link"
         @onConfirmAction={{this.deleteKey}}
-        @confirmTitle="Delete key?"
-        @confirmButtonText="Delete"
+        @confirmTitle={{t "Delete key?"}}
+        @confirmButtonText={{t "Delete"}}
         data-test-pki-key-delete
       >
-        Delete
+        {{t "Delete"}}
       </ConfirmAction>
       <div class="toolbar-separator"></div>
     {{/if}}
@@ -19,13 +19,13 @@
         @data={{@key.privateKey}}
         @extension="pem"
       >
-        Download private key
+        {{t "Download private key"}}
         <Chevron @isButton={{true}} />
       </DownloadButton>
     {{/if}}
     {{#if @canEdit}}
       <ToolbarLink @route="keys.key.edit" @models={{array (current-mount-path) @key.keyId}} data-test-pki-key-edit>
-        Edit key
+        {{t "Edit key"}}
       </ToolbarLink>
     {{/if}}
   </ToolbarActions>
@@ -35,21 +35,21 @@
   {{#if @key.privateKey}}
     <div class="has-top-margin-m">
       <AlertBanner
-        @title="Next steps"
+        @title={{t "Next steps"}}
         @type="warning"
-        @message="This private key material will only be available once. Copy or download it now."
+        @message={{t "This private key material will only be available once. Copy or download it now."}}
       />
     </div>
   {{/if}}
   {{#each @key.formFields as |attr|}}
     <InfoTableRow
-      @label={{capitalize (or attr.options.detailsLabel attr.options.label (humanize (dasherize attr.name)))}}
+      @label={{t (capitalize (or attr.options.detailsLabel attr.options.label (humanize (dasherize attr.name))))}}
       @value={{get @key attr.name}}
       @addCopyButton={{eq attr.name "keyId"}}
     />
   {{/each}}
   {{#if @key.privateKey}}
-    <InfoTableRow @label="Private key">
+    <InfoTableRow @label={{t "Private key"}}>
       <MaskedInput @value={{@key.privateKey}} @name="Private key" @displayOnly={{true}} @allowCopy={{true}} />
     </InfoTableRow>
   {{/if}}

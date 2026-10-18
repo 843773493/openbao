@@ -14,10 +14,10 @@
           </div>
           <div class="has-left-margin-s">
             <h5 class="radio-card-message-title">
-              {{@title}}
+              {{t @title}}
             </h5>
             <p class="radio-card-message-body">
-              {{@description}}
+              {{t @description}}
             </p>
           </div>
         </div>
@@ -38,7 +38,7 @@
     {{#if (and @disabled @disabledTooltipMessage)}}
       <T.Content @defaultClass="tool-tip smaller-font">
         <div class="box">
-          {{@disabledTooltipMessage}}
+          {{t @disabledTooltipMessage}}
         </div>
       </T.Content>
     {{/if}}

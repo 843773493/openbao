@@ -1,11 +1,12 @@
 <WizardSection
-  @headerText="Active Directory"
+  @headerText={{t "Active Directory"}}
   @headerIcon="azure-color"
-  @docText="Docs: Active Directory Secrets"
+  @docText={{t "Docs: Active Directory Secrets"}}
   @docPath="/docs/secrets/ad/index.html"
 >
   <p>
-    The AD Secrets Engine rotates AD passwords dynamically, and is designed for a high-load environment where many instances
-    may be accessing a shared password simultaneously.
+    {{t
+      "The AD Secrets Engine rotates AD passwords dynamically, and is designed for a high-load environment where many instances may be accessing a shared password simultaneously."
+    }}
   </p>
 </WizardSection>

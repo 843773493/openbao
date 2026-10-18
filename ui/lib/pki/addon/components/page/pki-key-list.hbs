@@ -2,19 +2,19 @@
   <ToolbarActions>
     {{#if @canImportKey}}
       <ToolbarLink @route="keys.import" @type="download" data-test-pki-key-import @model={{(current-mount-path)}}>
-        Import
+        {{t "Import"}}
       </ToolbarLink>
     {{/if}}
     {{#if @canGenerateKey}}
       <ToolbarLink @route="keys.create" @type="add" data-test-pki-key-generate @model={{(current-mount-path)}}>
-        Generate
+        {{t "Generate"}}
       </ToolbarLink>
     {{/if}}
   </ToolbarActions>
 </Toolbar>
-<p class="has-padding">Below is information about the private keys used by the issuers to sign certificates. While
-  certificates represent a public assertion of an identity, private keys represent the private part of that identity, a
-  secret used to prove who they are and who they trust.</p>
+<p class="has-padding">{{t
+    "Below is information about the private keys used by the issuers to sign certificates. While certificates represent a public assertion of an identity, private keys represent the private part of that identity, a secret used to prove who they are and who they trust."
+  }}</p>
 
 {{#if @keyModels.length}}
   {{#each @keyModels as |pkiKey|}}
@@ -45,7 +45,7 @@
                       @disabled={{not @canRead}}
                       data-test-key-menu-link="details"
                     >
-                      Details
+                      {{t "Details"}}
                     </LinkTo>
                   </li>
                   <li>
@@ -55,7 +55,7 @@
                       @disabled={{not @canEdit}}
                       data-test-key-menu-link="edit"
                     >
-                      Edit
+                      {{t "Edit"}}
                     </LinkTo>
                   </li>
                 </ul>
@@ -67,5 +67,8 @@
     </LinkedBlock>
   {{/each}}
 {{else}}
-  <EmptyState @title="No keys yet" @message="There are no keys in this PKI mount. You can generate or create one." />
+  <EmptyState
+    @title={{t "No keys yet"}}
+    @message={{t "There are no keys in this PKI mount. You can generate or create one."}}
+  />
 {{/if}}

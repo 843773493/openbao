@@ -1,10 +1,12 @@
 <WizardSection
-  @headerText="Nomad"
+  @headerText={{t "Nomad"}}
   @headerIcon="nomad"
-  @docText="Docs: Nomad Secrets"
+  @docText={{t "Docs: Nomad Secrets"}}
   @docPath="/docs/secrets/nomad/index.html"
 >
   <p>
-    The Nomad secret backend for OpenBao generates Nomad API tokens dynamically based on pre-existing Nomad ACL policies.
+    {{t
+      "The Nomad secret backend for OpenBao generates Nomad API tokens dynamically based on pre-existing Nomad ACL policies."
+    }}
   </p>
 </WizardSection>

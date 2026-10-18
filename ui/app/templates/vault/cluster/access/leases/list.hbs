@@ -11,7 +11,7 @@
   <p.levelLeft>
     <h1 class="title is-3">
       <LinkTo @route="vault.cluster.access.leases.list-root" @model={{this.clusterController.model.name}}>
-        Leases
+        {{t "Leases"}}
       </LinkTo>
     </h1>
   </p.levelLeft>
@@ -28,7 +28,7 @@
       @baseKey={{get this.baseKey "id"}}
       @shouldNavigateTree={{true}}
       @mode="leases"
-      @placeholder="Filter leases"
+      @placeholder={{t "Filter leases"}}
     />
     {{#if this.filterFocused}}
       {{! template-lint-disable no-whitespace-for-layout }}
@@ -38,14 +38,14 @@
         {{#unless this.filterIsFolder}}
           <p class="help has-text-grey is-size-8">
             <kbd>ENTER</kbd>
-            to go to see details
+            {{t "to go to see details"}}
           </p>
         {{/unless}}
       {{/if}}
       {{#if this.firstPartialMatch}}
         <p class="help has-text-grey is-size-8">
           <kbd>TAB</kbd>
-          to complete
+          {{t "to complete"}}
         </p>
       {{/if}}
     {{/if}}
@@ -56,12 +56,14 @@
         {{#if (and this.capabilities.forceRevokePrefix.canUpdate (not this.confirmingRevoke))}}
           <ConfirmAction
             @buttonClasses="toolbar-link"
-            @confirmTitle="Disable this?"
-            @confirmMessage={{concat "All leases under this one will also be removed and disregard any errors encountered."}}
-            @confirmButtonText="Revoke"
+            @confirmTitle={{t "Disable this?"}}
+            @confirmMessage={{t
+              (concat "All leases under this one will also be removed and disregard any errors encountered.")
+            }}
+            @confirmButtonText={{t "Revoke"}}
             @onConfirmAction={{action "revokePrefix" this.baseKey.id true}}
           >
-            Force revoke prefix
+            {{t "Force revoke prefix"}}
           </ConfirmAction>
         {{/if}}
       </div>
@@ -69,13 +71,13 @@
         {{#if (and this.capabilities.revokePrefix.canUpdate (not this.confirmingForceRevoke))}}
           <ConfirmAction
             @buttonClasses="toolbar-link"
-            @confirmTitle="Revoke this?"
-            @confirmMessage={{concat "All leases under this one will also be removed"}}
-            @confirmButtonText="Revoke"
+            @confirmTitle={{t "Revoke this?"}}
+            @confirmMessage={{t (concat "All leases under this one will also be removed")}}
+            @confirmButtonText={{t "Revoke"}}
             @onConfirmAction={{action "revokePrefix" this.baseKey.id}}
             data-test-lease-revoke-prefix="true"
           >
-            Revoke prefix
+            {{t "Revoke prefix"}}
           </ConfirmAction>
         {{/if}}
       </div>
@@ -95,10 +97,10 @@
       <span class="has-text-weight-semibold">{{or item.keyWithoutParent item.id}}</span>
     </LinkTo>
   {{else}}
-    <EmptyState @title="There are no leases matching &quot;{{this.filter}}&quot;" />
+    <EmptyState @title={{t 'There are no leases matching "{arg0}"' arg0=(this.filter)}} />
   {{/each}}
 {{else}}
-  <EmptyState @title={{this.emptyTitle}} />
+  <EmptyState @title={{t this.emptyTitle}} />
 {{/if}}
 {{#if (gt this.model.meta.lastPage 1)}}
   <ListPagination

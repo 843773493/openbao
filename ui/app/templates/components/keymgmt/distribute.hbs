@@ -8,9 +8,9 @@
           @onChange={{this.handleKeySelect}}
           @passObject={{true}}
           @inputValue={{this.formData.key}}
-          @subText="Type to use the name of an existing key that you’d like to add to this provider, or to create one."
+          @subText={{t "Type to use the name of an existing key that you’d like to add to this provider, or to create one."}}
           @wildcardLabel="key"
-          @label="Key name"
+          @label={{t "Key name"}}
           @fallbackComponent="string-list"
           @selectLimit="1"
           @backend={{@backend}}
@@ -19,8 +19,10 @@
           {{#if (and this.validMatchError.key (not this.isNewKey))}}
             <AlertInline @paddingTop={{true}} @sizeSmall={{true}} @type="danger" data-test-keymgmt-error="key">
               {{this.validMatchError.key}}
-              To check compatibility,
-              <DocLink class="doc-link-subtle" @path="/docs/secrets/key-management#compatibility">refer to this table</DocLink>.
+              {{t "To check compatibility,"}}
+              <DocLink class="doc-link-subtle" @path="/docs/secrets/key-management#compatibility">{{t
+                  "refer to this table"
+                }}</DocLink>.
             </AlertInline>
           {{/if}}
         </SearchSelect>
@@ -29,8 +31,8 @@
 
     {{#if this.isNewKey}}
       <div class="field">
-        <label class="is-label" for="keyType">Key Type</label>
-        <p class="sub-text">The type of cryptographic key that will be created.</p>
+        <label class="is-label" for="keyType">{{t "Key Type"}}</label>
+        <p class="sub-text">{{t "The type of cryptographic key that will be created."}}</p>
         <div class="control is-expanded">
           <div class="select is-fullwidth">
             <select
@@ -41,7 +43,7 @@
               data-test-keymgmt-dist-keytype
             >
               <option value="">
-                Select one
+                {{t "Select one"}}
               </option>
               {{#each this.keyTypes as |val|}}
                 <option selected={{eq this.keyType val}} value={{val}}>
@@ -53,8 +55,10 @@
           {{#if this.validMatchError.key}}
             <AlertInline @paddingTop={{true}} @sizeSmall={{true}} @type="danger" data-test-keymgmt-error="new-key">
               {{this.validMatchError.key}}
-              To check compatibility,
-              <DocLink class="doc-link-subtle" @path="/docs/secrets/key-management#compatibility">refer to this table</DocLink>.
+              {{t "To check compatibility,"}}
+              <DocLink class="doc-link-subtle" @path="/docs/secrets/key-management#compatibility">{{t
+                  "refer to this table"
+                }}</DocLink>.
             </AlertInline>
           {{/if}}
         </div>
@@ -69,8 +73,8 @@
           @onChange={{this.handleProvider}}
           @passObject={{false}}
           @inputValue={{this.formData.provider}}
-          @subText="Select a provider in OpenBao. If it doesn’t exist yet, you’ll need to add it first."
-          @label="Provider"
+          @subText={{t "Select a provider in OpenBao. If it doesn’t exist yet, you’ll need to add it first."}}
+          @label={{t "Provider"}}
           @fallbackComponent="input-search"
           @selectLimit="1"
           @backend={{@backend}}
@@ -80,8 +84,10 @@
           {{#if this.validMatchError.provider}}
             <AlertInline @paddingTop={{true}} @sizeSmall={{true}} @type="danger" data-test-keymgmt-error="provider">
               {{this.validMatchError.provider}}
-              To check compatibility,
-              <DocLink class="doc-link-subtle" @path="/docs/secrets/key-management#compatibility">refer to this table</DocLink>.
+              {{t "To check compatibility,"}}
+              <DocLink class="doc-link-subtle" @path="/docs/secrets/key-management#compatibility">{{t
+                  "refer to this table"
+                }}</DocLink>.
             </AlertInline>
           {{/if}}
         </SearchSelect>
@@ -94,8 +100,8 @@
       disabled={{this.disableOperations}}
       data-test-keymgmt-dist-operations
     >
-      <legend class="is-label">Operations</legend>
-      <p class="sub-text">The types of operations this key can perform in the provider.</p>
+      <legend class="is-label">{{t "Operations"}}</legend>
+      <p class="sub-text">{{t "The types of operations this key can perform in the provider."}}</p>
       {{#each this.operations as |op|}}
         <div class="b-checkbox">
           <Input
@@ -112,8 +118,8 @@
     </fieldset>
 
     <fieldset class="field form-fieldset" id="protection" data-test-keymgmt-dist-protections>
-      <legend class="is-label">Protection</legend>
-      <p class="sub-text">Specifies the protection of the key.</p>
+      <legend class="is-label">{{t "Protection"}}</legend>
+      <p class="sub-text">{{t "Specifies the protection of the key."}}</p>
       <div>
         <RadioButton
           id="protection-hsm"
@@ -124,7 +130,7 @@
           @groupValue={{this.formData.protection}}
           @onChange={{fn (mut this.formData.protection)}}
         />
-        <label for="protection-hsm">HSM</label>
+        <label for="protection-hsm">{{t "HSM"}}</label>
       </div>
       <div>
         <RadioButton
@@ -136,12 +142,12 @@
           @groupValue={{this.formData.protection}}
           @onChange={{fn (mut this.formData.protection)}}
         />
-        <label for="protection-software">Software</label>
+        <label for="protection-software">{{t "Software"}}</label>
       </div>
     </fieldset>
 
     {{#if this.formErrors}}
-      <AlertBanner @type="danger" @message={{this.formErrors}} data-test-keymgmt-distribute-error />
+      <AlertBanner @type="danger" @message={{t this.formErrors}} data-test-keymgmt-distribute-error />
     {{/if}}
     <div class="field is-grouped box is-fullwidth is-bottomless">
       <div class="control">
@@ -160,7 +166,7 @@
       </div>
       <div class="control">
         <button type="button" class="button" {{on "click" @onClose}}>
-          Cancel
+          {{t "Cancel"}}
         </button>
       </div>
     </div>

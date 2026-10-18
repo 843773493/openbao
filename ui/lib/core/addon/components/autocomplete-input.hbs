@@ -1,13 +1,13 @@
 <div {{did-insert this.setElement}} ...attributes>
   {{#if @label}}
-    <FormFieldLabel @label={{@label}} @subText={{@subText}} />
+    <FormFieldLabel @label={{t @label}} @subText={{t @subText}} />
   {{/if}}
   <div class="control">
     <Input
       @value={{@value}}
       autocomplete="off"
       spellcheck="false"
-      placeholder={{@placeholder}}
+      placeholder={{t @placeholder}}
       class="input"
       {{on "input" this.onInput}}
     />
@@ -15,7 +15,7 @@
       <D.Content @defaultClass="autocomplete-input">
         {{#each @options as |option|}}
           <div class="autocomplete-input-option" role="button" {{on "click" (fn this.selectOption option.value)}}>
-            {{option.label}}
+            {{t option.label}}
           </div>
         {{/each}}
       </D.Content>

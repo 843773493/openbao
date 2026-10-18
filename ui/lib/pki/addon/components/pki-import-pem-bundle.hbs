@@ -2,12 +2,12 @@
   <div class="is-flex-start has-top-margin-xs">
     <div class="is-flex-1 basis-0 has-text-grey has-bottom-margin-xs">
       <h2>
-        Imported Issuer
+        {{t "Imported Issuer"}}
       </h2>
     </div>
     <div class="is-flex-1 basis-0 has-text-grey has-bottom-margin-xs">
       <h2>
-        Imported Key
+        {{t "Imported Key"}}
       </h2>
     </div>
   </div>
@@ -24,7 +24,7 @@
                 {{imported.issuer}}
               </LinkTo>
             {{else}}
-              None
+              {{t "None"}}
             {{/if}}
           </div>
           <div class="is-flex-1 basis-0 has-bottom-margin-xs" data-test-imported-key>
@@ -33,7 +33,7 @@
                 {{imported.key}}
               </LinkTo>
             {{else}}
-              None
+              {{t "None"}}
             {{/if}}
           </div>
         </div>
@@ -44,7 +44,7 @@
     <div class="field is-grouped is-fullwidth has-top-margin-l">
       <div class="control">
         <button type="button" class="button is-primary" {{on "click" @onComplete}} data-test-done>
-          Done
+          {{t "Done"}}
         </button>
       </div>
     </div>
@@ -53,15 +53,16 @@
   <div class="field">
     <div class="form-section">
       <label class="title is-5 has-top-padding-m" data-test-import-section-label>
-        Certificate parameters
+        {{t "Certificate parameters"}}
       </label>
       <form {{on "submit" (perform this.submitForm)}} data-test-pki-import-pem-bundle-form>
-        <MessageError @errorMessage={{this.errorBanner}} class="has-top-margin-s" />
+        <MessageError @errorMessage={{t this.errorBanner}} class="has-top-margin-s" />
         <div class="box is-sideless is-fullwidth is-marginless has-top-padding-l">
-          <TextFile @onChange={{this.onFileUploaded}} @label="PEM Bundle" />
+          <TextFile @onChange={{this.onFileUploaded}} @label={{t "PEM Bundle"}} />
           <p class="has-top-margin-m has-bottom-margin-l">
-            Issuer URLs (Issuing certificates, CRL distribution points, OCSP servers, and delta CRL URLs) can be specified by
-            editing the individual issuer once it is uploaded to OpenBao.
+            {{t
+              "Issuer URLs (Issuing certificates, CRL distribution points, OCSP servers, and delta CRL URLs) can be specified by editing the individual issuer once it is uploaded to OpenBao."
+            }}
           </p>
         </div>
         <div class="has-top-padding-s">
@@ -71,7 +72,7 @@
             disabled={{this.submitForm.isRunning}}
             data-test-pki-import-pem-bundle
           >
-            Import issuer
+            {{t "Import issuer"}}
           </button>
           <button
             type="button"
@@ -80,7 +81,7 @@
             {{on "click" this.cancel}}
             data-test-pki-ca-cert-cancel
           >
-            Cancel
+            {{t "Cancel"}}
           </button>
         </div>
       </form>

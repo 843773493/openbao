@@ -1,24 +1,25 @@
 {{#if this.didCancel}}
   <h3 class="title is-3" data-test-consent-title>
-    Consent Not Given
+    {{t "Consent Not Given"}}
   </h3>
   <div class="box">
-    <p class="has-bottom-margin-l has-top-margin-l">Login attempt has been terminated.</p>
+    <p class="has-bottom-margin-l has-top-margin-l">{{t "Login attempt has been terminated."}}</p>
   </div>
 {{else}}
   <h3 class="title is-3" data-test-consent-title>
-    Consent
+    {{t "Consent"}}
   </h3>
   <form class="box" {{on "submit" this.handleSubmit}} data-test-consent-form>
     <p class="has-bottom-margin-s">
-      In order to complete the login process, you must consent to OpenBao sharing your profile, email, address, and phone
-      with the client.
+      {{t
+        "In order to complete the login process, you must consent to OpenBao sharing your profile, email, address, and phone with the client."
+      }}
     </p>
-    <p class="has-bottom-margin-s">Do you want to continue?</p>
+    <p class="has-bottom-margin-s">{{t "Do you want to continue?"}}</p>
     <FormSaveButtons
-      @saveButtonText="Yes"
+      @saveButtonText={{t "Yes"}}
       @isSaving={{false}}
-      @cancelButtonText="No"
+      @cancelButtonText={{t "No"}}
       @onCancel={{this.handleCancel}}
       @includeBox={{false}}
     />

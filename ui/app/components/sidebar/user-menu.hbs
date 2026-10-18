@@ -7,14 +7,19 @@
   as |Dropdown|
 >
   <Dropdown.Trigger data-test-user-menu-trigger>
-    <Hds::SideNav::Header::IconButton @icon="user" @ariaLabel="User menu" title="User menu" class="sidebar-button" />
+    <Hds::SideNav::Header::IconButton
+      @icon="user"
+      @ariaLabel={{t "User menu"}}
+      title={{t "User menu"}}
+      class="sidebar-button"
+    />
   </Dropdown.Trigger>
   <Dropdown.Content>
     <Confirm as |c|>
       <div class="popup-menu-content" data-test-user-menu-content>
         <div class="box">
           <div class="menu-label">
-            {{capitalize this.auth.authData.displayName}}
+            {{t (capitalize this.auth.authData.displayName)}}
           </div>
           <nav class="menu">
             <ul class="menu-list">
@@ -22,7 +27,7 @@
                 <li class="token-alert is-flex" data-test-user-menu-item="token alert">
                   <span><Icon @name="alert-triangle-fill" class="has-text-highlight" /></span>
                   <span class="is-size-8 has-text-semibold">
-                    We've stopped auto-renewing your token due to inactivity. It will expire on
+                    {{t "We've stopped auto-renewing your token due to inactivity. It will expire on"}}
                     {{date-format this.auth.tokenExpirationDate "MMMM do yyyy, h:mm:ss a"}}.
                   </span>
                 </li>
@@ -30,19 +35,19 @@
               {{#if this.hasEntityId}}
                 <li class="action">
                   <LinkTo @route="vault.cluster.mfa-setup" data-test-user-menu-item="mfa">
-                    Multi-factor authentication
+                    {{t "Multi-factor authentication"}}
                   </LinkTo>
                 </li>
               {{/if}}
               <li class="action" id="container">
                 <CopyButton
-                  @text={{this.auth.currentToken}}
+                  @text={{t this.auth.currentToken}}
                   class="link"
                   @buttonType="button"
                   @onSuccess={{action (set-flash-message "Token copied!")}}
                   @container="#container"
                 >
-                  Copy token
+                  {{t "Copy token"}}
                 </CopyButton>
               </li>
               {{#if (is-before (now interval=1000) this.auth.tokenExpirationDate)}}
@@ -54,25 +59,25 @@
                       class="link button {{if this.isRenewing 'is-loading'}}"
                       data-test-user-menu-item="renew token"
                     >
-                      Renew token
+                      {{t "Renew token"}}
                     </button>
                   </li>
                 {{/if}}
                 <li class="action">
                   <c.Message
                     @id={{get this.auth "authData.displayName"}}
-                    @title={{concat "Revoke " (get this.auth "authData.displayName") "?"}}
+                    @title={{t (concat "Revoke " (get this.auth "authData.displayName") "?")}}
                     @onConfirm={{action "revokeToken"}}
-                    @message="You will not be able to log in again with this token."
-                    @triggerText="Revoke token"
-                    @confirmButtonText="Revoke"
+                    @message={{t "You will not be able to log in again with this token."}}
+                    @triggerText={{t "Revoke token"}}
+                    @confirmButtonText={{t "Revoke"}}
                     data-test-user-menu-item="revoke token"
                   />
                 </li>
               {{/if}}
               <li class="action">
                 <LinkTo @route="vault.cluster.logout" @model={{this.currentCluster.cluster.name}} id="logout">
-                  Log out
+                  {{t "Log out"}}
                 </LinkTo>
               </li>
             </ul>

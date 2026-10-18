@@ -3,22 +3,22 @@
     <ul class="menu-list">
       <li class="action">
         <LinkTo @route="vault.cluster.policy.show" @models={{array "acl" this.policyName}}>
-          View Policy
+          {{t "View Policy"}}
         </LinkTo>
       </li>
       <li class="action">
         <LinkTo @route="vault.cluster.policy.edit" @models={{array "acl" this.policyName}}>
-          Edit Policy
+          {{t "Edit Policy"}}
         </LinkTo>
       </li>
       <li class="action">
         <ConfirmAction
           @buttonClasses="link is-destroy"
-          @confirmButtonText="Remove"
-          @confirmMessage="This policy may affect permissions to access OpenBao data."
+          @confirmButtonText={{t "Remove"}}
+          @confirmMessage={{t "This policy may affect permissions to access OpenBao data."}}
           @onConfirmAction={{action "performTransaction" this.model this.policyName}}
         >
-          Remove from
+          {{t "Remove from"}}
           {{this.model.identityType}}
         </ConfirmAction>
       </li>

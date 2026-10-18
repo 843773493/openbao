@@ -46,7 +46,7 @@
                         @route="certificates.certificate.details"
                         @models={{array (current-mount-path) pkiCertificate.id}}
                       >
-                        Details
+                        {{t "Details"}}
                       </LinkTo>
                     </li>
                     {{! ARG TODO ask Ivana if we wnat revoke or maybe download action here? }}
@@ -59,21 +59,21 @@
       </LinkedBlock>
     {{/each}}
   {{else}}
-    <EmptyState @title="No certificates yet">
+    <EmptyState @title={{t "No certificates yet"}}>
       <div>
-        <p>When created, certificates will be listed here. Select a role to start generating certificates.</p>
+        <p>{{t "When created, certificates will be listed here. Select a role to start generating certificates."}}</p>
         <div class="has-top-margin-m">
           <LinkTo @route="roles.index" @model={{(current-mount-path)}}>
-            View roles
+            {{t "View roles"}}
           </LinkTo>
         </div>
       </div>
     </EmptyState>
   {{/if}}
 {{else}}
-  <EmptyState @title="PKI not configured" @message={{this.notConfiguredMessage}}>
+  <EmptyState @title={{t "PKI not configured"}} @message={{t this.notConfiguredMessage}}>
     <LinkTo @route="configuration.create" @model={{(current-mount-path)}}>
-      Configure PKI
+      {{t "Configure PKI"}}
     </LinkTo>
   </EmptyState>
 {{/if}}

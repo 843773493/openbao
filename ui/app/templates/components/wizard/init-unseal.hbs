@@ -1,15 +1,15 @@
-<WizardContent @headerText="Initialization" @glyph="tour">
+<WizardContent @headerText={{t "Initialization"}} @glyph="tour">
   <WizardSection
-    @headerText="Unsealing your vault"
-    @docText="Learn: Initialization"
+    @headerText={{t "Unsealing your vault"}}
+    @docText={{t "Learn: Initialization"}}
     @docPath="/intro/getting-started/deploy.html#initializing-the-vault"
   >
     <p>
-      Now we will provide the
+      {{t "Now we will provide the"}}
       {{pluralize this.componentState.threshold "key"}}
-      that you copied or downloaded to unseal the vault so that we can get started using it. You'll need
+      {{t "that you copied or downloaded to unseal the vault so that we can get started using it. You'll need"}}
       {{pluralize this.componentState.threshold "key"}}
-      total, and
+      {{t "total, and"}}
       {{#let (pluralize this.componentState.progress "key" without-count=true) as |word|}}
         {{if
           (eq word "key")
@@ -17,9 +17,9 @@
           (concat this.componentState.progress " " word " have ")
         }}
       {{/let}}
-      already been provided. Please provide
+      {{t "already been provided. Please provide"}}
       {{pluralize (dec this.componentState.progress this.componentState.threshold) "more key"}}
-      to unseal.
+      {{t "to unseal."}}
     </p>
   </WizardSection>
 </WizardContent>

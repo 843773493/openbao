@@ -14,5 +14,5 @@
     </div>
   </div>
 {{else}}
-  <EmptyState @title="No metadata associated with {{@model.name}} yet" />
+  <EmptyState @title={{t "No metadata associated with {arg0} yet" arg0=(@model.name)}} />
 {{/each-in}}

@@ -1,7 +1,7 @@
 {{#each this.possibleFields as |field|}}
   {{#let (get @model field.key) as |value|}}
     <InfoTableRow
-      @label={{or field.label (humanize (dasherize field.key))}}
+      @label={{t (or field.label (humanize (dasherize field.key)))}}
       @value={{value}}
       @formatDate={{field.formatDate}}
     />

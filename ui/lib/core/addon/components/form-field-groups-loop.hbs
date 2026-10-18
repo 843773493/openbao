@@ -19,8 +19,8 @@
       {{#let (camelize (concat "show" group)) as |prop|}}
         <ToggleButton
           @isOpen={{get @model prop}}
-          @openLabel={{concat "Hide " group}}
-          @closedLabel={{group}}
+          @openLabel={{t (concat "Hide " group)}}
+          @closedLabel={{t group}}
           @onClick={{fn (mut (get @model prop))}}
           class="is-block"
           data-test-toggle-group={{group}}

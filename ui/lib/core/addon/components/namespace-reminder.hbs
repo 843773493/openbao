@@ -5,12 +5,12 @@
     </p>
   {{else}}
     <p class="namespace-reminder">
-      This
+      {{t "This"}}
       {{@noun}}
-      will be
+      {{t "will be"}}
       {{this.modeVerb}}
-      in the
-      <span class="tag">{{this.namespace.path}}/</span>namespace.
+      {{t "in the"}}
+      <span class="tag">{{this.namespace.path}}/</span>{{t "namespace."}}
     </p>
   {{/if}}
 {{/if}}

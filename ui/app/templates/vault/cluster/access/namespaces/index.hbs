@@ -1,7 +1,7 @@
 <PageHeader as |p|>
   <p.levelLeft>
     <h1 class="title is-3">
-      Namespaces
+      {{t "Namespaces"}}
     </h1>
   </p.levelLeft>
 </PageHeader>
@@ -9,20 +9,20 @@
 <Toolbar>
   <ToolbarActions>
     <ToolbarLink @route="vault.cluster.access.namespaces.create" @type="add">
-      Create namespace
+      {{t "Create namespace"}}
     </ToolbarLink>
   </ToolbarActions>
 </Toolbar>
 
-<ListView @items={{this.model}} @itemNoun="namespace" @paginationRouteName="vault.cluster.access.namespaces" as |list|>
+<ListView @items={{this.model}} @itemNoun={{t "namespace"}} @paginationRouteName="vault.cluster.access.namespaces" as |list|>
   {{#if list.empty}}
     <list.empty>
       <LinkTo @route="vault.cluster.access.namespaces.create">
-        Create Namespace
+        {{t "Create Namespace"}}
       </LinkTo>
 
       <DocLink @path="/blog/namespaces-announcement/#how-to-use-namespaces">
-        Learn more
+        {{t "Learn more"}}
       </DocLink>
     </list.empty>
   {{else}}
@@ -35,7 +35,7 @@
           {{#if (includes targetNamespace this.accessibleNamespaces)}}
             <li class="action">
               <NamespaceLink @targetNamespace={{targetNamespace}} @unparsed={{true}} @class="is-block">
-                Switch to Namespace
+                {{t "Switch to Namespace"}}
               </NamespaceLink>
             </li>
           {{/if}}
@@ -43,8 +43,8 @@
         <li class="action">
           <m.Message
             @id={{list.item.id}}
-            @confirmButtonText="Remove"
-            @message="Any engines or mounts in this namespace will also be removed."
+            @confirmButtonText={{t "Remove"}}
+            @message={{t "Any engines or mounts in this namespace will also be removed."}}
             @onConfirm={{action
               (perform
                 Item.callMethod

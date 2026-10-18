@@ -5,20 +5,20 @@
   <p.levelLeft>
     <h1 class="title is-3">
       <Icon @name="file-text" @size="24" class="has-text-grey-light" />
-      {{this.title}}
+      {{t this.title}}
     </h1>
   </p.levelLeft>
 </PageHeader>
 <div class="tabs-container box is-bottomless is-marginless is-fullwidth is-paddingless">
-  <nav class="tabs" aria-label="secret tabs">
+  <nav class="tabs" aria-label={{t "secret tabs"}}>
     <ul>
       {{#each this.tabs as |oTab|}}
         <LinkTo @route={{oTab.route}} @model={{(current-mount-path)}} data-test-tab={{oTab.route}}>
-          {{oTab.label}}
+          {{t oTab.label}}
         </LinkTo>
       {{/each}}
     </ul>
   </nav>
 </div>
 
-<Page::Error @error={{this.model}} />
+<Page::Error @error={{t this.model}} />

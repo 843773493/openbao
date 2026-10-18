@@ -4,12 +4,12 @@
       <li class="action">
         <ConfirmAction
           @buttonClasses="link is-destroy"
-          @confirmTitle="Remove metadata?"
-          @confirmMessage="This data may be used outside of OpenBao."
-          @confirmButtonText="Remove"
+          @confirmTitle={{t "Remove metadata?"}}
+          @confirmMessage={{t "This data may be used outside of OpenBao."}}
+          @confirmButtonText={{t "Remove"}}
           @onConfirmAction={{action "performTransaction" this.model this.key}}
         >
-          Remove
+          {{t "Remove"}}
         </ConfirmAction>
       </li>
     </ul>

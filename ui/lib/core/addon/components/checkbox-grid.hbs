@@ -1,5 +1,5 @@
 <div data-test-checkbox-grid ...attributes>
-  <FormFieldLabel for={{@name}} @label={{@label}} @subText={{@subText}} />
+  <FormFieldLabel for={{@name}} @label={{t @label}} @subText={{t @subText}} />
   <div class="is-grid is-grid-3-columns is-medium-height">
     {{#each this.checkboxes as |checkbox|}}
       <div class="field">
@@ -14,7 +14,7 @@
             data-test-checkbox={{checkbox.key}}
           />
           <label for={{checkbox.key}} class="is-label">
-            {{checkbox.label}}
+            {{t checkbox.label}}
           </label>
         </div>
       </div>

@@ -8,14 +8,14 @@
 >
   {{#if @label}}
     <label class="is-label" data-test-string-list-label="true">
-      {{@label}}
+      {{t @label}}
       {{#if @helpText}}
-        <InfoTooltip>{{@helpText}}</InfoTooltip>
+        <InfoTooltip>{{t @helpText}}</InfoTooltip>
       {{/if}}
     </label>
     {{#if @subText}}
       <p class="sub-text">
-        {{@subText}}
+        {{t @subText}}
       </p>
     {{/if}}
   {{/if}}
@@ -40,7 +40,7 @@
             data-test-string-list-button="add"
             {{on "click" this.addInput}}
           >
-            Add
+            {{t "Add"}}
           </button>
         {{else}}
           <button
@@ -61,7 +61,7 @@
   {{#if this.indicesWithComma}}
     <AlertInline
       @type="warning"
-      @message="Input contains a comma. Please separate values into individual rows."
+      @message={{t "Input contains a comma. Please separate values into individual rows."}}
       @isMarginless={{true}}
     />
   {{/if}}

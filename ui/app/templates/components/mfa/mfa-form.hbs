@@ -1,10 +1,10 @@
 <div class="auth-form" data-test-mfa-form>
   <div class="box is-marginless is-shadowless">
     <p data-test-mfa-description>
-      {{this.description}}
+      {{t this.description}}
     </p>
     <form id="auth-form" {{on "submit" this.submit}}>
-      <MessageError @errorMessage={{this.error}} class="has-top-margin-s" />
+      <MessageError @errorMessage={{t this.error}} class="has-top-margin-s" />
       <div class="field has-top-margin-l">
         {{#each this.constraints as |constraint index|}}
           {{#if index}}
@@ -12,7 +12,7 @@
           {{/if}}
           {{#if (gt constraint.methods.length 1)}}
             <Select
-              @label="Multi-factor authentication method"
+              @label={{t "Multi-factor authentication method"}}
               @options={{constraint.methods}}
               @valueAttribute={{"id"}}
               @labelAttribute={{"label"}}
@@ -24,7 +24,7 @@
             />
           {{else}}
             <label for="passcode" class="is-label" data-test-mfa-label>
-              {{constraint.selectedMethod.label}}
+              {{t constraint.selectedMethod.label}}
             </label>
           {{/if}}
           {{#if constraint.selectedMethod.uses_passcode}}
@@ -35,7 +35,7 @@
                 name="passcode"
                 class="input"
                 autocomplete="off"
-                placeholder={{if (gt constraint.methods.length 1) "Enter passcode"}}
+                placeholder={{t (if (gt constraint.methods.length 1) "Enter passcode")}}
                 spellcheck="false"
                 autofocus="true"
                 disabled={{or this.validate.isRunning this.countdown}}
@@ -46,14 +46,14 @@
             </div>
           {{else if (eq constraint.methods.length 1)}}
             <p class="has-text-grey-400" data-test-mfa-push-instruction>
-              Check device for push notification
+              {{t "Check device for push notification"}}
             </p>
           {{/if}}
         {{/each}}
       </div>
       {{#if this.countdown}}
         <div>
-          <AlertInline @type="danger" @sizeSmall={{true}} @message={{this.codeDelayMessage}} />
+          <AlertInline @type="danger" @sizeSmall={{true}} @message={{t this.codeDelayMessage}} />
         </div>
       {{/if}}
       <button
@@ -63,7 +63,7 @@
         class="button is-primary {{if this.validate.isRunning 'is-loading'}}"
         data-test-mfa-validate
       >
-        Verify
+        {{t "Verify"}}
       </button>
       {{#if this.countdown}}
         <Icon @name="delay" class="has-text-grey" />

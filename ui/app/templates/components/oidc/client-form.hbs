@@ -6,11 +6,11 @@
           <span class="sep">&#x0002f;</span>
           {{#if @model.isNew}}
             <LinkTo @route="vault.cluster.access.oidc.clients">
-              Applications
+              {{t "Applications"}}
             </LinkTo>
           {{else}}
             <LinkTo @route="vault.cluster.access.oidc.clients.client.details" @model={{@model.name}}>
-              Details
+              {{t "Details"}}
             </LinkTo>
           {{/if}}
         </li>
@@ -20,28 +20,28 @@
   <p.levelLeft>
     <h1 class="title is-3" data-test-oidc-client-title>
       {{if @model.isNew "Create" "Edit"}}
-      application
+      {{t "application"}}
     </h1>
   </p.levelLeft>
 </PageHeader>
 <form {{on "submit" (perform this.save)}}>
   <div class="box is-sideless is-fullwidth is-bottomless">
-    <MessageError @errorMessage={{this.errorBanner}} class="has-top-margin-s" />
+    <MessageError @errorMessage={{t this.errorBanner}} class="has-top-margin-s" />
     {{#each @model.formFields as |attr|}}
       <FormField @attr={{attr}} @model={{@model}} @modelValidations={{this.modelValidations}} />
     {{/each}}
 
     {{! MORE OPTIONS TOGGLE }}
-    <FormFieldGroups @renderGroup="More options" @model={{@model}} @modelValidations={{this.modelValidations}} />
+    <FormFieldGroups @renderGroup={{t "More options"}} @model={{@model}} @modelValidations={{this.modelValidations}} />
   </div>
   {{! RADIO CARD + SEARCH SELECT }}
   <div class="box is-sideless is-fullwidth is-marginless has-top-padding-xxl">
-    <h4 class="title is-4">Assign access</h4>
+    <h4 class="title is-4">{{t "Assign access"}}</h4>
     <div class="is-flex-row">
       <RadioCard
         data-test-oidc-radio="allow-all"
-        @title="Allow everyone to access existing"
-        @description="All OpenBao entities can authenticate through this application."
+        @title={{t "Allow everyone to access existing"}}
+        @description={{t "All OpenBao entities can authenticate through this application."}}
         @icon="org"
         @value="allow_all"
         @groupValue={{this.radioCardGroupValue}}
@@ -49,8 +49,8 @@
       />
       <RadioCard
         data-test-oidc-radio="limited"
-        @title="Limit access to selected users"
-        @description="Choose or create an assignment to give access to selected entities."
+        @title={{t "Limit access to selected users"}}
+        @description={{t "Choose or create an assignment to give access to selected entities."}}
         @icon="users"
         @value="limited"
         @groupValue={{this.radioCardGroupValue}}
@@ -60,15 +60,15 @@
     {{#if (eq this.radioCardGroupValue "limited")}}
       <SearchSelectWithModal
         @id="assignments"
-        @label="Assignment name"
-        @subText="Search for an existing assignment, or type a new name to create it."
+        @label={{t "Assignment name"}}
+        @subText={{t "Search for an existing assignment, or type a new name to create it."}}
         @models={{array "oidc/assignment"}}
         @inputValue={{this.modelAssignments}}
         @onChange={{this.handleAssignmentSelection}}
         @excludeOptions={{array "allow_all"}}
         @fallbackComponent="string-list"
         @modalFormTemplate="modal-form/oidc-assignment-template"
-        @modalSubtext="Use assignment to specify which OpenBao entities and groups are allowed to authenticate."
+        @modalSubtext={{t "Use assignment to specify which OpenBao entities and groups are allowed to authenticate."}}
       />
     {{/if}}
   </div>
@@ -89,12 +89,12 @@
         {{on "click" this.cancel}}
         data-test-oidc-client-cancel
       >
-        Cancel
+        {{t "Cancel"}}
       </button>
     </div>
     {{#if this.invalidFormAlert}}
       <div class="control">
-        <AlertInline @type="danger" @paddingTop={{true}} @message={{this.invalidFormAlert}} @mimicRefresh={{true}} />
+        <AlertInline @type="danger" @paddingTop={{true}} @message={{t this.invalidFormAlert}} @mimicRefresh={{true}} />
       </div>
     {{/if}}
   </div>

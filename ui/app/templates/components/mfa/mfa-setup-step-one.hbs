@@ -1,18 +1,20 @@
 <div ...attributes>
   <p>
-    TOTP Multi-factor authentication (MFA) can be enabled here if it is required by your administrator. This will ensure that
-    you are not prevented from logging into OpenBao in the future, once MFA is fully enforced.
+    {{t
+      "TOTP Multi-factor authentication (MFA) can be enabled here if it is required by your administrator. This will ensure that you are not prevented from logging into OpenBao in the future, once MFA is fully enforced."
+    }}
   </p>
   <form id="mfa-setup-step-one" {{on "submit" this.verifyUUID}}>
-    <MessageError @errorMessage={{this.error}} class="has-top-margin-s" />
+    <MessageError @errorMessage={{t this.error}} class="has-top-margin-s" />
     <div class="field has-top-margin-l">
       <label class="is-label">
-        Method ID
+        {{t "Method ID"}}
       </label>
 
       {{! template-lint-disable no-autofocus-attribute}}
-      <p class="sub-text">Enter the UUID for your multi-factor authentication method. This can be provided to you by your
-        administrator.</p>
+      <p class="sub-text">{{t
+          "Enter the UUID for your multi-factor authentication method. This can be provided to you by your administrator."
+        }}</p>
       <Input
         id="uuid"
         name="uuid"
@@ -27,10 +29,10 @@
 
     <div class="is-flex-start has-gap">
       <button id="continue" type="submit" class="button is-primary" disabled={{(is-empty-value this.UUID)}} data-test-verify>
-        Verify
+        {{t "Verify"}}
       </button>
       <button id="cancel" type="button" {{on "click" this.redirectPreviousPage}} class="button">
-        Cancel
+        {{t "Cancel"}}
       </button>
     </div>
   </form>

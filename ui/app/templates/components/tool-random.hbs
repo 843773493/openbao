@@ -1,30 +1,30 @@
 <PageHeader as |p|>
   <p.levelLeft>
     <h1 class="title is-3">
-      Random bytes
+      {{t "Random bytes"}}
     </h1>
   </p.levelLeft>
 </PageHeader>
 
 {{#if @random_bytes}}
   <div class="box is-sideless is-fullwidth is-marginless">
-    <label for="rand" class="is-label">Random bytes</label>
+    <label for="rand" class="is-label">{{t "Random bytes"}}</label>
     <textarea readonly class="textarea" id="rand" data-test-tools-input="random-bytes">{{@random_bytes}}</textarea>
   </div>
   <div class="field is-grouped box is-fullwidth is-bottomless">
     <div class="control">
       <CopyButton
-        @text={{@random_bytes}}
+        @text={{t @random_bytes}}
         class="button is-primary"
         @buttonType="button"
         @onSuccess={{action (set-flash-message "Random bytes copied!")}}
       >
-        Copy
+        {{t "Copy"}}
       </CopyButton>
     </div>
     <div class="control">
       <button {{on "click" this.onClear}} type="button" class="button">
-        Back
+        {{t "Back"}}
       </button>
     </div>
   </div>
@@ -35,7 +35,7 @@
       <div class="field-body">
         <div class="field">
           <label for="bytes" class="is-label">
-            Number of bytes
+            {{t "Number of bytes"}}
           </label>
           <div class="control">
             <Input id="bytes" class="input" @value={{@bytes}} data-test-tools-input="bytes" />
@@ -43,7 +43,7 @@
         </div>
         <div class="field">
           <label for="format" class="is-label">
-            Output format
+            {{t "Output format"}}
           </label>
           <div class="control is-expanded">
             <div class="select is-fullwidth">
@@ -63,7 +63,7 @@
   <div class="field is-grouped box is-fullwidth is-bottomless">
     <div class="control">
       <button type="submit" class="button is-primary" data-test-tools-submit="true">
-        Generate
+        {{t "Generate"}}
       </button>
     </div>
   </div>

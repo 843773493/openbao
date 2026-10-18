@@ -1,6 +1,6 @@
 {{#if this.label}}
   <label for="select-{{this.elementId}}" class="is-label" data-test-select-label>
-    {{this.label}}
+    {{t this.label}}
   </label>
 {{/if}}
 <div class="control {{if this.isInline 'select is-inline-block'}}">
@@ -13,7 +13,7 @@
     >
       {{#if this.noDefault}}
         <option value="">
-          Select one
+          {{t "Select one"}}
         </option>
       {{/if}}
       {{#each this.options as |op|}}

@@ -4,15 +4,15 @@
       <LinkTo @route="vault.cluster.policies" @model={{this.policyType}} data-test-policy-list-link={{true}}>
         <span class="sep">&#x0002f;</span>
         {{uppercase this.policyType}}
-        Policies
+        {{t "Policies"}}
       </LinkTo>
     </div>
   </p.top>
   <p.levelLeft>
     <h1 class="title is-3">
-      Create
+      {{t "Create"}}
       {{uppercase this.policyType}}
-      policy
+      {{t "policy"}}
     </h1>
   </p.levelLeft>
 </PageHeader>

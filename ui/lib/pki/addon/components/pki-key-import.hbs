@@ -1,16 +1,16 @@
 <form {{on "submit" (perform this.submitForm)}} data-test-pki-key-import-form>
-  <MessageError @errorMessage={{this.errorBanner}} class="has-top-margin-s" />
+  <MessageError @errorMessage={{t this.errorBanner}} class="has-top-margin-s" />
   <div class="box is-sideless is-fullwidth is-marginless">
     <p class="has-bottom-margin-l">
-      Use this form to import a single pem encoded rsa, ec, or ed25519 key.
+      {{t "Use this form to import a single pem encoded rsa, ec, or ed25519 key."}}
       <DocLink @path="/api-docs/secret/pki#import-key">
-        Learn more here.
+        {{t "Learn more here."}}
       </DocLink>
     </p>
     {{#let (find-by "name" "keyName" @model.formFields) as |attr|}}
       <FormField data-test-field={{attr}} @attr={{attr}} @model={{@model}} @showHelpText={{false}} />
     {{/let}}
-    <TextFile @onChange={{this.onFileUploaded}} @label="PEM Bundle" data-test-pki-key-file />
+    <TextFile @onChange={{this.onFileUploaded}} @label={{t "PEM Bundle"}} data-test-pki-key-file />
   </div>
   <div class="has-top-padding-s">
     <button
@@ -19,7 +19,7 @@
       disabled={{this.submitForm.isRunning}}
       data-test-pki-key-import
     >
-      Import key
+      {{t "Import key"}}
     </button>
     <button
       type="button"
@@ -28,14 +28,14 @@
       {{on "click" this.cancel}}
       data-test-pki-key-cancel
     >
-      Cancel
+      {{t "Cancel"}}
     </button>
     {{#if this.invalidFormAlert}}
       <div class="control">
         <AlertInline
           @type="danger"
           @paddingTop={{true}}
-          @message={{this.invalidFormAlert}}
+          @message={{t this.invalidFormAlert}}
           @mimicRefresh={{true}}
           data-test-pki-key-validation-error
         />

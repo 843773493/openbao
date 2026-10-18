@@ -11,11 +11,11 @@
   <p.levelLeft>
     <h1 class="title is-3">
       {{#if (eq this.mode "create")}}
-        Create encryption key
+        {{t "Create encryption key"}}
       {{else if (eq this.mode "edit")}}
-        Edit encryption key
+        {{t "Edit encryption key"}}
       {{else}}
-        Encryption key
+        {{t "Encryption key"}}
         <code>{{this.key.id}}</code>
       {{/if}}
     </h1>
@@ -54,5 +54,5 @@
     @backend={{this.backend}}
   />
 {{else}}
-  <EmptyState @title="No Transit mode selected" />
+  <EmptyState @title={{t "No Transit mode selected"}} />
 {{/if}}

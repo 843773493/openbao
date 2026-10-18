@@ -1,7 +1,7 @@
 <PageHeader as |p|>
   <p.levelLeft>
     <h1 class="title is-3">
-      Unwrap data
+      {{t "Unwrap data"}}
     </h1>
   </p.levelLeft>
 </PageHeader>
@@ -21,7 +21,7 @@
             {{action (mut @unwrapActiveTab) "data"}}
             data-test-button-data
           >
-            Data
+            {{t "Data"}}
           </button>
         </li>
         <li
@@ -34,7 +34,7 @@
             {{action (mut @unwrapActiveTab) "details"}}
             data-test-button-details
           >
-            Wrap Details
+            {{t "Wrap Details"}}
           </button>
         </li>
         {{! template-lint-configure no-nested-interactive "on" }}
@@ -43,13 +43,13 @@
     {{#if (eq @unwrapActiveTab "data")}}
       <div class="field">
         <div class="control">
-          <JsonEditor @title="Unwrapped Data" @value={{stringify @unwrap_data}} @readOnly={{true}} />
+          <JsonEditor @title={{t "Unwrapped Data"}} @value={{stringify @unwrap_data}} @readOnly={{true}} />
         </div>
       </div>
     {{else}}
       <div class="field box is-fullwidth is-shadowless is-paddingless is-marginless">
         {{#each-in @details as |key detail|}}
-          <InfoTableRow @label={{key}} @value={{key}}>
+          <InfoTableRow @label={{t key}} @value={{key}}>
             {{#if (or (eq detail "No") (eq detail "None"))}}
               <Icon @name="x-circle" class="has-text-grey" />
               {{detail}}
@@ -67,28 +67,28 @@
   <div class="field is-grouped box is-fullwidth is-bottomless">
     <div class="control">
       <CopyButton
-        @text={{stringify @unwrap_data}}
+        @text={{t (stringify @unwrap_data)}}
         class="button is-primary"
         @buttonType="button"
         @onSuccess={{action (set-flash-message "Data copied!")}}
       >
-        Copy
+        {{t "Copy"}}
       </CopyButton>
     </div>
     <div class="control">
       <button {{on "click" this.onClear}} type="button" class="button">
-        Back
+        {{t "Back"}}
       </button>
     </div>
   </div>
 {{else}}
   <div class="box is-sideless is-fullwidth is-marginless">
-    <NamespaceReminder @mode="perform" @noun={{@selectedAction}} />
+    <NamespaceReminder @mode="perform" @noun={{t @selectedAction}} />
     <MessageError @errors={{@errors}} />
     <div class="field">
-      <label for="token" class="is-label">Wrapped token</label>
+      <label for="token" class="is-label">{{t "Wrapped token"}}</label>
       <div class="has-text-grey is-size-8 has-bottom-margin-xs">
-        Enter your wrapped token here to unwrap it and return its original value.
+        {{t "Enter your wrapped token here to unwrap it and return its original value."}}
       </div>
       <div class="control">
         <Input
@@ -106,7 +106,7 @@
   <div class="field is-grouped box is-fullwidth is-bottomless">
     <div class="control">
       <button type="submit" data-test-tools-submit="true" class="button is-primary">
-        Unwrap data
+        {{t "Unwrap data"}}
       </button>
     </div>
   </div>

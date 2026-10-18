@@ -12,7 +12,7 @@
   <ToolbarActions>
     {{#unless this.model.hasConfig}}
       <ToolbarLink @route="configuration.create" @model={{(current-mount-path)}}>
-        Configure PKI
+        {{t "Configure PKI"}}
       </ToolbarLink>
     {{/unless}}
   </ToolbarActions>
@@ -21,9 +21,9 @@
 {{#if this.model.hasConfig}}
   <Page::PkiOverview @issuers={{this.model.issuers}} @roles={{this.model.roles}} @engine={{this.model.engine}} />
 {{else}}
-  <EmptyState @title="PKI not configured" @message={{this.notConfiguredMessage}}>
+  <EmptyState @title={{t "PKI not configured"}} @message={{t this.notConfiguredMessage}}>
     <LinkTo @route="configuration.create" @model={{(current-mount-path)}}>
-      Configure PKI
+      {{t "Configure PKI"}}
     </LinkTo>
   </EmptyState>
 {{/if}}

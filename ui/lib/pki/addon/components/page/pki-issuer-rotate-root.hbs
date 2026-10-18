@@ -18,7 +18,7 @@
         @models={{array (current-mount-path) @newRootModel.issuerId}}
         data-test-pki-issuer-cross-sign
       >
-        Cross-sign issuers
+        {{t "Cross-sign issuers"}}
       </ToolbarLink>
       <ToolbarLink
         @route="issuers.issuer.sign"
@@ -26,7 +26,7 @@
         @models={{array (current-mount-path) @newRootModel.issuerId}}
         data-test-pki-issuer-sign-int
       >
-        Sign Intermediate
+        {{t "Sign Intermediate"}}
       </ToolbarLink>
       <BasicDropdown @class="popup-menu" @horizontalPosition="auto-right" @verticalPosition="below" as |D|>
         <D.Trigger
@@ -35,11 +35,11 @@
           @htmlTag="button"
           data-test-issuer-download
         >
-          Download
+          {{t "Download"}}
           <Chevron @direction="down" @isButton={{true}} />
         </D.Trigger>
         <D.Content @defaultClass="popup-menu-content">
-          <nav class="box menu" aria-label="snapshots actions">
+          <nav class="box menu" aria-label={{t "snapshots actions"}}>
             <ul class="menu-list">
               <li class="action">
                 <DownloadButton
@@ -49,7 +49,7 @@
                   @fetchData={{fn this.fetchDataForDownload "pem"}}
                   data-test-issuer-download-type="pem"
                 >
-                  PEM format
+                  {{t "PEM format"}}
                 </DownloadButton>
               </li>
               <li class="action">
@@ -60,7 +60,7 @@
                   @fetchData={{fn this.fetchDataForDownload "der"}}
                   data-test-issuer-download-type="der"
                 >
-                  DER format
+                  {{t "DER format"}}
                 </DownloadButton>
               </li>
             </ul>
@@ -72,7 +72,7 @@
         @models={{array (current-mount-path) @newRootModel.issuerId}}
         data-test-pki-issuer-configure
       >
-        Configure
+        {{t "Configure"}}
       </ToolbarLink>
     </ToolbarActions>
   </Toolbar>
@@ -80,22 +80,23 @@
 
 {{#if @newRootModel.id}}
   <div class="has-top-margin-m">
-    <AlertBanner @title="Next steps" @type="warning">
-      Your new root has been generated.
+    <AlertBanner @title={{t "Next steps"}} @type="warning">
+      {{t "Your new root has been generated."}}
       {{#if @newRootModel.privateKey}}
-        Make sure to copy and save the
-        <strong>private_key</strong>
-        as it is only available once.
+        {{t "Make sure to copy and save the"}}
+        <strong>{{t "private_key"}}</strong>
+        {{t "as it is only available once."}}
       {{/if}}
-      If you’re ready, you can begin cross-signing issuers now. If not, the option to cross-sign is available when you use
-      this certificate.
+      {{t
+        "If you’re ready, you can begin cross-signing issuers now. If not, the option to cross-sign is available when you use this certificate."
+      }}
       <br />
       <LinkTo
         class="is-marginless"
         @route="issuers.issuer.cross-sign"
         @models={{array (current-mount-path) @newRootModel.issuerId}}
       >
-        Cross-sign issuers
+        {{t "Cross-sign issuers"}}
       </LinkTo>
     </AlertBanner>
   </div>
@@ -104,8 +105,8 @@
     {{#each this.generateOptions as |option|}}
       <RadioCard
         class="has-fixed-width"
-        @title={{option.label}}
-        @description={{option.description}}
+        @title={{t option.label}}
+        @description={{t option.description}}
         @icon={{option.icon}}
         @value={{option.key}}
         @groupValue={{this.displayedForm}}
@@ -123,26 +124,26 @@
     <div class="field is-grouped is-fullwidth has-top-margin-l has-bottom-margin-s">
       <div class="control">
         <button type="button" class="button is-primary" {{on "click" @onComplete}} data-test-done>
-          Done
+          {{t "Done"}}
         </button>
       </div>
     </div>
   {{else}}
     {{!  USE OLD SETTINGS FORM INPUTS  }}
     <h2 class="title is-size-5 has-border-bottom-light page-header">
-      Root parameters
+      {{t "Root parameters"}}
     </h2>
     <form {{on "submit" (perform this.save)}} data-test-pki-rotate-old-settings-form>
       {{#if @parsingErrors}}
         <AlertBanner
-          @title="Not all of the certificate values could be parsed and transferred to new root"
+          @title={{t "Not all of the certificate values could be parsed and transferred to new root"}}
           @type="warning"
-          @message={{@parsingErrors}}
+          @message={{t @parsingErrors}}
           data-test-warning-banner
         />
       {{/if}}
       {{#if this.alertBanner}}
-        <AlertBanner @type="danger" @message={{this.alertBanner}} data-test-error-banner />
+        <AlertBanner @type="danger" @message={{t this.alertBanner}} data-test-error-banner />
       {{/if}}
       {{#let (find-by "name" "commonName" @newRootModel.allFields) as |attr|}}
         <FormField @attr={{attr}} @model={{@newRootModel}} @modelValidations={{this.modelValidations}} />
@@ -153,8 +154,8 @@
       <div class="box has-slim-padding is-shadowless">
         <ToggleButton
           data-test-details-toggle
-          @closedLabel="Old root settings"
-          @openLabel="Hide old root settings"
+          @closedLabel={{t "Old root settings"}}
+          @openLabel={{t "Hide old root settings"}}
           @isOpen={{this.showOldSettings}}
           @onClick={{fn (mut this.showOldSettings)}}
         />
@@ -167,10 +168,10 @@
       <div class="field is-grouped box is-fullwidth is-bottomless">
         <div class="control">
           <button type="submit" class="button is-primary" data-test-pki-rotate-root-save>
-            Done
+            {{t "Done"}}
           </button>
           <button {{on "click" @onCancel}} type="button" class="button has-left-margin-s" data-test-pki-rotate-root-cancel>
-            Cancel
+            {{t "Cancel"}}
           </button>
         </div>
         {{#if this.invalidFormAlert}}
@@ -178,7 +179,7 @@
             <AlertInline
               @type="danger"
               @paddingTop={{true}}
-              @message={{this.invalidFormAlert}}
+              @message={{t this.invalidFormAlert}}
               @mimicRefresh={{true}}
               data-test-pki-rotate-root-validation-error
             />

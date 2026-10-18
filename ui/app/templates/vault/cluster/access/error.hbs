@@ -5,19 +5,19 @@
     <p.levelLeft>
       <h1 class="title is-3 has-text-grey">
         {{#if (eq this.model.httpStatus 403)}}
-          Not authorized
+          {{t "Not authorized"}}
         {{else}}
-          Error
+          {{t "Error"}}
         {{/if}}
       </h1>
     </p.levelLeft>
   </PageHeader>
   <div class="box is-sideless has-background-white-bis has-text-grey has-text-centered">
     {{#if this.model.message}}
-      <p>{{this.model.message}}</p>
+      <p>{{t this.model.message}}</p>
     {{/if}}
     {{#each this.model.errors as |error|}}
-      <p>{{error}}</p>
+      <p>{{t error}}</p>
     {{/each}}
   </div>
 {{/if}}

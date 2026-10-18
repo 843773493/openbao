@@ -4,8 +4,8 @@
     <div class="field" data-test-field="keyBits">
       <FormFieldLabel
         for={{attr.name}}
-        @label={{capitalize (or attr.options.label (humanize (dasherize attr.name)))}}
-        @subText={{attr.options.subText}}
+        @label={{t (capitalize (or attr.options.label (humanize (dasherize attr.name))))}}
+        @subText={{t attr.options.subText}}
       />
       <div class="control is-expanded">
         <ToolTip @verticalPosition="above" @horizontalPosition="center" as |T|>
@@ -20,7 +20,7 @@
               >
                 {{#if (and attr.options.noDefault (not @model.keyType))}}
                   <option value="">
-                    Select one
+                    {{t "Select one"}}
                   </option>
                 {{/if}}
                 {{#each this.keyBitOptions as |val|}}
@@ -34,7 +34,7 @@
           {{#unless @model.keyType}}
             <T.Content @defaultClass="tool-tip smaller-font">
               <div class="box">
-                Choose a key type before specifying bit length.
+                {{t "Choose a key type before specifying bit length."}}
               </div>
             </T.Content>
           {{/unless}}

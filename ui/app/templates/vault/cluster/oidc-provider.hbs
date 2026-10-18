@@ -5,7 +5,7 @@
         <div class="box is-shadowless is-flex-v-centered">
           <LogoEdition />
         </div>
-        <AlertBanner @type="danger" @title={{this.model.error.title}} @message={{this.model.error.message}} />
+        <AlertBanner @type="danger" @title={{t this.model.error.title}} @message={{t this.model.error.message}} />
       {{else if this.model.consent}}
         <OidcConsentBlock
           @code={{this.model.consent.code}}
@@ -15,8 +15,8 @@
         />
       {{else if this.model.redirectUrl}}
         <VaultLogoSpinner />
-        <p>If you are not automatically redirected,
-          <a href={{this.model.redirectUrl}} data-test-oidc-redirect>click here to go back to app.</a></p>
+        <p>{{t "If you are not automatically redirected,"}}
+          <a href={{this.model.redirectUrl}} data-test-oidc-redirect>{{t "click here to go back to app."}}</a></p>
       {{else}}
         <VaultLogoSpinner />
       {{/if}}

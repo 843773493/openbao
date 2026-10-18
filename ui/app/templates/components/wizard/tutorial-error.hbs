@@ -1,11 +1,11 @@
-<WizardSection @headerText="Oops!">
+<WizardSection @headerText={{t "Oops!"}}>
   <p>
-    Something went wrong and you can't complete this step.
+    {{t "Something went wrong and you can't complete this step."}}
   </p>
 </WizardSection>
 <WizardSection>
   <button type="button" class="button next-feature-step" {{action @onReset}}>
-    Go Back
+    {{t "Go Back"}}
     <Icon @name="corner-up-left" />
   </button>
   <button type="button" class="button next-feature-step" {{action @onAdvance}}>

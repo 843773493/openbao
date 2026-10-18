@@ -1,8 +1,10 @@
 <div ...attributes>
   <FormFieldLabel
     for="name"
-    @label="Name"
-    @subText="The name for this enforcement. Giving it a name means that you can refer to it again later. This name will not be editable later."
+    @label={{t "Name"}}
+    @subText={{t
+      "The name for this enforcement. Giving it a name means that you can refer to it again later. This name will not be editable later."
+    }}
     data-test-mlef-label="name"
   />
   <input
@@ -15,21 +17,21 @@
     {{on "input" (pipe (pick "target.value") (fn (mut @model.name)))}}
   />
   {{#if this.errors.name.errors}}
-    <AlertInline @type="danger" @message={{join ", " this.errors.name.errors}} />
+    <AlertInline @type="danger" @message={{t (join ", " this.errors.name.errors)}} />
   {{/if}}
 
   {{#unless @isInline}}
     <div class="field">
       <FormFieldLabel
         for="methods"
-        @label="MFA methods"
-        @subText="The MFA method(s) that this enforcement will apply to."
+        @label={{t "MFA methods"}}
+        @subText={{t "The MFA method(s) that this enforcement will apply to."}}
         data-test-mlef-label="methods"
       />
       {{! component only computes inputValue on init -- ensure Ember Data hasMany promise has resolved }}
       {{#if @model.mfa_methods.isFulfilled}}
         <SearchSelect
-          @placeholder="Type to search for existing MFA methods"
+          @placeholder={{t "Type to search for existing MFA methods"}}
           @inputValue={{this.mfaMethodIds}}
           @shouldRenderName={{true}}
           @disallowNewItems={{true}}
@@ -39,7 +41,7 @@
         />
       {{/if}}
       {{#if this.errors.mfa_methods.errors}}
-        <AlertInline @type="danger" @message={{join ", " this.errors.mfa_methods.errors}} />
+        <AlertInline @type="danger" @message={{t (join ", " this.errors.mfa_methods.errors)}} />
       {{/if}}
     </div>
   {{/unless}}
@@ -47,13 +49,15 @@
   <div>
     <FormFieldLabel
       for="targets"
-      @label="Targets"
-      @subText="The list of authentication types, authentication mounts, groups, and/or entities that will require this MFA configuration."
+      @label={{t "Targets"}}
+      @subText={{t
+        "The list of authentication types, authentication mounts, groups, and/or entities that will require this MFA configuration."
+      }}
       data-test-mlef-label="targets"
     />
     {{#each this.targets as |target|}}
       <div class="is-flex-center has-border-top-light" data-test-mlef-target={{target.label}}>
-        <InfoTableRow @label={{target.label}} class="is-flex-1 has-no-shadow">
+        <InfoTableRow @label={{t target.label}} class="is-flex-1 has-no-shadow">
           {{#if target.value.id}}
             {{target.value.name}}
             <span class="tag has-left-margin-s">{{target.value.id}}</span>
@@ -103,7 +107,7 @@
           />
         {{else}}
           <SearchSelect
-            @placeholder="Search for an existing target"
+            @placeholder={{t "Search for an existing target"}}
             @options={{this.searchSelect.options}}
             @parentManageSelected={{this.searchSelect.selected}}
             @shouldRenderName={{true}}
@@ -120,11 +124,11 @@
         data-test-mlef-add-target
         {{on "click" this.addTarget}}
       >
-        Add
+        {{t "Add"}}
       </button>
     </div>
     {{#if this.errors.targets.errors}}
-      <AlertInline @type="danger" @message={{join ", " this.errors.targets.errors}} />
+      <AlertInline @type="danger" @message={{t (join ", " this.errors.targets.errors)}} />
     {{/if}}
   </div>
   {{#unless @isInline}}
@@ -146,7 +150,7 @@
         data-test-mlef-cancel
         {{on "click" this.cancel}}
       >
-        Cancel
+        {{t "Cancel"}}
       </button>
     </div>
   {{/unless}}

@@ -1,7 +1,7 @@
 <PageHeader as |p|>
   <p.levelLeft>
     <h1 class="title is-3">
-      Authentication Methods
+      {{t "Authentication Methods"}}
     </h1>
   </p.levelLeft>
 </PageHeader>
@@ -15,7 +15,7 @@
       @disallowNewItems={{true}}
       @fallbackComponent="input-search"
       @onChange={{this.filterAuthType}}
-      @placeholder={{"Filter by auth type"}}
+      @placeholder={{t "Filter by auth type"}}
       @displayInherit={{true}}
       @inputValue={{if this.selectedAuthType (array this.selectedAuthType)}}
       @disabled={{if this.selectedAuthName true false}}
@@ -28,7 +28,7 @@
       @disallowNewItems={{true}}
       @fallbackComponent="input-search"
       @onChange={{this.filterAuthName}}
-      @placeholder={{"Filter by auth name"}}
+      @placeholder={{t "Filter by auth name"}}
       @displayInherit={{true}}
       @inputValue={{if this.selectedAuthName (array this.selectedAuthName)}}
       class="is-marginless has-left-padding-s"
@@ -36,7 +36,7 @@
   </ToolbarFilters>
   <ToolbarActions>
     <ToolbarLink @route="vault.cluster.settings.auth.enable" @type="add" data-test-auth-enable>
-      Enable new method
+      {{t "Enable new method"}}
     </ToolbarLink>
   </ToolbarActions>
 </Toolbar>
@@ -84,13 +84,13 @@
                 <ul class="menu-list">
                   <li>
                     <LinkTo @route="vault.cluster.access.method.section" @models={{array method.id "configuration"}}>
-                      View configuration
+                      {{t "View configuration"}}
                     </LinkTo>
                   </li>
                   {{#if method.canEdit}}
                     <li>
                       <LinkTo @route="vault.cluster.settings.auth.configure" @model={{method.id}}>
-                        Edit configuration
+                        {{t "Edit configuration"}}
                       </LinkTo>
                     </li>
                   {{/if}}
@@ -99,9 +99,9 @@
                     <li class="action">
                       <c.Message
                         @id={{method.id}}
-                        @title="Disable method?"
-                        @message="This may affect access to OpenBao data."
-                        @triggerText="Disable"
+                        @title={{t "Disable method?"}}
+                        @message={{t "This may affect access to OpenBao data."}}
+                        @triggerText={{t "Disable"}}
                         @onConfirm={{perform this.disableMethod method}}
                       />
                     </li>

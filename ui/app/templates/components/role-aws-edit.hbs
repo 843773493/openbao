@@ -11,12 +11,12 @@
   <p.levelLeft>
     <h1 class="title is-3" data-test-secret-header="true">
       {{#if (eq this.mode "create")}}
-        Create an AWS Role
+        {{t "Create an AWS Role"}}
       {{else if (eq this.mode "edit")}}
-        Edit AWS Role
+        {{t "Edit AWS Role"}}
         <code>{{this.model.id}}</code>
       {{else}}
-        AWS Role
+        {{t "AWS Role"}}
         <code>{{this.model.id}}</code>
       {{/if}}
     </h1>
@@ -28,18 +28,18 @@
     <ToolbarActions>
       {{#if this.model.canDelete}}
         <ConfirmAction @buttonClasses="toolbar-link" @onConfirmAction={{action "delete"}}>
-          Delete role
+          {{t "Delete role"}}
         </ConfirmAction>
         <div class="toolbar-separator"></div>
       {{/if}}
       {{#if this.model.canGenerate}}
         <ToolbarSecretLink @secret={{this.model.id}} @mode="credentials" data-test-backend-credentials="iam">
-          Generate credentials
+          {{t "Generate credentials"}}
         </ToolbarSecretLink>
       {{/if}}
       {{#if this.model.canEdit}}
         <ToolbarSecretLink @secret={{this.model.id}} @mode="edit" @replace={{true}}>
-          Edit role
+          {{t "Edit role"}}
         </ToolbarSecretLink>
       {{/if}}
     </ToolbarActions>
@@ -50,7 +50,7 @@
   <form onsubmit={{action "createOrUpdate" "create"}}>
     <div class="box is-sideless is-fullwidth is-marginless">
       <MessageError @model={{this.model}} />
-      <NamespaceReminder @mode={{this.mode}} @noun="AWS role" />
+      <NamespaceReminder @mode={{this.mode}} @noun={{t "AWS role"}} />
       {{#if (gt this.model.credentialTypes.length 1)}}
         <AlertBanner
           @type="warning"
@@ -66,13 +66,13 @@
       <div class="control">
         <button type="submit" disabled={{this.buttonDisabled}} class="button is-primary" data-test-role-aws-create={{true}}>
           {{#if (eq this.mode "create")}}
-            Create role
+            {{t "Create role"}}
           {{else if (eq this.mode "edit")}}
-            Save
+            {{t "Save"}}
           {{/if}}
         </button>
         <SecretLink @mode={{if (eq this.mode "create") "list" "show"}} class="button" @secret={{this.model.id}}>
-          Cancel
+          {{t "Cancel"}}
         </SecretLink>
       </div>
     </div>
@@ -89,14 +89,14 @@
     {{#each this.model.fields as |attr|}}
       {{#if (eq attr.name "policyDocument")}}
         <InfoTableRow
-          @label={{capitalize (or attr.options.label (humanize (dasherize attr.name)))}}
+          @label={{t (capitalize (or attr.options.label (humanize (dasherize attr.name))))}}
           @value={{this.model.policyDocument}}
         >
           <pre><code class="is-paddingless">{{stringify (jsonify this.model.policyDocument)}}</code></pre>
         </InfoTableRow>
       {{else}}
         <InfoTableRow
-          @label={{capitalize (or attr.options.label (humanize (dasherize attr.name)))}}
+          @label={{t (capitalize (or attr.options.label (humanize (dasherize attr.name))))}}
           @value={{get this.model attr.name}}
         />
       {{/if}}

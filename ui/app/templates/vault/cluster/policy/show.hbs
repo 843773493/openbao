@@ -5,7 +5,7 @@
         <LinkTo @route="vault.cluster.policies" @model={{this.policyType}} data-test-policy-list-link={{true}}>
           <span class="sep">&#x0002f;</span>
           {{uppercase this.policyType}}
-          policies
+          {{t "policies"}}
         </LinkTo>
       </li>
     </nav>
@@ -14,7 +14,7 @@
     <h1 class="title is-3" data-test-policy-name="true">
       {{this.model.id}}
       {{#if this.model.enforcementLevel}}
-        <span class="tag" aria-label="Enforcement level: {{this.model.enforcementLevel}}">
+        <span class="tag" aria-label={{t "Enforcement level: {arg0}" arg0=(this.model.enforcementLevel)}}>
           {{this.model.enforcementLevel}}
         </span>
       {{/if}}
@@ -29,12 +29,12 @@
       @data={{this.model.policy}}
       @extension={{this.model.format}}
     >
-      Download policy
+      {{t "Download policy"}}
       <Chevron @isButton={{true}} />
     </DownloadButton>
     {{#if (and (not-eq this.model.id "root") (or this.capabilities.canUpdate this.capabilities.canDelete))}}
       <ToolbarLink @route="vault.cluster.policy.edit" @model={{this.model.id}} data-test-policy-edit-toggle>
-        Edit policy
+        {{t "Edit policy"}}
       </ToolbarLink>
     {{/if}}
   </ToolbarActions>
@@ -42,8 +42,8 @@
 <div class="box is-bottomless is-fullwidth is-marginless">
   <div class="field">
     <JsonEditor
-      @title="Policy"
-      @subTitle={{if (eq this.policyType "acl") (concat this.uppercase this.model.format " format")}}
+      @title={{t "Policy"}}
+      @subTitle={{t (if (eq this.policyType "acl") (concat this.uppercase this.model.format " format"))}}
       @value={{this.model.policy}}
       @readOnly={{true}}
       @mode="ruby"
@@ -51,7 +51,7 @@
   </div>
   {{#if this.model.paths}}
     <div class="field box is-shadowless no-bottom-padding is-marginless">
-      <h2 class="title is-6">Paths</h2>
+      <h2 class="title is-6">{{t "Paths"}}</h2>
       <ul data-test-egp-paths>
         {{#each this.model.paths as |path|}}
           <li class="box has-slim-padding no-top-shadow is-marginless">

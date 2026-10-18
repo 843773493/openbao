@@ -31,13 +31,13 @@
             <ul class="menu-list">
               {{#if @item.isFolder}}
                 <SecretLink @mode="list" @secret={{@item.id}} class="has-text-black has-text-weight-semibold">
-                  Contents
+                  {{t "Contents"}}
                 </SecretLink>
               {{else}}
                 {{#if (or @item.versionPath.isLoading @item.secretPath.isLoading)}}
                   <li class="action">
                     <button disabled type="button" class="link button is-loading is-transparent">
-                      loading
+                      {{t "loading"}}
                     </button>
                   </li>
                 {{else}}
@@ -49,13 +49,13 @@
                         @queryParams={{secret-query-params @backendModel.type @item.type asQueryParams=true}}
                         class="has-text-black has-text-weight-semibold"
                       >
-                        Details
+                        {{t "Details"}}
                       </SecretLink>
                     </li>
                     {{#if @backendModel.isV2KV}}
                       <li class="action">
                         <SecretLink @mode="versions" @secret={{@item.id}} class="has-text-black has-text-weight-semibold">
-                          View version history
+                          {{t "View version history"}}
                         </SecretLink>
                       </li>
                     {{/if}}
@@ -76,8 +76,8 @@
                     <li class="action">
                       <c.Message
                         @id={{@item.id}}
-                        @triggerText={{if @backendModel.isV2KV "Permanently delete" "Delete"}}
-                        @message="This will permanently delete this secret and all its versions."
+                        @triggerText={{t (if @backendModel.isV2KV "Permanently delete" "Delete")}}
+                        @message={{t "This will permanently delete this secret and all its versions."}}
                         @onConfirm={{@delete}}
                       />
                     </li>

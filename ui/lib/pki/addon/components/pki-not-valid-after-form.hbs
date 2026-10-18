@@ -10,19 +10,19 @@
   />
   <div class="has-left-margin-xs">
     <label class="has-left-margin-xs" for="ttlType" data-test-radio-label="ttl">
-      <span class="ttl-picker-label is-large">TTL</span>
+      <span class="ttl-picker-label is-large">{{t "TTL"}}</span>
     </label>
     {{#if (eq this.groupValue "ttl")}}
       <TtlPicker
         data-test-input="ttl"
         @onChange={{this.setAndBroadcastTtl}}
-        @label="TTL"
-        @helperTextEnabled={{@attr.options.helperTextEnabled}}
-        @description={{@attr.helpText}}
+        @label={{t "TTL"}}
+        @helperTextEnabled={{t @attr.options.helperTextEnabled}}
+        @description={{t @attr.helpText}}
         @initialValue={{@model.ttl}}
         @hideToggle={{true}}
       >
-        <label class="sr-only" for="ttl">Set relative certificate expiry with TTL</label>
+        <label class="sr-only" for="ttl">{{t "Set relative certificate expiry with TTL"}}</label>
       </TtlPicker>
     {{/if}}
   </div>
@@ -40,9 +40,11 @@
     data-test-radio-button="not_after"
   />
   <div class="has-left-margin-xs">
-    <label class="ttl-picker-label is-large" for="dateType" data-test-radio-label="specificDate">Specific date</label>
+    <label class="ttl-picker-label is-large" for="dateType" data-test-radio-label="specificDate">{{t
+        "Specific date"
+      }}</label>
     {{#if (eq this.groupValue "specificDate")}}
-      <label class="sr-only" for="not_after">Set certificate expiry with specified date value</label>
+      <label class="sr-only" for="not_after">{{t "Set certificate expiry with specified date value"}}</label>
       <Input
         id="not_after"
         @type="date"

@@ -1,7 +1,7 @@
 <PageHeader as |p|>
   <p.levelLeft>
     <h1 class="title is-3">
-      Multi-factor Authentication
+      {{t "Multi-factor Authentication"}}
     </h1>
   </p.levelLeft>
 </PageHeader>
@@ -11,7 +11,7 @@
 <Toolbar>
   <ToolbarActions>
     <ToolbarLink @route="vault.cluster.access.mfa.enforcements.create" @type="add" data-test-enforcement-create>
-      New enforcement
+      {{t "New enforcement"}}
     </ToolbarLink>
   </ToolbarActions>
 </Toolbar>
@@ -21,5 +21,5 @@
     <Mfa::LoginEnforcementListItem @model={{item}} />
   {{/each}}
 {{else}}
-  <EmptyState @title="No enforcements found." @message="Add a new one to get started." />
+  <EmptyState @title={{t "No enforcements found."}} @message={{t "Add a new one to get started."}} />
 {{/if}}

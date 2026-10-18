@@ -1,16 +1,16 @@
 {{! template-lint-disable quotes }}
-<WizardContent @headerText="Policies" @glyph="tour">
+<WizardContent @headerText={{t "Policies"}} @glyph="tour">
   <WizardSection
-    @headerText="Deleting your policy"
-    @docText="Docs: Policies"
+    @headerText={{t "Deleting your policy"}}
+    @docText={{t "Docs: Policies"}}
     @docPath="/docs/concepts/policies.html"
-    @instructions='Click on "Delete" to remove the policy that you created.'
+    @instructions={{t 'Click on "Delete" to remove the policy that you created.'}}
   >
     <p>
       {{#if (eq @currentRouteName "vault.cluster.policies.index")}}
-        You can delete your test policy by clicking the "..." icon to the right of the policy name.
+        {{t 'You can delete your test policy by clicking the "..." icon to the right of the policy name.'}}
       {{else}}
-        You can delete your test policy by clicking "Delete" in the toolbar.
+        {{t 'You can delete your test policy by clicking "Delete" in the toolbar.'}}
       {{/if}}
     </p>
   </WizardSection>

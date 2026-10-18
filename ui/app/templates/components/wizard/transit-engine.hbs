@@ -1,11 +1,12 @@
 <WizardSection
-  @headerText="Transit"
+  @headerText={{t "Transit"}}
   @headerIcon="swap-horizontal"
-  @docText="Docs: Transit Secrets"
+  @docText={{t "Docs: Transit Secrets"}}
   @docPath="/docs/secrets/transit/index.html"
 >
   <p>
-    The Transit Secrets Engine handles cryptographic functions on data in-transit. OpenBao doesn't store the data sent to the
-    Secrets Engine. It can also be viewed as "cryptography as a service" or "encryption as a service".
+    {{t
+      'The Transit Secrets Engine handles cryptographic functions on data in-transit. OpenBao doesn\'t store the data sent to the Secrets Engine. It can also be viewed as "cryptography as a service" or "encryption as a service".'
+    }}
   </p>
 </WizardSection>

@@ -24,5 +24,5 @@
     </div>
   </LinkedBlock>
 {{else}}
-  <EmptyState @title="No {{@model.identityType}} aliases for {{@model.name}} yet" />
+  <EmptyState @title={{t "No {arg0} aliases for {arg1} yet" arg0=(@model.identityType) arg1=(@model.name)}} />
 {{/each}}

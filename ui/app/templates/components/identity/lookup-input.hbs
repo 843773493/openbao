@@ -5,7 +5,7 @@
         <select name="param" id="param" onchange={{action (mut this.param) value="target.value"}}>
           {{#each (array "alias name" "name" "id" "alias id") as |paramOption|}}
             <option selected={{eq this.param paramOption}} value={{paramOption}}>
-              Lookup by
+              {{t "Lookup by"}}
               {{paramOption}}
             </option>
           {{/each}}
@@ -18,10 +18,10 @@
       {{/if}}
     </div>
     <div class="control is-expanded">
-      <Input class="input" @value={{this.paramValue}} placeholder={{capitalize this.param}} />
+      <Input class="input" @value={{this.paramValue}} placeholder={{t (capitalize this.param)}} />
     </div>
     <div class="control">
-      <button type="submit" class="button is-hidden">Lookup</button>
+      <button type="submit" class="button is-hidden">{{t "Lookup"}}</button>
     </div>
   </div>
 </form>

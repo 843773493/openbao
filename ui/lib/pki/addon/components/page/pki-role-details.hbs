@@ -4,11 +4,11 @@
       <ConfirmAction
         @buttonClasses="toolbar-link"
         @onConfirmAction={{this.deleteRole}}
-        @confirmTitle="Delete role?"
-        @confirmButtonText="Delete"
+        @confirmTitle={{t "Delete role?"}}
+        @confirmButtonText={{t "Delete"}}
         data-test-pki-role-delete
       >
-        Delete
+        {{t "Delete"}}
       </ConfirmAction>
       <div class="toolbar-separator"></div>
     {{/if}}
@@ -19,7 +19,7 @@
         @models={{array (current-mount-path) @role.id}}
         data-test-pki-role-generate-cert
       >
-        Generate Certificate
+        {{t "Generate Certificate"}}
         <Icon @name="chevron-right" />
       </LinkTo>
     {{/if}}
@@ -30,7 +30,7 @@
         @models={{array (current-mount-path) @role.id}}
         data-test-pki-role-sign-cert
       >
-        Sign Certificate
+        {{t "Sign Certificate"}}
         <Icon @name="chevron-right" />
       </LinkTo>
     {{/if}}
@@ -41,7 +41,7 @@
         @models={{array (current-mount-path) @role.id}}
         data-test-pki-role-edit-link
       >
-        Edit
+        {{t "Edit"}}
         <Icon @name="chevron-right" />
       </LinkTo>
     {{/if}}
@@ -56,7 +56,7 @@
       {{#let (get @role attr.name) as |val|}}
         {{#if (eq attr.name "issuerRef")}}
           <InfoTableRow
-            @label={{capitalize (or attr.options.detailsLabel attr.options.label (humanize (dasherize attr.name)))}}
+            @label={{t (capitalize (or attr.options.detailsLabel attr.options.label (humanize (dasherize attr.name))))}}
             @value={{val}}
             @alwaysRender={{true}}
           >
@@ -64,20 +64,20 @@
           </InfoTableRow>
         {{else if (includes attr.name this.arrayAttrs)}}
           <InfoTableRow
-            @label={{capitalize (or attr.options.detailsLabel attr.options.label (humanize (dasherize attr.name)))}}
+            @label={{t (capitalize (or attr.options.detailsLabel attr.options.label (humanize (dasherize attr.name))))}}
             @value={{val}}
             @alwaysRender={{true}}
           />
         {{else if (eq attr.name "noStore")}}
           <InfoTableRow
-            @label={{capitalize (or attr.options.detailsLabel attr.options.label (humanize (dasherize attr.name)))}}
+            @label={{t (capitalize (or attr.options.detailsLabel attr.options.label (humanize (dasherize attr.name))))}}
             @value={{not val}}
             @alwaysRender={{true}}
           />
         {{else if (eq attr.name "customTtl")}}
           {{! Show either notAfter or ttl }}
           <InfoTableRow
-            @label={{capitalize (or attr.options.detailsLabel attr.options.label (humanize (dasherize attr.name)))}}
+            @label={{t (capitalize (or attr.options.detailsLabel attr.options.label (humanize (dasherize attr.name))))}}
             @value={{or @role.notAfter @role.ttl}}
             @alwaysRender={{true}}
             @formatDate={{if @role.notAfter "MMM d yyyy HH:mm zzzz"}}
@@ -85,7 +85,7 @@
           />
         {{else}}
           <InfoTableRow
-            @label={{capitalize (or attr.options.detailsLabel attr.options.label (humanize (dasherize attr.name)))}}
+            @label={{t (capitalize (or attr.options.detailsLabel attr.options.label (humanize (dasherize attr.name))))}}
             @value={{val}}
             @alwaysRender={{true}}
             @type={{or attr.type attr.options.type}}

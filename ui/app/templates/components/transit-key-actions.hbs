@@ -2,13 +2,13 @@
   {{#if this.key.canRotate}}
     <ConfirmAction
       @buttonClasses="toolbar-link"
-      @confirmTitle="Rotate this key?"
-      @confirmMessage="After rotation, all key actions will default to using the newest version of the key."
-      @confirmButtonText="Rotate"
+      @confirmTitle={{t "Rotate this key?"}}
+      @confirmMessage={{t "After rotation, all key actions will default to using the newest version of the key."}}
+      @confirmButtonText={{t "Rotate"}}
       @onConfirmAction={{action "doSubmit"}}
       data-test-transit-key-rotate="true"
     >
-      Rotate encryption key
+      {{t "Rotate encryption key"}}
     </ConfirmAction>
   {{/if}}
 {{else}}

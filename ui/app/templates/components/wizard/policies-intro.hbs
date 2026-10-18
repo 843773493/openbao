@@ -1,14 +1,15 @@
 {{! template-lint-disable quotes }}
-<WizardContent @headerText="Policies" @glyph="tour">
+<WizardContent @headerText={{t "Policies"}} @glyph="tour">
   <WizardSection
-    @headerText="Choosing a policy type"
-    @docText="Docs: Policies"
+    @headerText={{t "Choosing a policy type"}}
+    @docText={{t "Docs: Policies"}}
     @docPath="/docs/concepts/policies.html"
-    @instructions='To get started with something simple, click on "Create ACL policy".'
+    @instructions={{t 'To get started with something simple, click on "Create ACL policy".'}}
   >
     <p>
-      Policies in OpenBao are a way for you to control what data can be accessed, including things like creating new secrets,
-      listing users, or even entire OpenBao features.
+      {{t
+        "Policies in OpenBao are a way for you to control what data can be accessed, including things like creating new secrets, listing users, or even entire OpenBao features."
+      }}
     </p>
   </WizardSection>
 </WizardContent>

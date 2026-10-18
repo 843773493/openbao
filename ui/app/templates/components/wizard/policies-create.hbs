@@ -1,13 +1,13 @@
 {{! template-lint-disable quotes }}
-<WizardContent @headerText="Policies" @glyph="tour">
+<WizardContent @headerText={{t "Policies"}} @glyph="tour">
   <WizardSection
-    @headerText="Creating a policy"
-    @docText="Docs: Policies"
+    @headerText={{t "Creating a policy"}}
+    @docText={{t "Docs: Policies"}}
     @docPath="/docs/concepts/policies.html"
-    @instructions='Fill in your policy details and click "Create Policy".'
+    @instructions={{t 'Fill in your policy details and click "Create Policy".'}}
   >
     <p>
-      Let's use "<code>my-new-policy</code>" for your policy name. Copy the policy below to try it out:
+      {{t "Let's use \""}}<code>my-new-policy</code>{{t '" for your policy name. Copy the policy below to try it out:'}}
     </p>
     <pre><code>path "secret/foo" { capabilities = ["read"] }</code></pre>
   </WizardSection>

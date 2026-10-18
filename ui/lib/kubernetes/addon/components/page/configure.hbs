@@ -4,7 +4,7 @@
   </p.top>
   <p.levelLeft>
     <h1 class="title is-3">
-      Configure kubernetes
+      {{t "Configure kubernetes"}}
     </h1>
   </p.levelLeft>
 </PageHeader>
@@ -12,14 +12,16 @@
 <hr class="is-marginless has-background-gray-200" />
 
 <p class="has-top-margin-m">
-  To customize your configuration, specify the type of Kubernetes cluster that credentials will be generated for.
+  {{t "To customize your configuration, specify the type of Kubernetes cluster that credentials will be generated for."}}
 </p>
 
 <div class="is-flex-row has-top-margin-s">
   <RadioCard
     class="has-fixed-width"
-    @title="Local cluster"
-    @description="Generate credentials for the local Kubernetes cluster that OpenBaois running on, using OpenBao’s service account."
+    @title={{t "Local cluster"}}
+    @description={{t
+      "Generate credentials for the local Kubernetes cluster that OpenBaois running on, using OpenBao’s service account."
+    }}
     @icon="kubernetes-color"
     @value={{false}}
     @groupValue={{@model.disableLocalCaJwt}}
@@ -28,8 +30,8 @@
   />
   <RadioCard
     class="has-fixed-width"
-    @title="Manual configuration"
-    @description="Generate credentials for an external Kubernetes cluster, using a service account that you specify."
+    @title={{t "Manual configuration"}}
+    @description={{t "Generate credentials for an external Kubernetes cluster, using a service account that you specify."}}
     @icon="vault"
     @iconClass="has-text-black"
     @value={{true}}
@@ -41,22 +43,23 @@
 
 <div class="has-top-margin-m" data-test-config>
   {{#if @model.disableLocalCaJwt}}
-    <MessageError @errorMessage={{this.error}} />
+    <MessageError @errorMessage={{t this.error}} />
     {{#each @model.formFields as |attr|}}
       <FormField @attr={{attr}} @model={{@model}} @modelValidations={{this.modelValidations}} />
     {{/each}}
   {{else if (eq this.inferredState "success")}}
     <Icon @name="check-circle-fill" class="has-text-success" />
-    <span>Configuration values were inferred successfully.</span>
+    <span>{{t "Configuration values were inferred successfully."}}</span>
   {{else if (eq this.inferredState "error")}}
     <Icon @name="x-square-fill" class="has-text-danger" />
     <span class="has-text-danger">
-      OpenBao could not infer a configuration from your environment variables. Check your configuration file to edit or
-      delete them, or configure manually.
+      {{t
+        "OpenBao could not infer a configuration from your environment variables. Check your configuration file to edit or delete them, or configure manually."
+      }}
     </span>
   {{else}}
     <p>
-      Configuration values can be inferred from the pod and your local environment variables.
+      {{t "Configuration values can be inferred from the pod and your local environment variables."}}
     </p>
     <div>
       <button
@@ -65,7 +68,7 @@
         disabled={{this.fetchInferred.isRunning}}
         {{on "click" (perform this.fetchInferred)}}
       >
-        Get config values
+        {{t "Get config values"}}
       </button>
     </div>
   {{/if}}
@@ -81,7 +84,7 @@
     disabled={{this.isDisabled}}
     {{on "click" (perform this.save)}}
   >
-    Save
+    {{t "Save"}}
   </button>
   <button
     data-test-config-cancel
@@ -90,16 +93,16 @@
     disabled={{or this.save.isRunning this.fetchInferred.isRunning}}
     {{on "click" this.cancel}}
   >
-    Back
+    {{t "Back"}}
   </button>
   {{#if this.alert}}
-    <AlertInline @type="danger" @paddingTop={{true}} @message={{this.alert}} @mimicRefresh={{true}} data-test-alert />
+    <AlertInline @type="danger" @paddingTop={{true}} @message={{t this.alert}} @mimicRefresh={{true}} data-test-alert />
   {{/if}}
 </div>
 
 {{#if this.showConfirm}}
   <Modal
-    @title="Edit configuration"
+    @title={{t "Edit configuration"}}
     @type="warning"
     @isActive={{this.showConfirm}}
     @showCloseButton={{true}}
@@ -107,16 +110,17 @@
   >
     <section class="modal-card-body">
       <p>
-        Making changes to your configuration may affect how OpenBao will reach the Kubernetes API and authenticate with it.
-        Are you sure?
+        {{t
+          "Making changes to your configuration may affect how OpenBao will reach the Kubernetes API and authenticate with it. Are you sure?"
+        }}
       </p>
     </section>
     <footer class="modal-card-foot modal-card-foot-outlined">
       <button data-test-config-confirm type="button" class="button is-primary" {{on "click" (perform this.save)}}>
-        Confirm
+        {{t "Confirm"}}
       </button>
       <button type="button" class="button" onclick={{fn (mut this.showConfirm) false}}>
-        Cancel
+        {{t "Cancel"}}
       </button>
     </footer>
   </Modal>

@@ -29,6 +29,7 @@ import { tracked } from '@glimmer/tracking';
 export default class OidcAssignmentFormComponent extends Component {
   @service store;
   @service flashMessages;
+  @service locale;
   @tracked modelValidations;
   @tracked errorBanner;
 
@@ -41,7 +42,10 @@ export default class OidcAssignmentFormComponent extends Component {
       if (isValid) {
         const { isNew, name } = this.args.model;
         yield this.args.model.save();
-        this.flashMessages.success(`Successfully ${isNew ? 'created' : 'updated'} the assignment ${name}.`);
+        const message = isNew
+          ? this.locale.translate('Successfully created the assignment {arg0}.', { arg0: name })
+          : this.locale.translate('Successfully updated the assignment {arg0}.', { arg0: name });
+        this.flashMessages.success(message);
         // this form is sometimes used in modal, passing the model notifies
         // the parent if the save was successful
         this.args.onSave(this.args.model);

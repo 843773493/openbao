@@ -27,21 +27,21 @@
             {{#if @item.canEdit}}
               <li class="action">
                 <SecretLink @mode="show" @secret={{@item.id}} class="has-text-black has-text-weight-semibold">
-                  Edit connection
+                  {{t "Edit connection"}}
                 </SecretLink>
               </li>
             {{/if}}
             {{#if @item.canEditRole}}
               <li class="action">
                 <SecretLink @mode="edit" @secret={{concat "role/" @item.id}} class="has-text-black has-text-weight-semibold">
-                  Edit Role
+                  {{t "Edit Role"}}
                 </SecretLink>
               </li>
             {{/if}}
             {{#if @item.canReset}}
               <li class="action">
                 <button type="button" class="link" {{on "click" (fn this.resetConnection @item.id)}}>
-                  Reset connection
+                  {{t "Reset connection"}}
                 </button>
               </li>
             {{/if}}
@@ -52,7 +52,7 @@
                   @model={{@item.id}}
                   @query={{hash roleType=this.keyTypeValue}}
                 >
-                  Generate credentials
+                  {{t "Generate credentials"}}
                 </LinkTo>
               </li>
             {{else if (and (eq @item.type "static") @item.canGetCredentials)}}
@@ -62,21 +62,21 @@
                   @model={{@item.id}}
                   @query={{hash roleType=this.keyTypeValue}}
                 >
-                  Get credentials
+                  {{t "Get credentials"}}
                 </LinkTo>
               </li>
             {{/if}}
             {{#if (and @item.canRotateRoleCredentials (eq this.keyTypeValue "static"))}}
               <li class="action">
                 <button type="button" class="link" {{on "click" (fn this.rotateRoleCred @item.id)}}>
-                  Rotate credentials
+                  {{t "Rotate credentials"}}
                 </button>
               </li>
             {{/if}}
             {{#if @item.canRotateRoot}}
               <li class="action">
                 <button type="button" class="link" {{on "click" (fn this.rotateRootCred @item.id)}}>
-                  Rotate root credentials
+                  {{t "Rotate root credentials"}}
                 </button>
               </li>
             {{/if}}

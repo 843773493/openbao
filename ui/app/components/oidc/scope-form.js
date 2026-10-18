@@ -26,6 +26,7 @@ import { inject as service } from '@ember/service';
 
 export default class OidcScopeFormComponent extends Component {
   @service flashMessages;
+  @service locale;
   @tracked errorBanner;
   @tracked invalidFormAlert;
   @tracked modelValidations;
@@ -49,7 +50,10 @@ export default class OidcScopeFormComponent extends Component {
       if (isValid) {
         const { isNew, name } = this.args.model;
         yield this.args.model.save();
-        this.flashMessages.success(`Successfully ${isNew ? 'created' : 'updated'} the scope ${name}.`);
+        const message = isNew
+          ? this.locale.translate('Successfully created the scope {arg0}.', { arg0: name })
+          : this.locale.translate('Successfully updated the scope {arg0}.', { arg0: name });
+        this.flashMessages.success(message);
         this.args.onSave();
       }
     } catch (error) {

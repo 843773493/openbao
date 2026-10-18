@@ -33,13 +33,13 @@
                 <ul class="menu-list">
                   <li class="action">
                     <LinkTo @route="vault.cluster.access.identity.show" @models={{array item.id "details"}}>
-                      Details
+                      {{t "Details"}}
                     </LinkTo>
                   </li>
                   {{#if (or item.isReloading item.updatePath.isPending item.aliasPath.isPending)}}
                     <li class="action">
                       <button disabled type="button" class="link button is-loading is-transparent">
-                        loading
+                        {{t "loading"}}
                       </button>
                     </li>
                   {{else}}
@@ -49,28 +49,28 @@
                           @route="vault.cluster.access.identity.aliases.add"
                           @models={{array (pluralize this.identityType) item.id}}
                         >
-                          Create alias
+                          {{t "Create alias"}}
                         </LinkTo>
                       </li>
                     {{/if}}
                     {{#if item.canEdit}}
                       <li class="action">
                         <LinkTo @route="vault.cluster.access.identity.edit" @model={{item.id}}>
-                          Edit
+                          {{t "Edit"}}
                         </LinkTo>
                       </li>
                       <li class="action">
                         {{#if item.disabled}}
                           <button type="button" {{action "toggleDisabled" item}} class="link">
-                            Enable
+                            {{t "Enable"}}
                           </button>
                         {{else if (eq this.identityType "entity")}}
                           <c.Message
                             @id="{{item.id}}-disable"
-                            @triggerText="Disable"
-                            @message="Associated tokens will not be revoked, but cannot be used"
-                            @title="Disable this?"
-                            @confirmButtonText="Disable"
+                            @triggerText={{t "Disable"}}
+                            @message={{t "Associated tokens will not be revoked, but cannot be used"}}
+                            @title={{t "Disable this?"}}
+                            @confirmButtonText={{t "Disable"}}
                             @onConfirm={{action "toggleDisabled" item}}
                             data-test-engine-disable="true"
                           />
@@ -100,13 +100,13 @@
   {{/if}}
 {{else}}
   <EmptyState
-    @title="No {{pluralize this.identityType}} yet"
+    @title={{t "No {arg0} yet" arg0=(pluralize this.identityType)}}
     @message="A list of {{pluralize
       this.identityType
     }} in this namespace will be listed here. Create your first {{this.identityType}} to get started."
   >
     <LinkTo @route="vault.cluster.access.identity.create" @model={{pluralize this.identityType}} class="link">
-      Create
+      {{t "Create"}}
       {{this.identityType}}
     </LinkTo>
     {{! TODO Add a link to a tutorial for 'auth-methods/identity' }}

@@ -1,0 +1,7 @@
+<div class="locale-picker">
+  <label for="openbao-locale">{{t "Language"}}</label>
+  <select id="openbao-locale" value={{this.locale.language}} {{on "change" this.updateLanguage}} aria-label={{t "Language"}}>
+    <option value="en-US">English</option>
+    <option value="zh-CN">简体中文</option>
+  </select>
+</div>

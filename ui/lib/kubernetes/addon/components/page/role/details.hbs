@@ -13,7 +13,7 @@
   <ToolbarActions>
     {{#if @model.canDelete}}
       <ConfirmAction @buttonClasses="toolbar-link" @onConfirmAction={{this.delete}} data-test-delete>
-        Delete role
+        {{t "Delete role"}}
       </ConfirmAction>
       <div class="toolbar-separator"></div>
     {{/if}}
@@ -23,12 +23,12 @@
         @models={{array (current-mount-path) @model.name}}
         data-test-generate-credentials
       >
-        Generate credentials
+        {{t "Generate credentials"}}
       </ToolbarLink>
     {{/if}}
     {{#if @model.canEdit}}
       <ToolbarLink @route="roles.role.edit" @models={{array (current-mount-path) @model.name}} data-test-edit>
-        Edit role
+        {{t "Edit role"}}
       </ToolbarLink>
     {{/if}}
   </ToolbarActions>
@@ -38,7 +38,7 @@
   {{#let (get @model field.name) as |value|}}
     <InfoTableRow
       data-test-filtered-field
-      @label={{field.options.label}}
+      @label={{t field.options.label}}
       @value={{if (eq field.options.editType "ttl") (format-duration value) value}}
     />
   {{/let}}
@@ -46,9 +46,9 @@
 
 {{#if @model.generatedRoleRules}}
   <div class="has-top-margin-xl" data-test-generated-role-rules>
-    <h2 class="title is-4">Generated role rules</h2>
+    <h2 class="title is-4">{{t "Generated role rules"}}</h2>
     <JsonEditor
-      @title="Role rules"
+      @title={{t "Role rules"}}
       @value={{@model.generatedRoleRules}}
       @mode="ruby"
       @readOnly={{true}}
@@ -60,9 +60,9 @@
 
 {{#each this.extraFields as |field|}}
   <div class="has-top-margin-xl" data-test-extra-fields={{field.label}}>
-    <h2 class="title is-4 is-marginless">{{field.label}}</h2>
+    <h2 class="title is-4 is-marginless">{{t field.label}}</h2>
     {{#each-in (get @model field.key) as |key value|}}
-      <InfoTableRow @label={{key}} @value={{value}} />
+      <InfoTableRow @label={{t key}} @value={{value}} />
     {{/each-in}}
   </div>
 {{/each}}

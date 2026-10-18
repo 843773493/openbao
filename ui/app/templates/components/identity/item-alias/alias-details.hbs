@@ -1,6 +1,9 @@
-<InfoTableRow @label="Name" @value={{@model.name}} data-test-alias-name={{true}} />
-<InfoTableRow @label="ID" @value={{@model.id}} />
-<InfoTableRow @label={{if (eq @model.identityType "entity-alias") "Entity ID" "Group ID"}} @value={{this.model.canonicalId}}>
+<InfoTableRow @label={{t "Name"}} @value={{@model.name}} data-test-alias-name={{true}} />
+<InfoTableRow @label={{t "ID"}} @value={{@model.id}} />
+<InfoTableRow
+  @label={{t (if (eq @model.identityType "entity-alias") "Entity ID" "Group ID")}}
+  @value={{this.model.canonicalId}}
+>
   <LinkTo
     @route="vault.cluster.access.identity.show"
     @models={{array (if (eq @model.identityType "entity-alias") "entities" "groups") @model.canonicalId "details"}}
@@ -9,8 +12,8 @@
     {{@model.canonicalId}}
   </LinkTo>
 </InfoTableRow>
-<InfoTableRow @label="Merged from Entity ID" @value={{@model.mergedFromCanonicalIds}} />
-<InfoTableRow @label="Mount" @value={{@model.mountAccessor}}>
+<InfoTableRow @label={{t "Merged from Entity ID"}} @value={{@model.mergedFromCanonicalIds}} />
+<InfoTableRow @label={{t "Mount"}} @value={{@model.mountAccessor}}>
   <div>
     {{@model.mountPath}}
     <div>
@@ -19,13 +22,13 @@
     </div>
   </div>
 </InfoTableRow>
-<InfoTableRow @label="Created" @value={{@model.creationTime}}>
-  <time datetime={{@model.creationTime}} title={{@model.creationTime}}>
+<InfoTableRow @label={{t "Created"}} @value={{@model.creationTime}}>
+  <time datetime={{@model.creationTime}} title={{t @model.creationTime}}>
     {{date-format @model.creationTime "MMM dd, yyyy h:mm a"}}
   </time>
 </InfoTableRow>
-<InfoTableRow @label="Last Updated" @value={{@model.lastUpdateTime}}>
-  <time datetime={{@model.lastUpdateTime}} title={{@model.lastUpdateTime}}>
+<InfoTableRow @label={{t "Last Updated"}} @value={{@model.lastUpdateTime}}>
+  <time datetime={{@model.lastUpdateTime}} title={{t @model.lastUpdateTime}}>
     {{date-format @model.lastUpdateTime "MMM dd, yyyy h:mm a"}}
   </time>
 </InfoTableRow>

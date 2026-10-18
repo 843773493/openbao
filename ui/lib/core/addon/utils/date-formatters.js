@@ -4,6 +4,7 @@
  */
 
 import { format, parseISO } from 'date-fns';
+import { zhCN } from 'date-fns/locale';
 
 export const ARRAY_OF_MONTHS = [
   'January',
@@ -33,5 +34,6 @@ export function formatChartDate(date) {
   const array = date.split('/');
   array.splice(1, 0, '01');
   const dateString = array.join('/');
-  return format(new Date(dateString), 'MMMM yyyy');
+  const locale = document.documentElement.lang === 'zh-CN' ? zhCN : undefined;
+  return format(new Date(dateString), 'MMMM yyyy', { locale });
 }

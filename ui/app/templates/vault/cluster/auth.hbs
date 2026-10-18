@@ -2,16 +2,18 @@
   <Page.altContent>
     <div class="has-top-margin-xxl" data-test-mfa-error>
       <EmptyState
-        @title="Unauthorized"
-        @message="Multi-factor authentication is required, but failed. Go back and try again, or contact your administrator."
+        @title={{t "Unauthorized"}}
+        @message={{t
+          "Multi-factor authentication is required, but failed. Go back and try again, or contact your administrator."
+        }}
         @icon="alert-circle"
         @bottomBorder={{true}}
-        @subTitle={{join ". " this.mfaErrors}}
+        @subTitle={{t (join ". " this.mfaErrors)}}
         class="is-shadowless"
       >
         <button type="button" class="button is-ghost is-transparent" {{on "click" (action "onMfaErrorDismiss")}}>
           <Icon @name="chevron-left" />
-          Go back
+          {{t "Go back"}}
         </button>
       </EmptyState>
     </div>
@@ -19,7 +21,7 @@
   <Page.header>
     {{#if this.oidcProvider}}
       <div class="box is-shadowless is-flex-v-centered" data-test-auth-logo>
-        <LogoEdition aria-label="Sign in with OpenBao" />
+        <LogoEdition aria-label={{t "Sign in with OpenBao"}} />
       </div>
     {{else}}
       <div class="is-flex-v-centered has-bottom-margin-xxl">
@@ -30,11 +32,11 @@
       <div class="is-flex-row">
         {{#if this.mfaAuthData}}
           <button type="button" class="icon-button" {{on "click" (fn (mut this.mfaAuthData) null)}}>
-            <Icon @name="arrow-left" @size="24" aria-label="Back to login" class="icon-blue" />
+            <Icon @name="arrow-left" @size="24" aria-label={{t "Back to login"}} class="icon-blue" />
           </button>
         {{else if this.waitingForOktaNumberChallenge}}
           <button type="button" class="icon-button" {{on "click" (action "cancelAuthentication")}}>
-            <Icon @name="arrow-left" @size="24" aria-label="Back to login" class="icon-blue" />
+            <Icon @name="arrow-left" @size="24" aria-label={{t "Back to login"}} class="icon-blue" />
           </button>
         {{/if}}
         <h1 class="title is-3">
@@ -48,7 +50,7 @@
       <Toolbar class="toolbar-namespace-picker">
         <div class="field is-horizontal" data-test-namespace-toolbar>
           <div class="field-label is-normal">
-            <label class="is-label" for="namespace">Namespace</label>
+            <label class="is-label" for="namespace">{{t "Namespace"}}</label>
           </div>
           <div class="field-body">
             <div class="field">
@@ -56,7 +58,7 @@
                 <input
                   data-test-auth-form-ns-input
                   value={{this.namespaceQueryParam}}
-                  placeholder="/ (Root)"
+                  placeholder={{t "/ (Root)"}}
                   oninput={{perform this.updateNamespace value="target.value"}}
                   autocomplete="off"
                   spellcheck="false"
@@ -100,10 +102,11 @@
     <div class="has-short-padding">
       <p class="help has-text-grey-dark" data-test-auth-helptext>
         {{#if this.oidcProvider}}
-          Once you log in, you will be redirected back to your application. If you require login credentials, contact your
-          administrator.
+          {{t
+            "Once you log in, you will be redirected back to your application. If you require login credentials, contact your administrator."
+          }}
         {{else}}
-          Contact your administrator for login credentials
+          {{t "Contact your administrator for login credentials"}}
         {{/if}}
       </p>
     </div>

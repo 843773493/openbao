@@ -13,19 +13,19 @@
   }}
 >
   <div class="box is-sideless is-fullwidth is-marginless">
-    <NamespaceReminder @mode="perform" @noun="signing" />
+    <NamespaceReminder @mode="perform" @noun={{t "signing"}} />
     <div class="content">
       <p>
-        Return the cryptographic signature of the given data using
+        {{t "Return the cryptographic signature of the given data using"}}
         <code>{{@key.name}}</code>
-        as the encryption key and the specified hash algorithm.
+        {{t "as the encryption key and the specified hash algorithm."}}
       </p>
     </div>
     <KeyVersionSelect @key={{@key}} @onVersionChange={{action (mut @key_version)}} @key_version={{@key_version}} />
     <div class="field">
       <div class="control is-relative">
         <JsonEditor
-          @title="Input"
+          @title={{t "Input"}}
           @value={{@input}}
           @valueUpdated={{action (mut @input)}}
           @mode="ruby"
@@ -35,12 +35,12 @@
     </div>
     <div class="field">
       <Input @type="checkbox" id="encodedBase64" @checked={{@encodedBase64}} data-test-transit-input="encodedBase64" />
-      <label for="encodedBase64">This data is already encoded in base64</label>
+      <label for="encodedBase64">{{t "This data is already encoded in base64"}}</label>
     </div>
     {{#if @key.derived}}
       <div class="field">
         <label for="context" class="is-label">
-          Context
+          {{t "Context"}}
         </label>
         <div class="field has-addons">
           <div class="control">
@@ -55,7 +55,7 @@
     <div class="field">
       <div class="level is-mobile">
         <div class="level-left">
-          <label for="hash_algorithm" class="is-label">Hash Algorithm</label>
+          <label for="hash_algorithm" class="is-label">{{t "Hash Algorithm"}}</label>
         </div>
         <div class="level-right">
           <div class="control is-flex">
@@ -66,7 +66,7 @@
               class="switch is-rounded is-success is-small"
               @checked={{@prehashed}}
             />
-            <label for="prehashed">Prehashed</label>
+            <label for="prehashed">{{t "Prehashed"}}</label>
           </div>
         </div>
       </div>
@@ -84,7 +84,7 @@
     </div>
     {{#if (or (eq @key.type "rsa-2048") (eq @key.type "rsa-3072") (eq @key.type "rsa-4096"))}}
       <div class="field">
-        <label for="signature_algorithm" class="is-label">Signature Algorithm</label>
+        <label for="signature_algorithm" class="is-label">{{t "Signature Algorithm"}}</label>
         <div class="control is-expanded">
           <div class="select is-fullwidth">
             <select
@@ -110,30 +110,30 @@
   <div class="field is-grouped box is-fullwidth is-bottomless">
     <div class="control">
       <button type="submit" disabled={{@loading}} class="button is-primary {{if @loading 'is-loading'}}">
-        Sign
+        {{t "Sign"}}
       </button>
     </div>
   </div>
 </form>
 <Modal
-  @title="Copy your signature"
+  @title={{t "Copy your signature"}}
   @onClose={{action (mut @isModalActive) false}}
   @isActive={{@isModalActive}}
   data-test-sign-modal
 >
   <section class="modal-card-body">
     <div class="box is-shadowless is-fullwidth is-sideless">
-      <h2 class="title is-6">Signature</h2>
+      <h2 class="title is-6">{{t "Signature"}}</h2>
       <div class="copy-text level">
         <code class="level-left" data-test-encrypted-value="signature">{{@signature}}</code>
         <CopyButton
           class="button is-compact is-transparent level-right"
           data-test-button="modal-copy"
-          @text={{@signature}}
+          @text={{t @signature}}
           @buttonType="button"
           @onSuccess={{action (set-flash-message "Signature copied!")}}
         >
-          <Icon @name="clipboard-copy" aria-label="Copy" />
+          <Icon @name="clipboard-copy" aria-label={{t "Copy"}} />
         </CopyButton>
       </div>
     </div>
@@ -142,11 +142,11 @@
     <CopyButton
       class="button is-primary copy-close"
       data-test-button="modal-copy-close"
-      @text={{@signature}}
+      @text={{t @signature}}
       @buttonType="button"
       @onSuccess={{action @toggleModal "Signature copied!"}}
     >
-      Copy &amp; Close
+      {{t "Copy & Close"}}
     </CopyButton>
   </footer>
 </Modal>

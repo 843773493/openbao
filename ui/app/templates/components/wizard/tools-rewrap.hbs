@@ -1,14 +1,15 @@
 {{! template-lint-disable quotes }}
-<WizardContent @headerText="Tools" @glyph="tour">
+<WizardContent @headerText={{t "Tools"}} @glyph="tour">
   <WizardSection
-    @headerText="Rewrapping your data"
-    @docText="API: Rewrap Data"
+    @headerText={{t "Rewrapping your data"}}
+    @docText={{t "API: Rewrap Data"}}
     @docPath="/api/system/wrapping-rewrap.html"
-    @instructions='Paste your token into the input and click "Rewrap Token" to transform your token into a new one.'
+    @instructions={{t 'Paste your token into the input and click "Rewrap Token" to transform your token into a new one.'}}
   >
     <p>
-      You can rewrap your data to rotate the token, but it will still have the same creation time and TTL. Don't worry, the
-      new token will still have the same data.
+      {{t
+        "You can rewrap your data to rotate the token, but it will still have the same creation time and TTL. Don't worry, the new token will still have the same data."
+      }}
     </p>
   </WizardSection>
 </WizardContent>

@@ -5,7 +5,7 @@
         {{#each this.errors as |error|}}
           <li>
             <code>POST config/{{error.modelName}}</code>:
-            {{error.message}}
+            {{t error.message}}
           </li>
         {{/each}}
       </ul>
@@ -14,7 +14,7 @@
   <form {{on "submit" (perform this.save)}}>
     <fieldset class="is-shadowless is-marginless is-borderless is-fullwidth" data-test-cluster-config-edit-section>
       <h2 class="title is-size-5 has-border-bottom-light page-header">
-        Cluster Config
+        {{t "Cluster Config"}}
       </h2>
       {{#if @cluster.canSet}}
         {{#each @cluster.allFields as |attr|}}
@@ -23,8 +23,8 @@
       {{else}}
         <EmptyState
           class="is-shadowless"
-          @title="You do not have permission to set this mount's the cluster config"
-          @message="Ask your administrator if you think you should have access to:"
+          @title={{t "You do not have permission to set this mount's the cluster config"}}
+          @message={{t "Ask your administrator if you think you should have access to:"}}
         >
           <code>POST /{{@backend}}/config/cluster</code>
         </EmptyState>
@@ -33,7 +33,7 @@
 
     <fieldset class="box is-shadowless is-marginless is-borderless is-fullwidth" data-test-acme-edit-section>
       <h2 class="title is-size-5 has-border-bottom-light page-header">
-        ACME Config
+        {{t "ACME Config"}}
       </h2>
       {{#if @acme.canSet}}
         {{#each @acme.allFields as |attr|}}
@@ -42,8 +42,8 @@
       {{else}}
         <EmptyState
           class="is-shadowless"
-          @title="You do not have permission to set this mount's ACME config"
-          @message="Ask your administrator if you think you should have access to:"
+          @title={{t "You do not have permission to set this mount's ACME config"}}
+          @message={{t "Ask your administrator if you think you should have access to:"}}
         >
           <code>POST /{{@backend}}/config/acme</code>
         </EmptyState>
@@ -52,7 +52,7 @@
 
     <fieldset class="box is-shadowless is-marginless is-borderless is-fullwidth" data-test-urls-edit-section>
       <h2 class="title is-size-5 has-border-bottom-light page-header">
-        Global URLs
+        {{t "Global URLs"}}
       </h2>
       {{#if @urls.canSet}}
         {{#each @urls.allFields as |attr|}}
@@ -61,8 +61,8 @@
       {{else}}
         <EmptyState
           class="is-shadowless"
-          @title="You do not have permission to set this mount's URLs"
-          @message="Ask your administrator if you think you should have access to:"
+          @title={{t "You do not have permission to set this mount's URLs"}}
+          @message={{t "Ask your administrator if you think you should have access to:"}}
         >
           <code>POST /{{@backend}}/config/urls</code>
         </EmptyState>
@@ -82,10 +82,10 @@
                       <TtlPicker
                         data-test-input={{attr.name}}
                         @onChange={{fn this.handleTtl attr}}
-                        @label={{attr.options.label}}
+                        @label={{t attr.options.label}}
                         @labelDisabled={{attr.options.labelDisabled}}
-                        @helperTextDisabled={{attr.options.helperTextDisabled}}
-                        @helperTextEnabled={{attr.options.helperTextEnabled}}
+                        @helperTextDisabled={{t attr.options.helperTextDisabled}}
+                        @helperTextEnabled={{t attr.options.helperTextEnabled}}
                         @initialEnabled={{if attr.options.isOppositeValue (not enabled) enabled}}
                         @initialValue={{get @crl attr.name}}
                       />
@@ -98,8 +98,8 @@
         {{/each}}
       {{else}}
         <EmptyState
-          @title="You do not have permission to set this mount's revocation configuration"
-          @message="Ask your administrator if you think you should have access to:"
+          @title={{t "You do not have permission to set this mount's revocation configuration"}}
+          @message={{t "Ask your administrator if you think you should have access to:"}}
         >
           <code>POST /{{@backend}}/config/crl</code>
         </EmptyState>
@@ -115,7 +115,7 @@
             disabled={{this.save.isRunning}}
             data-test-configuration-edit-save
           >
-            Save
+            {{t "Save"}}
           </button>
         {{/if}}
         <button
@@ -125,7 +125,7 @@
           disabled={{this.save.isRunning}}
           data-test-configuration-edit-cancel
         >
-          Cancel
+          {{t "Cancel"}}
         </button>
       </div>
       {{#if this.invalidFormAlert}}
@@ -133,7 +133,7 @@
           <AlertInline
             @type="danger"
             @paddingTop={{true}}
-            @message={{this.invalidFormAlert}}
+            @message={{t this.invalidFormAlert}}
             @mimicRefresh={{true}}
             data-test-configuration-edit-validation-alert
           />

@@ -12,7 +12,7 @@
           </span>
           <div class="is-flex-row has-left-margin-l has-top-margin-xs">
             {{#if pkiIssuer.isDefault}}
-              <span class="tag has-text-grey-dark" data-test-is-default={{idx}}>default issuer</span>
+              <span class="tag has-text-grey-dark" data-test-is-default={{idx}}>{{t "default issuer"}}</span>
             {{/if}}
             {{#if (not-eq pkiIssuer.isRoot undefined)}}
               <span class="tag has-text-grey-dark" data-test-is-root-tag={{idx}}>{{if
@@ -24,7 +24,7 @@
             {{#if pkiIssuer.serialNumber}}
               <span class="tag is-transparent has-right-margin-none" data-test-serial-number={{idx}}>
                 <InfoTooltip>
-                  Serial number
+                  {{t "Serial number"}}
                 </InfoTooltip>
                 {{pkiIssuer.serialNumber}}
               </span>
@@ -32,7 +32,7 @@
             {{#if pkiIssuer.parsedCertificate.common_name}}
               <span class="tag is-transparent has-left-margin-none" data-test-common-name={{idx}}>
                 <InfoTooltip>
-                  Common name
+                  {{t "Common name"}}
                 </InfoTooltip>
                 {{pkiIssuer.parsedCertificate.common_name}}
               </span>
@@ -43,16 +43,16 @@
       <div class="level-right is-flex is-paddingless is-marginless">
         <div class="level-item">
           <PopupMenu>
-            <nav class="menu" aria-label="issuer config options">
+            <nav class="menu" aria-label={{t "issuer config options"}}>
               <ul class="menu-list">
                 <li data-test-popup-menu-details>
                   <LinkTo @route="issuers.issuer.details" @models={{array (current-mount-path) pkiIssuer.id}}>
-                    Details
+                    {{t "Details"}}
                   </LinkTo>
                 </li>
                 <li>
                   <LinkTo @route="issuers.issuer.edit" @models={{array (current-mount-path) pkiIssuer.id}}>
-                    Edit
+                    {{t "Edit"}}
                   </LinkTo>
                 </li>
               </ul>

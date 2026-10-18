@@ -9,7 +9,7 @@
       <Chevron @direction="down" @isButton={{true}} />
     </D.Trigger>
     <D.Content @defaultClass="popup-menu-content is-wide">
-      <nav class="box menu scroll" aria-label="months">
+      <nav class="box menu scroll" aria-label={{t "months"}}>
         <ul data-test-month-list class="menu-list">
           {{#each this.dropdownMonths as |month|}}
             <button
@@ -36,7 +36,7 @@
       <Chevron @direction="down" @isButton={{true}} />
     </D.Trigger>
     <D.Content @defaultClass="popup-menu-content is-wide">
-      <nav class="box menu" aria-label="years">
+      <nav class="box menu" aria-label={{t "years"}}>
         <ul data-test-year-list class="menu-list">
           {{#each this.dropdownYears as |year|}}
             <button
@@ -65,7 +65,7 @@
     </button>
   {{/unless}}
   {{#if this.invalidDate}}
-    <AlertInline @type="danger" @message={{this.invalidDate}} @paddingTop={{true}} @mimicRefresh={{true}} />
+    <AlertInline @type="danger" @message={{t this.invalidDate}} @paddingTop={{true}} @mimicRefresh={{true}} />
   {{/if}}
 </div>
 {{#if @handleCancel}}
@@ -80,7 +80,7 @@
       {{or @submitText "Submit"}}
     </button>
     <button data-test-date-dropdown-cancel type="button" class="button is-secondary" {{on "click" this.handleCancel}}>
-      Cancel
+      {{t "Cancel"}}
     </button>
   </footer>
 {{/if}}

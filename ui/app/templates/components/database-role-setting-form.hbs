@@ -1,5 +1,5 @@
 <div class="box is-sideless is-fullwidth is-marginless" data-test-role-settings-section>
-  <h3 class="title is-5">Role Settings</h3>
+  <h3 class="title is-5">{{t "Role Settings"}}</h3>
   {{#if this.settingFields}}
     <div class="form-section">
       {{#each this.settingFields as |attr|}}
@@ -12,13 +12,13 @@
       {{/each}}
     </div>
   {{else}}
-    <EmptyState @title="No role type selected" @message="Select a type of role to be able to configure it" />
+    <EmptyState @title={{t "No role type selected"}} @message={{t "Select a type of role to be able to configure it"}} />
   {{/if}}
 </div>
 {{! template-lint-configure simple-unless "warn"  }}
 {{#unless (and @roleType (not this.statementFields))}}
   <div class="box is-sideless is-fullwidth is-marginless" data-test-statements-section>
-    <h3 class="title is-5">Statements</h3>
+    <h3 class="title is-5">{{t "Statements"}}</h3>
     {{#if this.statementFields}}
       <div class="form-section">
         {{#each this.statementFields as |attr|}}
@@ -27,8 +27,8 @@
       </div>
     {{else}}
       <EmptyState
-        @title="No role type selected"
-        @message="Select a type of role to be able to add statements for creation, revocation, and/or rotation."
+        @title={{t "No role type selected"}}
+        @message={{t "Select a type of role to be able to add statements for creation, revocation, and/or rotation."}}
       />
     {{/if}}
   </div>

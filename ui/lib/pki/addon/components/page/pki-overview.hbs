@@ -1,8 +1,8 @@
 <div class="selectable-card-container has-grid has-top-margin-l has-two-col-grid">
   <OverviewCard
-    @cardTitle="Issuers"
-    @subText="The total number of issuers in this PKI mount. Includes both root and intermediate certificates."
-    @actionText="View issuers"
+    @cardTitle={{t "Issuers"}}
+    @subText={{t "The total number of issuers in this PKI mount. Includes both root and intermediate certificates."}}
+    @actionText={{t "View issuers"}}
     @actionTo="issuers"
     @actionModel={{@engine.id}}
   >
@@ -10,23 +10,23 @@
   </OverviewCard>
   {{#if (not-eq @roles 403)}}
     <OverviewCard
-      @cardTitle="Roles"
-      @subText="The total number of roles in this PKI mount that have been created to generate certificates."
-      @actionText="View roles"
+      @cardTitle={{t "Roles"}}
+      @subText={{t "The total number of roles in this PKI mount that have been created to generate certificates."}}
+      @actionText={{t "View roles"}}
       @actionTo="roles"
       @actionModel={{@engine.id}}
     >
       <h2 class="title-number">{{format-number (if (eq @roles 404) 0 @roles.length)}}</h2>
     </OverviewCard>
   {{/if}}
-  <OverviewCard @cardTitle="Issue certificate" @subText="Begin issuing a certificate by choosing a role.">
+  <OverviewCard @cardTitle={{t "Issue certificate"}} @subText={{t "Begin issuing a certificate by choosing a role."}}>
     <div class="has-top-margin-m is-flex">
       <SearchSelect
         class="is-flex-1"
         @selectLimit="1"
         @models={{array "pki/role"}}
         @backend={{@engine.id}}
-        @placeholder="Type to find a role..."
+        @placeholder={{t "Type to find a role..."}}
         @disallowNewItems={{true}}
         @onChange={{this.handleRolesInput}}
         @fallbackComponent="input-search"
@@ -39,12 +39,12 @@
         {{on "click" this.transitionToIssueCertificates}}
         data-test-issue-certificate-button
       >
-        Issue
+        {{t "Issue"}}
       </button>
     </div>
   </OverviewCard>
 
-  <OverviewCard @cardTitle="View certificate" @subText="Quickly view a certificate by typing its serial number.">
+  <OverviewCard @cardTitle={{t "View certificate"}} @subText={{t "Quickly view a certificate by typing its serial number."}}>
     <div class="has-top-margin-m is-flex">
       <SearchSelect
         class="is-flex-1"
@@ -64,19 +64,19 @@
         {{on "click" this.transitionToViewCertificates}}
         data-test-view-certificate-button
       >
-        View
+        {{t "View"}}
       </button>
     </div>
   </OverviewCard>
 
-  <OverviewCard @cardTitle="View issuer" @subText="Choose or type an issuer name or ID to view its details">
+  <OverviewCard @cardTitle={{t "View issuer"}} @subText={{t "Choose or type an issuer name or ID to view its details"}}>
     <div class="has-top-margin-m is-flex">
       <SearchSelect
         class="is-flex-1"
         @selectLimit="1"
         @models={{array "pki/issuer"}}
         @backend={{@engine.id}}
-        @placeholder="Type to find an issuer..."
+        @placeholder={{t "Type to find an issuer..."}}
         @disallowNewItems={{true}}
         @onChange={{this.handleIssuerSearch}}
         @fallbackComponent="input-search"
@@ -91,7 +91,7 @@
         {{on "click" this.transitionToIssuerDetails}}
         data-test-view-issuer-button
       >
-        View
+        {{t "View"}}
       </button>
     </div>
   </OverviewCard>

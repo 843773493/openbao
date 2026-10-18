@@ -1,24 +1,24 @@
 <form data-test-transit-create-form onsubmit={{@createOrUpdateKey}}>
   <div class="box is-sideless is-fullwidth is-marginless">
     <MessageError @model={{@key}} />
-    <NamespaceReminder @mode="create" @noun="transit key" />
+    <NamespaceReminder @mode="create" @noun={{t "transit key"}} />
     <div class="field">
-      <label for="key-name" class="is-label">Name</label>
+      <label for="key-name" class="is-label">{{t "Name"}}</label>
       <Input id="key-name" @value={{@key.name}} class="input" data-test-transit-key-name={{true}} />
     </div>
     <div class="field">
       <TtlPicker
         @initialValue="30d"
         @initialEnabled={{false}}
-        @label="Auto-rotation period"
-        @helperTextDisabled="Key will never be automatically rotated"
-        @helperTextEnabled="Key will be automatically rotated every"
+        @label={{t "Auto-rotation period"}}
+        @helperTextDisabled={{t "Key will never be automatically rotated"}}
+        @helperTextEnabled={{t "Key will be automatically rotated every"}}
         @onChange={{@handleAutoRotateChange}}
-        @errorMessage={{if @autoRotateInvalid "Duration must be longer than 1 hour"}}
+        @errorMessage={{t (if @autoRotateInvalid "Duration must be longer than 1 hour")}}
       />
     </div>
     <div class="field">
-      <label for="key-type" class="is-label">Type</label>
+      <label for="key-type" class="is-label">{{t "Type"}}</label>
       <div class="control is-expanded">
         <div class="select is-fullwidth">
           <select
@@ -28,43 +28,43 @@
             data-test-transit-key-type={{true}}
           >
             <option selected={{eq @key.type "aes128-gcm96"}} value="aes128-gcm96">
-              aes128-gcm96
+              {{t "aes128-gcm96"}}
             </option>
             <option selected={{eq @key.type "aes256-gcm96"}} value="aes256-gcm96">
-              aes256-gcm96
+              {{t "aes256-gcm96"}}
             </option>
             <option selected={{eq @key.type "chacha20-poly1305"}} value="chacha20-poly1305">
-              chacha20-poly1305
+              {{t "chacha20-poly1305"}}
             </option>
             <option selected={{eq @key.type "ecdsa-p256"}} value="ecdsa-p256">
-              ecdsa-p256
+              {{t "ecdsa-p256"}}
             </option>
             <option selected={{eq @key.type "ecdsa-p384"}} value="ecdsa-p384">
-              ecdsa-p384
+              {{t "ecdsa-p384"}}
             </option>
             <option selected={{eq @key.type "ecdsa-p521"}} value="ecdsa-p521">
-              ecdsa-p521
+              {{t "ecdsa-p521"}}
             </option>
             <option selected={{eq @key.type "ed25519"}} value="ed25519">
-              ed25519
+              {{t "ed25519"}}
             </option>
             <option selected={{eq @key.type "rsa-2048"}} value="rsa-2048">
-              rsa-2048
+              {{t "rsa-2048"}}
             </option>
             <option selected={{eq @key.type "rsa-3072"}} value="rsa-3072">
-              rsa-3072
+              {{t "rsa-3072"}}
             </option>
             <option selected={{eq @key.type "rsa-4096"}} value="rsa-4096">
-              rsa-4096
+              {{t "rsa-4096"}}
             </option>
             <option selected={{eq @key.type "mldsa-44"}} value="mldsa-44">
-              mldsa-44
+              {{t "mldsa-44"}}
             </option>
             <option selected={{eq @key.type "mldsa-65"}} value="mldsa-65">
-              mldsa-65
+              {{t "mldsa-65"}}
             </option>
             <option selected={{eq @key.type "mldsa-87"}} value="mldsa-87">
-              mldsa-87
+              {{t "mldsa-87"}}
             </option>
           </select>
         </div>
@@ -81,7 +81,7 @@
           data-test-transit-key-exportable={{true}}
         />
         <label for="key-exportable" class="is-label">
-          Exportable
+          {{t "Exportable"}}
         </label>
       </div>
     </div>
@@ -104,7 +104,7 @@
             data-test-transit-key-derived={{true}}
           />
           <label for="key-derived" class="is-label">
-            Derived
+            {{t "Derived"}}
           </label>
         </div>
       </div>
@@ -121,7 +121,7 @@
             onchange={{@convergentEncryptionChange}}
           />
           <label for="key-convergent" class="is-label">
-            Enable convergent encryption
+            {{t "Enable convergent encryption"}}
           </label>
         </div>
       </div>
@@ -135,12 +135,12 @@
         disabled={{@requestInFlight}}
         class="button is-primary {{if @requestInFlight 'is-loading'}}"
       >
-        Create encryption key
+        {{t "Create encryption key"}}
       </button>
     </div>
     <div class="control">
       <SecretLink @mode="list" class="button">
-        Cancel
+        {{t "Cancel"}}
       </SecretLink>
     </div>
   </div>

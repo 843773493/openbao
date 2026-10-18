@@ -6,9 +6,9 @@
 
 {{#if @config}}
   {{#if @config.disableLocalCaJwt}}
-    <InfoTableRow @label="Kubernetes host" @value={{@config.kubernetesHost}} />
+    <InfoTableRow @label={{t "Kubernetes host"}} @value={{@config.kubernetesHost}} />
     {{#if @config.kubernetesCaCert}}
-      <InfoTableRow @label="Certificate">
+      <InfoTableRow @label={{t "Certificate"}}>
         <div class="column is-half box is-rounded">
           <div class="is-flex-row">
             <span class="has-left-margin-s">
@@ -16,7 +16,7 @@
             </span>
             <div class="has-left-margin-m is-min-width-0">
               <p class="has-text-weight-bold" data-test-certificate-label>
-                PEM Format
+                {{t "PEM Format"}}
               </p>
               <code class="is-size-8 truncate-second-line has-text-grey" data-test-certificate-value>
                 {{@config.kubernetesCaCert}}
@@ -26,11 +26,11 @@
               <CopyButton
                 data-test-certificate-copy
                 class="button is-transparent is-flex-v-centered"
-                @text={{@config.kubernetesCaCert}}
+                @text={{t @config.kubernetesCaCert}}
                 @buttonType="button"
                 @onSuccess={{action (set-flash-message "Certificate copied")}}
               >
-                <Icon @name="clipboard-copy" aria-label="Copy" />
+                <Icon @name="clipboard-copy" aria-label={{t "Copy"}} />
               </CopyButton>
             </div>
           </div>
@@ -41,8 +41,9 @@
     <div class="has-top-margin-l" data-test-inferred-message>
       <Icon @name="check-circle-fill" class="has-text-success" />
       <span>
-        These details were successfully inferred from OpenBao’s kubernetes environment and were not explicity set in this
-        config.
+        {{t
+          "These details were successfully inferred from OpenBao’s kubernetes environment and were not explicity set in this config."
+        }}
       </span>
     </div>
   {{/if}}

@@ -1,10 +1,10 @@
 <div ...attributes>
   {{#if @label}}
     <label for={{@name}} class="is-label">
-      {{@label}}
+      {{t @label}}
       {{#if @helpText}}
         <InfoTooltip>
-          <span data-test-help-text>{{@helpText}}</span>
+          <span data-test-help-text>{{t @helpText}}</span>
         </InfoTooltip>
       {{/if}}
     </label>
@@ -18,7 +18,7 @@
       <div class="select is-fullwidth">
         <select name={{@name}} id={{@name}} {{on "change" this.change}} data-test-mount-accessor-select>
           {{#if this.noDefault}}
-            <option value="">Select one</option>
+            <option value="">{{t "Select one"}}</option>
           {{/if}}
           {{#each this.authMethods.last.value as |method|}}
             {{! token type does not need to be authorized via MFA }}
@@ -45,7 +45,7 @@
       id={{@name}}
       class="input"
       value={{@value}}
-      placeholder="Mount accessor"
+      placeholder={{t "Mount accessor"}}
       {{on "change" this.change}}
       data-test-mount-accessor-default
     />

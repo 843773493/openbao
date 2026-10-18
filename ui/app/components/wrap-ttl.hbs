@@ -1,8 +1,8 @@
 <div class="field">
   <TtlPicker
-    @label="Wrap response"
-    @helperTextDisabled="Will not wrap response"
-    @helperTextEnabled="Will wrap response with a lease of"
+    @label={{t "Wrap response"}}
+    @helperTextDisabled={{t "Will not wrap response"}}
+    @helperTextEnabled={{t "Will wrap response with a lease of"}}
     @initialEnabled={{true}}
     @initialValue="30m"
     @onChange={{this.changedValue}}

@@ -2,15 +2,15 @@
   <div class="control is-expanded">
     <label class="is-label">
       {{#if this.label}}
-        {{this.label}}
+        {{t this.label}}
       {{/if}}
     </label>
     <div class="file is-fullwidth">
-      <div class="file-label" aria-label="Choose a file">
+      <div class="file-label" aria-label={{t "Choose a file"}}>
         <input id="file-input" class="file-input" type="file" onchange={{action "pickedFile"}} data-test-file-input />
         <label for="file-input" class="file-cta button">
           <Icon @name="upload" class="has-light-grey-text" />
-          Choose a file…
+          {{t "Choose a file…"}}
         </label>
         <span class="file-name has-text-grey-dark" data-test-text-file-input-label={{true}}>
           {{or this.filename "No file chosen"}}
@@ -19,7 +19,7 @@
           <button
             type="button"
             class="file-delete-button"
-            aria-label="Clear file selection"
+            aria-label={{t "Clear file selection"}}
             {{action "clearFile"}}
             data-test-text-clear
           >
@@ -31,9 +31,9 @@
   </div>
   {{#if this.filename}}
     <p class="help has-text-grey">
-      This file is
+      {{t "This file is"}}
       {{this.fileSize}}
-      and was created on
+      {{t "and was created on"}}
       {{date-format this.fileLastModified "MMM dd, yyyy hh:mm:ss a"}}.
     </p>
   {{/if}}

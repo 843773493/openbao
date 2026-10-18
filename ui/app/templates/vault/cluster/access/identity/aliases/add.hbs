@@ -1,10 +1,7 @@
 <PageHeader as |p|>
   <p.levelLeft>
     <h1 class="title is-3">
-      Create
-      {{lowercase (humanize this.model.identityType)}}
-      for
-      {{this.model.canonicalId}}
+      {{t "Create {arg0} for {arg1}" arg0=(lowercase (humanize this.model.identityType)) arg1=this.model.canonicalId}}
     </h1>
   </p.levelLeft>
 </PageHeader>

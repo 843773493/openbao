@@ -15,12 +15,12 @@
 >
   <div class="box is-sideless is-fullwidth is-marginless">
     <div class="content has-bottom-margin-l">
-      <p>Check whether the provided signature is valid for the given data.</p>
+      <p>{{t "Check whether the provided signature is valid for the given data."}}</p>
     </div>
     <div class="field">
       <div class="control is-relative">
         <JsonEditor
-          @title="Input"
+          @title={{t "Input"}}
           @value={{@input}}
           @valueUpdated={{action (mut @input)}}
           @mode="ruby"
@@ -30,12 +30,12 @@
     </div>
     <div class="field">
       <Input @type="checkbox" id="encodedBase64" @checked={{@encodedBase64}} data-test-transit-input="encodedBase64" />
-      <label for="encodedBase64">This data is already encoded in base64</label>
+      <label for="encodedBase64">{{t "This data is already encoded in base64"}}</label>
     </div>
     {{#if (and @key.supportsSigning @key.derived (not @hmac))}}
       <div class="field">
         <label for="context" class="is-label">
-          Context
+          {{t "Context"}}
         </label>
         <div class="field has-addons">
           <div class="control">
@@ -51,7 +51,7 @@
       <div class="columns is-5">
         <div class="column is-one-third">
           <div class="field">
-            <label for="verification" class="is-label">Verification Type</label>
+            <label for="verification" class="is-label">{{t "Verification Type"}}</label>
             <div class="control is-expanded">
               <div class="select is-fullwidth">
                 <select
@@ -77,7 +77,7 @@
           <div class="field">
             <div class="level is-mobile">
               <div class="level-left">
-                <label for="hash_algorithm" class="is-label">Hash Algorithm</label>
+                <label for="hash_algorithm" class="is-label">{{t "Hash Algorithm"}}</label>
               </div>
               <div class="level-right">
                 {{#if (not-eq @verification "HMAC")}}
@@ -89,7 +89,7 @@
                       class="switch is-rounded is-success is-small"
                       @checked={{@prehashed}}
                     />
-                    <label for="prehashed">Prehashed</label>
+                    <label for="prehashed">{{t "Prehashed"}}</label>
                   </div>
                 {{/if}}
               </div>
@@ -112,7 +112,7 @@
           </div>
           {{#if (and @keyIsRSA (or (and @verification (eq @verification "Signature")) @signature))}}
             <div class="field">
-              <label for="signature_algorithm" class="is-label">Signature Algorithm</label>
+              <label for="signature_algorithm" class="is-label">{{t "Signature Algorithm"}}</label>
               <div class="control is-expanded">
                 <div class="select is-fullwidth">
                   <select
@@ -140,14 +140,14 @@
           {{#if (or (and @verification (eq @verification "HMAC")) @hmac)}}
             <div class="field is-flex-column is-flex-1">
               <div class="control is-flex-column is-flex-1">
-                <JsonEditor @title="HMAC" @value={{@hmac}} @valueUpdated={{action (mut @hmac)}} @mode="ruby" />
+                <JsonEditor @title={{t "HMAC"}} @value={{@hmac}} @valueUpdated={{action (mut @hmac)}} @mode="ruby" />
               </div>
             </div>
           {{else}}
             <div class="field is-flex-column is-flex-1">
               <div class="control is-flex-column is-flex-1">
                 <JsonEditor
-                  @title="Signature"
+                  @title={{t "Signature"}}
                   @value={{@signature}}
                   @valueUpdated={{action (mut @signature)}}
                   @mode="ruby"
@@ -160,11 +160,11 @@
     {{else}}
       <div class="field">
         <div class="control">
-          <JsonEditor @title="HMAC" @value={{@hmac}} @valueUpdated={{action (mut @hmac)}} @mode="ruby" />
+          <JsonEditor @title={{t "HMAC"}} @value={{@hmac}} @valueUpdated={{action (mut @hmac)}} @mode="ruby" />
         </div>
       </div>
       <div class="field">
-        <label for="hash_algorithm" class="is-label">Algorithm</label>
+        <label for="hash_algorithm" class="is-label">{{t "Algorithm"}}</label>
         <div class="control is-expanded">
           <div class="select is-fullwidth">
             <select name="hash_algorithm" id="hash_algorithm" onchange={{action (mut @hash_algorithm) value="target.value"}}>
@@ -182,17 +182,21 @@
   <div class="field is-grouped box is-fullwidth is-bottomless">
     <div class="control">
       <button type="submit" disabled={{@loading}} class="button is-primary {{if @loading 'is-loading'}}">
-        Verify
+        {{t "Verify"}}
       </button>
     </div>
   </div>
 </form>
-<Modal @title="Results" @onClose={{action (mut @isModalActive) false}} @isActive={{@isModalActive}}>
+<Modal @title={{t "Results"}} @onClose={{action (mut @isModalActive) false}} @isActive={{@isModalActive}}>
   <section class="modal-card-body">
     <AlertBanner
       @type={{if @valid "success" "danger"}}
-      @title={{if @valid "Valid" "Not Valid"}}
-      @message="The input is {{if @valid 'valid' 'not valid'}} for the given {{if @signature 'signature' 'HMAC'}}"
+      @title={{t (if @valid "Valid" "Not Valid")}}
+      @message={{t
+        "The input is {arg0} for the given {arg1}"
+        arg0=(if @valid "valid" "not valid")
+        arg1=(if @signature "signature" "HMAC")
+      }}
       data-test-transit-verify="true"
     />
   </section>

@@ -11,7 +11,7 @@
   <p.levelLeft>
     <h1 class="title is-3">
       <LinkTo @route="vault.cluster.access.leases">
-        Leases
+        {{t "Leases"}}
       </LinkTo>
     </h1>
   </p.levelLeft>
@@ -22,28 +22,28 @@
     <ToolbarActions>
       <ConfirmAction
         @buttonClasses="toolbar-link"
-        @confirmTitle="Revoke this?"
-        @confirmMessage={{concat "All leases under this one will also be removed"}}
-        @confirmButtonText="Confirm"
+        @confirmTitle={{t "Revoke this?"}}
+        @confirmMessage={{t (concat "All leases under this one will also be removed")}}
+        @confirmButtonText={{t "Confirm"}}
         @onConfirmAction={{action "revokeLease" this.model}}
         data-test-lease-revoke="true"
       >
-        Revoke lease
+        {{t "Revoke lease"}}
       </ConfirmAction>
     </ToolbarActions>
   </Toolbar>
 {{/if}}
 
 <div class="field box is-fullwidth is-sideless is-paddingless is-marginless">
-  <InfoTableRow @label="Issue time" @value={{this.model.issueTime}}>
+  <InfoTableRow @label={{t "Issue time"}} @value={{this.model.issueTime}}>
     {{date-format this.model.issueTime "MMM dd, yyyy hh:mm:ss a"}}
     <br />
     <code>
       {{this.model.issueTime}}
     </code>
   </InfoTableRow>
-  <InfoTableRow @label="Renewable" @value={{this.model.renewable}} />
-  <InfoTableRow @label="Last renewal" @value={{this.model.lastRenewal}}>
+  <InfoTableRow @label={{t "Renewable"}} @value={{this.model.renewable}} />
+  <InfoTableRow @label={{t "Last renewal"}} @value={{this.model.lastRenewal}}>
     {{date-format this.model.lastRenewal "MMM dd, yyyy hh:mm:ss a"}}
     <br />
     <code>
@@ -51,25 +51,25 @@
     </code>
   </InfoTableRow>
   {{#if this.model.expireTime}}
-    <InfoTableRow @label="Expiration time" @value={{this.model.expireTime}}>
+    <InfoTableRow @label={{t "Expiration time"}} @value={{this.model.expireTime}}>
       {{date-format this.model.expireTime "MMM dd, yyyy hh:mm:ss a"}}
       <br />
       <code>
         {{this.model.expireTime}}
       </code>
     </InfoTableRow>
-    <InfoTableRow @label="Expires in" @value={{date-from-now this.model.expireTime increment=1000 hideSuffix=true}} />
+    <InfoTableRow @label={{t "Expires in"}} @value={{date-from-now this.model.expireTime increment=1000 hideSuffix=true}} />
   {{/if}}
-  <InfoTableRow @label="TTL" @value={{this.model.ttl}} />
+  <InfoTableRow @label={{t "TTL"}} @value={{this.model.ttl}} />
 </div>
 {{#if (and (not this.model.isAuthLease) this.model.renewable this.capabilities.renew.canUpdate)}}
   <div class="box is-shadowless" data-test-lease-renew-picker={{true}}>
-    <h2 class="title is-6">Renew Lease</h2>
+    <h2 class="title is-6">{{t "Renew Lease"}}</h2>
     <form {{action "renewLease" this.model this.increment on="submit"}}>
       <TtlPicker
-        @label="Increment"
-        @helperTextEnabled="Lease will expire after"
-        @helperTextDisabled="OpenBao will use the default lease duration"
+        @label={{t "Increment"}}
+        @helperTextEnabled={{t "Lease will expire after"}}
+        @helperTextDisabled={{t "OpenBao will use the default lease duration"}}
         @labelClass="is-label"
         @onChange={{action (mut this.increment)}}
         @unit="s"
@@ -77,7 +77,7 @@
       <div class="field has-top-margin-s">
         <div class="control">
           <button type="submit" class="button is-primary">
-            Renew lease
+            {{t "Renew lease"}}
           </button>
         </div>
       </div>

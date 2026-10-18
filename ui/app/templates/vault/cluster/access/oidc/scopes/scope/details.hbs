@@ -1,11 +1,11 @@
 <PageHeader as |p|>
   <p.top>
-    <nav class="breadcrumb" aria-label="breadcrumbs">
+    <nav class="breadcrumb" aria-label={{t "breadcrumbs"}}>
       <ul>
         <li>
           <span class="sep">&#x0002f;</span>
           <LinkTo @route="vault.cluster.access.oidc.scopes" data-test-breadcrumb-link="oidc-scopes">
-            Scopes
+            {{t "Scopes"}}
           </LinkTo>
         </li>
       </ul>
@@ -19,10 +19,10 @@
 </PageHeader>
 
 <div class="tabs-container box is-sideless is-fullwidth is-paddingless is-marginless">
-  <nav class="tabs" aria-label="tabs">
+  <nav class="tabs" aria-label={{t "tabs"}}>
     <ul>
       <LinkTo @route="vault.cluster.access.oidc.scopes.scope.details" @model={{this.model}} data-test-oidc-scope-details>
-        Details
+        {{t "Details"}}
       </LinkTo>
     </ul>
   </nav>
@@ -35,27 +35,27 @@
         data-test-oidc-scope-delete
         @buttonClasses="toolbar-link"
         @onConfirmAction={{this.delete}}
-        @confirmTitle="Delete scope?"
-        @confirmMessage="This scope will be permanently deleted. You will not be able to recover it."
-        @confirmButtonText="Delete"
+        @confirmTitle={{t "Delete scope?"}}
+        @confirmMessage={{t "This scope will be permanently deleted. You will not be able to recover it."}}
+        @confirmButtonText={{t "Delete"}}
       >
-        Delete scope
+        {{t "Delete scope"}}
       </ConfirmAction>
       <div class="toolbar-separator"></div>
     {{/if}}
     {{#if this.model.canEdit}}
       <ToolbarLink @route="vault.cluster.access.oidc.scopes.scope.edit" @model={{this.model.name}} data-test-oidc-scope-edit>
-        Edit scope
+        {{t "Edit scope"}}
       </ToolbarLink>
     {{/if}}
   </ToolbarActions>
 </Toolbar>
 
 <div class="box is-fullwidth is-sideless is-paddingless is-marginless">
-  <InfoTableRow @label="Name" @value={{this.model.name}} />
-  <InfoTableRow @label="Description" @value={{this.model.description}} />
+  <InfoTableRow @label={{t "Name"}} @value={{this.model.name}} />
+  <InfoTableRow @label={{t "Description"}} @value={{this.model.description}} />
   <JsonEditor
-    @title="JSON Template"
+    @title={{t "JSON Template"}}
     @mode="ruby"
     @value={{this.model.template}}
     @readOnly={{true}}

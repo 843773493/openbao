@@ -15,19 +15,19 @@
       >
         <Icon
           @name={{if this.isFullscreen "minimize" "maximize"}}
-          aria-label={{if this.isFullscreen "Minimize" "Maximize"}}
+          aria-label={{t (if this.isFullscreen "Minimize" "Maximize")}}
         />
       </button>
     </d.Trigger>
     <d.Content @defaultClass="tool-tip">
       <div class="box">
         {{#if this.isFullscreen}}
-          Minimize
+          {{t "Minimize"}}
         {{else}}
-          Maximize
+          {{t "Maximize"}}
         {{/if}}
       </div>
     </d.Content>
   </ToolTip>
 </div>
-<NamespaceReminder @class="console-reminder" @mode="execute" @noun="command" />
+<NamespaceReminder @class="console-reminder" @mode="execute" @noun={{t "command"}} />

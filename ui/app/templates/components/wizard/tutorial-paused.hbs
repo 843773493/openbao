@@ -1,12 +1,12 @@
-<WizardContent @headerText="OpenBao Web UI Guide" @glyph="tour" @class="collapsed" @hidePopup={{true}}>
+<WizardContent @headerText={{t "OpenBao Web UI Guide"}} @glyph="tour" @class="collapsed" @hidePopup={{true}}>
   <button type="button" class="button is-transparent dismiss-collapsed" {{action @onDismiss}}>
-    <Icon @name="x" aria-label="Close" />
+    <Icon @name="x" aria-label={{t "Close"}} />
   </button>
-  <p>Feel free to explore OpenBao. Click below to get back to the guide or close this window.</p>
+  <p>{{t "Feel free to explore OpenBao. Click below to get back to the guide or close this window."}}</p>
   <div class="box wizard-divider-box">
     <button type="button" class="button is-transparent has-icon-left has-text-white" {{action @onAdvance}}>
       <Chevron @direction="up" />
-      Back to guide
+      {{t "Back to guide"}}
     </button>
   </div>
 </WizardContent>

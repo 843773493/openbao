@@ -5,9 +5,9 @@
   <p.levelLeft>
     <h1 class="title is-3" data-test-kms-provider-header>
       {{#if this.isDistributing}}
-        Destribute key to provider
+        {{t "Destribute key to provider"}}
       {{else if this.isShowing}}
-        Provider
+        {{t "Provider"}}
         <span class="has-font-weight-normal">{{@model.id}}</span>
       {{else}}
         {{if this.isCreating "Create provider" "Update credentials"}}
@@ -25,13 +25,13 @@
         <ul>
           <li class={{unless this.viewingKeys "active"}} data-test-kms-provider-tab="details">
             <LinkTo @route="vault.cluster.secrets.backend.show" @model={{@model.id}} @query={{hash tab=""}}>
-              Details
+              {{t "Details"}}
             </LinkTo>
           </li>
           {{#if @model.canListKeys}}
             <li class={{if this.viewingKeys "active"}} data-test-kms-provider-tab="keys">
               <LinkTo @route="vault.cluster.secrets.backend.show" @model={{@model.id}} @query={{hash tab="keys"}}>
-                Keys
+                {{t "Keys"}}
               </LinkTo>
             </li>
           {{/if}}
@@ -50,15 +50,15 @@
                   @disabled={{@model.keys.length}}
                   data-test-kms-provider-delete={{true}}
                 >
-                  Delete provider
+                  {{t "Delete provider"}}
                 </ConfirmAction>
               </T.Trigger>
               {{#if @model.keys.length}}
                 <T.Content class="tool-tip">
                   <div class="box" data-test-kms-provider-delete-tooltip>
-                    This provider cannot be deleted until all
+                    {{t "This provider cannot be deleted until all"}}
                     {{@model.keys.length}}
-                    key(s) distributed to it are revoked. This can be done from the Keys tab.
+                    {{t "key(s) distributed to it are revoked. This can be done from the Keys tab."}}
                   </div>
                 </T.Content>
               {{/if}}
@@ -74,7 +74,7 @@
               {{on "click" (fn (mut this.isDistributing) true)}}
               data-test-distribute-key
             >
-              Distribute key
+              {{t "Distribute key"}}
               <Icon @name="chevron-right" />
             </button>
           {{/if}}
@@ -86,28 +86,31 @@
               @queryParams={{hash itemType="provider"}}
               disabled={{(not @model.canEdit)}}
             >
-              Update credentials
+              {{t "Update credentials"}}
             </ToolbarSecretLink>
           {{/if}}
         </ToolbarActions>
       </Toolbar>
     {{/unless}}
   {{else}}
-    <form aria-label="update credentials" {{on "submit" this.onSave}}>
+    <form aria-label={{t "update credentials"}} {{on "submit" this.onSave}}>
       <div class="box is-sideless is-fullwidth is-marginless">
         {{#if this.isCreating}}
           {{#each @model.createFields as |attr index|}}
             {{#if (eq index 2)}}
               <div class="has-border-top-light">
                 <h2 class="title is-5 has-top-margin-l has-bottom-margin-m" data-test-kms-provider-config-title>
-                  Provider configuration
+                  {{t "Provider configuration"}}
                 </h2>
               </div>
               {{#if @model.provider}}
                 {{! Only show last field if provider selected }}
                 <FormField @attr={{attr}} @model={{@model}} @modelValidations={{this.modelValidations}} />
               {{else}}
-                <EmptyState @title="No provider selected" @message="Select a provider in order to configure it." />
+                <EmptyState
+                  @title={{t "No provider selected"}}
+                  @message={{t "Select a provider in order to configure it."}}
+                />
               {{/if}}
             {{else}}
               <FormField @attr={{attr}} @model={{@model}} @modelValidations={{this.modelValidations}} />
@@ -116,10 +119,10 @@
         {{/if}}
         {{#unless this.isCreating}}
           <h2 class="title is-5" data-test-kms-provider-creds-title>
-            New credentials
+            {{t "New credentials"}}
           </h2>
           <p class="sub-text has-bottom-margin-m">
-            Old credentials cannot be read and will be lost as soon as new ones are added. Do this carefully.
+            {{t "Old credentials cannot be read and will be lost as soon as new ones are added. Do this carefully."}}
           </p>
         {{/unless}}
         {{#each @model.credentialFields as |cred|}}
@@ -146,7 +149,7 @@
             class="button"
             data-test-kms-provider-cancel
           >
-            Cancel
+            {{t "Cancel"}}
           </LinkTo>
         </div>
       </div>
@@ -179,11 +182,11 @@
             {{/if}}
           {{else}}
             <EmptyState
-              @title="No keys for this provider"
-              @message="Keys for this provider will be listed here. Add a key to get started."
+              @title={{t "No keys for this provider"}}
+              @message={{t "Keys for this provider will be listed here. Add a key to get started."}}
             >
               <SecretLink @mode="create" @secret="" @queryParams={{hash itemType="key"}} class="link">
-                Create key
+                {{t "Create key"}}
               </SecretLink>
             </EmptyState>
           {{/if}}
@@ -191,7 +194,7 @@
       {{else}}
         {{#each @model.showFields as |attr|}}
           {{#if attr.hasBlock}}
-            <InfoTableRow @label={{attr.label}} @value={{attr.value}} data-test-kms-provider-field={{attr.name}}>
+            <InfoTableRow @label={{t attr.label}} @value={{attr.value}} data-test-kms-provider-field={{attr.name}}>
               {{#if attr.icon}}
                 <Icon @name={{attr.icon}} class="icon" />
               {{/if}}
@@ -206,7 +209,7 @@
           {{else}}
             <InfoTableRow
               @alwaysRender={{true}}
-              @label={{capitalize (or attr.options.label (humanize (dasherize attr.name)))}}
+              @label={{t (capitalize (or attr.options.label (humanize (dasherize attr.name))))}}
               @value={{get @model attr.name}}
               @defaultShown={{attr.options.defaultShown}}
               @formatDate={{if (eq attr.type "date") "MMM d yyyy, h:mm:ss aaa"}}

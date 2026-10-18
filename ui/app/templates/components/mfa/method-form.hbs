@@ -14,24 +14,25 @@
         onclick={{this.initSave}}
         data-test-mfa-method-save
       >
-        Save
+        {{t "Save"}}
       </button>
       <button type="button" class="button has-left-margin-s" disabled={{this.save.isRunning}} {{on "click" this.cancel}}>
-        Cancel
+        {{t "Cancel"}}
       </button>
     </div>
   </div>
 {{/if}}
 
 <ConfirmationModal
-  @title="Edit {{@model.type}} configuration?"
+  @title={{t "Edit {arg0} configuration?" arg0=(@model.type)}}
   @onClose={{action (mut this.isEditModalActive) false}}
   @isActive={{this.isEditModalActive}}
   @confirmText={{@model.type}}
   @onConfirm={{perform this.save}}
 >
   <p>
-    Editing this configuration will have an impact on all authentication types, methods, groups and entities which make use
-    of this MFA method. Please make sure you want to make these changes before doing so.
+    {{t
+      "Editing this configuration will have an impact on all authentication types, methods, groups and entities which make use of this MFA method. Please make sure you want to make these changes before doing so."
+    }}
   </p>
 </ConfirmationModal>

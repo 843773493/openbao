@@ -13,7 +13,7 @@
       {{on "click" (fn this.changePage (sub this.page 1))}}
     >
       <Icon @name="chevron-left" />
-      Previous
+      {{t "Previous"}}
     </button>
     {{#each this.pages as |page|}}
       <button
@@ -35,7 +35,7 @@
       data-test-next-page
       {{on "click" (fn this.changePage (add this.page 1))}}
     >
-      Next
+      {{t "Next"}}
       <Icon @name="chevron-right" />
     </button>
   </div>

@@ -1,12 +1,12 @@
 <WizardSection
-  @headerText="Azure"
+  @headerText={{t "Azure"}}
   @headerIcon="azure-color"
-  @docText="Docs: Azure Secrets"
+  @docText={{t "Docs: Azure Secrets"}}
   @docPath="/docs/secrets/azure/index.html"
 >
   <p>
-    The Azure Secrets Engine dynamically generates Azure service principals and role assignments. OpenBao roles can be mapped
-    to one or more Azure roles, providing a simple, flexible way to manage the permissions granted to generated service
-    principals.
+    {{t
+      "The Azure Secrets Engine dynamically generates Azure service principals and role assignments. OpenBao roles can be mapped to one or more Azure roles, providing a simple, flexible way to manage the permissions granted to generated service principals."
+    }}
   </p>
 </WizardSection>

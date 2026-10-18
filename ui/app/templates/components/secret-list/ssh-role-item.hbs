@@ -24,7 +24,7 @@
           <br />
           <span class="tag has-text-grey-dark">{{@item.keyType}}</span>
           {{#if @item.zeroAddress}}
-            <span class="has-text-grey is-size-7">Zero-Address</span>
+            <span class="has-text-grey is-size-7">{{t "Zero-Address"}}</span>
           {{/if}}
         </div>
       </LinkTo>
@@ -39,7 +39,7 @@
                   {{#if @item.generatePath.isPending}}
                     <li class="action">
                       <button disabled type="button" class="link button is-loading is-transparent">
-                        loading
+                        {{t "loading"}}
                       </button>
                     </li>
                   {{else if @item.canGenerate}}
@@ -49,7 +49,7 @@
                         @model={{@item.id}}
                         data-test-role-ssh-link="generate"
                       >
-                        Generate Credentials
+                        {{t "Generate Credentials"}}
                       </LinkTo>
                     </li>
                   {{/if}}
@@ -57,7 +57,7 @@
                   {{#if @item.signPath.isPending}}
                     <li class="action">
                       <button disabled type="button" class="link button is-loading is-transparent">
-                        loading
+                        {{t "loading"}}
                       </button>
                     </li>
                   {{else if @item.canGenerate}}
@@ -67,7 +67,7 @@
                         @model={{@item.id}}
                         data-test-role-ssh-link="generate"
                       >
-                        Sign Keys
+                        {{t "Sign Keys"}}
                       </LinkTo>
                     </li>
                   {{/if}}
@@ -81,7 +81,7 @@
                         class="link button is-transparent {{if (get this (concat 'loading-' @item.id)) 'is-loading'}} "
                         {{on "click" @toggleZeroAddress}}
                       >
-                        Disable Zero Address
+                        {{t "Disable Zero Address"}}
                       </button>
                     </li>
                   {{else}}
@@ -92,7 +92,7 @@
                         class="link button is-transparent {{if (get this (concat 'loading-' @item.id)) 'is-loading'}}"
                         {{on "click" @toggleZeroAddress}}
                       >
-                        Enable Zero Address
+                        {{t "Enable Zero Address"}}
                       </button>
                     </li>
                   {{/if}}
@@ -100,26 +100,26 @@
                 {{#if @item.updatePath.isPending}}
                   <li class="action">
                     <button disabled type="button" class="link button is-loading is-transparent">
-                      loading
+                      {{t "loading"}}
                     </button>
                   </li>
                   <li class="action">
                     <button disabled type="button" class="link button is-loading is-transparent">
-                      loading
+                      {{t "loading"}}
                     </button>
                   </li>
                 {{else}}
                   {{#if @item.canRead}}
                     <li class="action">
                       <LinkTo @route="vault.cluster.secrets.backend.show" @model={{@item.id}} data-test-role-ssh-link="show">
-                        Details
+                        {{t "Details"}}
                       </LinkTo>
                     </li>
                   {{/if}}
                   {{#if @item.canEdit}}
                     <li class="action">
                       <LinkTo @route="vault.cluster.secrets.backend.edit" @model={{@item.id}} data-test-role-ssh-link="edit">
-                        Edit
+                        {{t "Edit"}}
                       </LinkTo>
                     </li>
                   {{/if}}

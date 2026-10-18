@@ -8,7 +8,7 @@
               @icon="openbao"
               @route={{if this.currentCluster.cluster.name "vault.cluster"}}
               @model={{this.currentCluster.cluster.name}}
-              @ariaLabel="home link"
+              @ariaLabel={{t "home link"}}
               data-test-sidebar-logo
             />
           </:logo>
@@ -16,8 +16,8 @@
             <Hds::SideNav::Header::IconButton
               class="sidebar-button"
               @icon="terminal-screen"
-              @ariaLabel="Console toggle"
-              title="Console"
+              @ariaLabel={{t "Console toggle"}}
+              title={{t "Console"}}
               data-test-console-toggle
               {{on "click" (fn (mut this.console.isOpen) (not this.console.isOpen))}}
             />
@@ -28,7 +28,7 @@
 
       {{! this block is where the Hds::SideNav::Portal components render into }}
       <:body>
-        <Hds::SideNav::Portal::Target aria-label="sidebar navigation links" />
+        <Hds::SideNav::Portal::Target aria-label={{t "sidebar navigation links"}} />
       </:body>
 
       <:footer>

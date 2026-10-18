@@ -1,7 +1,7 @@
 <Toolbar>
   <ToolbarActions>
     <ToolbarLink @route="vault.cluster.access.oidc.scopes.create" @type="add" data-test-oidc-scope-create>
-      Create scope
+      {{t "Create scope"}}
     </ToolbarLink>
   </ToolbarActions>
 </Toolbar>
@@ -34,7 +34,7 @@
                       @disabled={{eq model.canRead false}}
                       data-test-oidc-scope-menu-link="details"
                     >
-                      Details
+                      {{t "Details"}}
                     </LinkTo>
                   </li>
                   <li>
@@ -44,7 +44,7 @@
                       @disabled={{eq model.canEdit false}}
                       data-test-oidc-scope-menu-link="edit"
                     >
-                      Edit
+                      {{t "Edit"}}
                     </LinkTo>
                   </li>
                 </ul>
@@ -56,16 +56,16 @@
     </LinkedBlock>
   {{/each}}
 {{else}}
-  <EmptyState @title="No scopes yet" data-test-oidc-scope-empty-state>
+  <EmptyState @title={{t "No scopes yet"}} data-test-oidc-scope-empty-state>
     <div>
-      <p>Use scope to define identity information about the authenticated user.
+      <p>{{t "Use scope to define identity information about the authenticated user."}}
         <DocLink @path="/docs/concepts/oidc-provider#scopes">
-          Learn more.
+          {{t "Learn more."}}
         </DocLink>
       </p>
       <div class="has-top-margin-m">
         <LinkTo @route="vault.cluster.access.oidc.scopes.create" data-test-oidc-scope-create-empty-state>
-          Create scope
+          {{t "Create scope"}}
         </LinkTo>
       </div>
     </div>

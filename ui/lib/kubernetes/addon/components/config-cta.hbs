@@ -1,9 +1,11 @@
 <EmptyState
   data-test-config-cta
-  @title="Kubernetes not configured"
-  @message="Get started by establishing the URL of the Kubernetes API to connect to, along with some additional options."
+  @title={{t "Kubernetes not configured"}}
+  @message={{t
+    "Get started by establishing the URL of the Kubernetes API to connect to, along with some additional options."
+  }}
 >
   <LinkTo class="has-top-margin-xs" @route="configure" @model={{(current-mount-path)}}>
-    Configure Kubernetes
+    {{t "Configure Kubernetes"}}
   </LinkTo>
 </EmptyState>

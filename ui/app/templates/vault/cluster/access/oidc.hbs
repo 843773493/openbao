@@ -2,19 +2,19 @@
   <PageHeader as |p|>
     <p.levelLeft>
       <h1 class="title is-3">
-        OIDC Provider
+        {{t "OIDC Provider"}}
       </h1>
     </p.levelLeft>
   </PageHeader>
   <div class="box is-fullwidth is-sideless is-flex-between is-shadowless is-marginless" data-test-oidc-header>
     <p>
-      Configure OpenBao to act as an OIDC identity provider, and offer
+      {{t "Configure OpenBao to act as an OIDC identity provider, and offer"}}
       {{"OpenBao’s"}}
-      various authentication
+      {{t "various authentication"}}
       {{#if this.isCta}}
         <br />
       {{/if}}
-      methods and source of identity to any client applications.
+      {{t "methods and source of identity to any client applications."}}
       {{! TODO Add a link to a tutorial for 'auth-methods/oidc-identity-provider' }}
     </p>
     {{#if this.isCta}}
@@ -24,7 +24,7 @@
         {{on "click" (transition-to "vault.cluster.access.oidc.clients.create")}}
         data-test-oidc-configure
       >
-        Create your first app
+        {{t "Create your first app"}}
       </button>
     {{/if}}
   </div>
@@ -34,19 +34,19 @@
       <nav class="tabs">
         <ul>
           <LinkTo @route="vault.cluster.access.oidc.clients" data-test-tab="clients">
-            Applications
+            {{t "Applications"}}
           </LinkTo>
           <LinkTo @route="vault.cluster.access.oidc.keys" data-test-tab="keys">
-            Keys
+            {{t "Keys"}}
           </LinkTo>
           <LinkTo @route="vault.cluster.access.oidc.assignments" data-test-tab="assignments">
-            Assignments
+            {{t "Assignments"}}
           </LinkTo>
           <LinkTo @route="vault.cluster.access.oidc.providers" data-test-tab="providers">
-            Providers
+            {{t "Providers"}}
           </LinkTo>
           <LinkTo @route="vault.cluster.access.oidc.scopes" data-test-tab="scopes">
-            Scopes
+            {{t "Scopes"}}
           </LinkTo>
         </ul>
       </nav>

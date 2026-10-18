@@ -1,25 +1,26 @@
-<h3 class="title is-4">Intermediates</h3>
+<h3 class="title is-4">{{t "Intermediates"}}</h3>
 <div class="box is-fullwidth has-only-top-shadow">
   <p class="has-bottom-margin-l">
-    Intermediates are identified by specifying the mount path and the issuer’s current name, as well as the new name it will
-    have when it is imported to OpenBao.
+    {{t
+      "Intermediates are identified by specifying the mount path and the issuer’s current name, as well as the new name it will have when it is imported to OpenBao."
+    }}
   </p>
   {{#if this.signedIssuers}}
-    <h2 data-test-cross-sign-status-count class="title is-5">Cross-signing complete ({{this.statusCount}})</h2>
+    <h2 data-test-cross-sign-status-count class="title is-5">{{t "Cross-signing complete ("}}{{this.statusCount}})</h2>
     <p class="has-bottom-margin-xl">
-      The next step is to
+      {{t "The next step is to"}}
       <DocLink class="has-font-weight-normal" @path="/docs/secrets/pki/rotation-primitives#notes-on-manual_chain">
-        update the manual_chain<Icon @name="docs-link" />
+        {{t "update the manual_chain"}}<Icon @name="docs-link" />
       </DocLink>
-      for each of your new certificates listed below, and the existing issuer.
+      {{t "for each of your new certificates listed below, and the existing issuer."}}
     </p>
     <div class="is-flex-start">
       {{#each this.inputFields as |column|}}
         <div class="is-flex-1 basis-0 has-text-grey has-bottom-margin-xs">
           <h2 data-test-info-table-label={{column.key}}>
-            {{column.label}}
+            {{t column.label}}
             {{#if column.helpText}}
-              <InfoTooltip @verticalPosition="above" @horizontalPosition="center">{{column.helpText}}</InfoTooltip>
+              <InfoTooltip @verticalPosition="above" @horizontalPosition="center">{{t column.helpText}}</InfoTooltip>
             {{/if}}
           </h2>
         </div>
@@ -60,8 +61,8 @@
           {{#if crossSignRow.hasError}}
             <AlertBanner
               @type="danger"
-              @title={{if crossSignRow.hasUnsupportedParams crossSignRow.hasError "Cross-sign failed"}}
-              @message={{if crossSignRow.hasUnsupportedParams crossSignRow.hasUnsupportedParams crossSignRow.hasError}}
+              @title={{t (if crossSignRow.hasUnsupportedParams crossSignRow.hasError "Cross-sign failed")}}
+              @message={{t (if crossSignRow.hasUnsupportedParams crossSignRow.hasUnsupportedParams crossSignRow.hasError)}}
               class="message-marginless"
             />
           {{/if}}
@@ -74,10 +75,10 @@
       {{on "click" (transition-to "vault.cluster.secrets.backend.pki.issuers.issuer.details")}}
       data-test-cross-sign-done
     >
-      Done
+      {{t "Done"}}
     </button>
     <button type="button" class="button has-left-margin-s" data-test-cross-sign-more {{on "click" this.reset}}>
-      Sign more issuers
+      {{t "Sign more issuers"}}
     </button>
   {{else}}
     <form {{on "submit" (perform this.submit)}} data-test-cross-sign-form>
@@ -93,7 +94,7 @@
           disabled={{this.submit.isRunning}}
           data-test-cross-sign-submit
         >
-          Cross-sign
+          {{t "Cross-sign"}}
         </button>
         <button
           type="button"
@@ -102,7 +103,7 @@
           {{on "click" (transition-to "vault.cluster.secrets.backend.pki.issuers.issuer.details")}}
           data-test-cross-sign-cancel
         >
-          Cancel
+          {{t "Cancel"}}
         </button>
       </div>
     </form>

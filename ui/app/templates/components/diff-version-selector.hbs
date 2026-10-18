@@ -7,12 +7,12 @@
         class={{concat "toolbar-link" (if D.isOpen " is-active")}}
         @htmlTag="button"
       >
-        Version
+        {{t "Version"}}
         {{or this.leftSideVersionSelected @model.currentVersion}}
         <Chevron @direction="down" @isButton={{true}} />
       </D.Trigger>
       <D.Content @defaultClass="popup-menu-content">
-        <nav class="box menu" aria-label="version">
+        <nav class="box menu" aria-label={{t "version"}}>
           <ul class="menu-list">
             {{#each (reverse @model.versions) as |leftSideSecretVersion|}}
               <li class="action" data-test-leftSide-version={{leftSideSecretVersion.version}}>
@@ -21,7 +21,7 @@
                   class="link"
                   {{on "click" (fn this.selectVersion leftSideSecretVersion.version D.actions "left")}}
                 >
-                  Version
+                  {{t "Version"}}
                   {{leftSideSecretVersion.version}}
                   {{#if
                     (and
@@ -50,12 +50,12 @@
         @htmlTag="button"
         data-test-popup-menu-trigger="right-version"
       >
-        Version
+        {{t "Version"}}
         {{or this.rightSideVersionSelected this.rightSideVersionInit}}
         <Chevron @direction="down" @isButton={{true}} />
       </D.Trigger>
       <D.Content @defaultClass="popup-menu-content">
-        <nav class="box menu" aria-label="versions to diff">
+        <nav class="box menu" aria-label={{t "versions to diff"}}>
           <ul class="menu-list">
             {{#each (reverse @model.versions) as |rightSideSecretVersion|}}
               <li class="action">
@@ -65,7 +65,7 @@
                   {{on "click" (fn this.selectVersion rightSideSecretVersion.version D.actions "right")}}
                   data-test-rightSide-version={{rightSideSecretVersion.version}}
                 >
-                  Version
+                  {{t "Version"}}
                   {{rightSideSecretVersion.version}}
                   {{#if
                     (and
@@ -90,7 +90,7 @@
     {{! Status }}
     {{#if this.statesMatch}}
       <div class="diff-status">
-        <span>States match</span>
+        <span>{{t "States match"}}</span>
         <Icon @name="check-circle-fill" class="has-text-success" />
       </div>
     {{/if}}

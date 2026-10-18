@@ -1,7 +1,7 @@
 <Toolbar>
   <ToolbarActions>
     <ToolbarLink @route="vault.cluster.access.oidc.assignments.create" @type="add" data-test-oidc-assignment-create>
-      Create assignment
+      {{t "Create assignment"}}
     </ToolbarLink>
   </ToolbarActions>
 </Toolbar>
@@ -22,9 +22,9 @@
           </span>
           {{#if (eq model.name "allow_all")}}
             <div class="is-size-8">
-              This is a built-in assignment that cannot be modified or deleted.
+              {{t "This is a built-in assignment that cannot be modified or deleted."}}
               <DocLink @path="/docs/concepts/oidc-provider#assignments">
-                Learn more
+                {{t "Learn more"}}
               </DocLink>
             </div>
           {{/if}}
@@ -43,7 +43,7 @@
                       @disabled={{eq model.canRead false}}
                       data-test-oidc-assignment-menu-link="details"
                     >
-                      Details
+                      {{t "Details"}}
                     </LinkTo>
                   </li>
                   <li>
@@ -53,7 +53,7 @@
                       @disabled={{eq model.canEdit false}}
                       data-test-oidc-assignment-menu-link="edit"
                     >
-                      Edit
+                      {{t "Edit"}}
                     </LinkTo>
                   </li>
                 </ul>

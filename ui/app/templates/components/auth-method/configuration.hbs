@@ -3,13 +3,13 @@
     {{#if (eq attr.type "object")}}
       <InfoTableRow
         @alwaysRender={{not (is-empty-value (get @model attr.name))}}
-        @label={{or attr.options.label (to-label attr.name)}}
+        @label={{t (or attr.options.label (to-label attr.name))}}
         @value={{stringify (get @model attr.name)}}
       />
     {{else}}
       <InfoTableRow
         @alwaysRender={{not (is-empty-value (get @model attr.name))}}
-        @label={{or attr.options.label (to-label attr.name)}}
+        @label={{t (or attr.options.label (to-label attr.name))}}
         @value={{get @model attr.name}}
       />
     {{/if}}

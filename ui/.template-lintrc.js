@@ -34,7 +34,7 @@ module.exports = {
   rules: {
     'no-action': 'off',
     'no-implicit-this': {
-      allow: ['supported-auth-backends', 'current-mount-path'],
+      allow: ['supported-auth-backends', 'current-mount-path', 't'],
     },
     'require-input-label': 'off',
     'no-array-prototype-extensions': 'off',

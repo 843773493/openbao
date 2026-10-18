@@ -4,15 +4,15 @@
       <CopyButton
         data-test-hover-copy-button
         class="copy-button button is-compact is-transparent"
-        @text={{this.copyValue}}
+        @text={{t this.copyValue}}
         @onSuccess={{action (mut this.tooltipText) "Copied!"}}
       >
-        <Icon @name="clipboard-copy" aria-label="Copy" />
+        <Icon @name="clipboard-copy" aria-label={{t "Copy"}} />
       </CopyButton>
     </T.Trigger>
     <T.Content @defaultClass="tool-tip">
       <div class="box" data-test-hover-copy-tooltip-text>
-        {{this.tooltipText}}
+        {{t this.tooltipText}}
       </div>
     </T.Content>
   </ToolTip>

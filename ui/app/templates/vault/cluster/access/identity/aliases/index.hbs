@@ -40,13 +40,13 @@
   {{/if}}
 {{else}}
   <EmptyState
-    @title="No {{this.identityType}} aliases yet"
+    @title={{t "No {arg0} aliases yet" arg0=(this.identityType)}}
     @message="A list of {{this.identityType}} aliases in this namespace will be listed here. Choose one of the {{pluralize
       this.identityType
     }} and click &quot;Create Alias&quot; to get started."
   >
     <LinkTo @route="vault.cluster.access.identity.create" @model={{pluralize this.identityType}} class="link">
-      Create
+      {{t "Create"}}
       {{this.identityType}}
     </LinkTo>
     {{! TODO Add a link to a tutorial for 'auth-methods/identity' }}

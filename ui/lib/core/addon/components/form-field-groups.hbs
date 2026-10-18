@@ -36,8 +36,8 @@
       {{else}}
         <ToggleButton
           @isOpen={{eq this.showGroup group}}
-          @openLabel={{concat "Hide " group}}
-          @closedLabel={{group}}
+          @openLabel={{t (concat "Hide " group)}}
+          @closedLabel={{t group}}
           @onClick={{fn this.toggleGroup group}}
           class="is-block"
           data-test-toggle-group={{group}}

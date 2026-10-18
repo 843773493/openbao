@@ -6,18 +6,18 @@
         {{yield}}
       {{else}}
         <legend>
-          <span class="ttl-picker-label is-large" data-test-ttl-form-label={{this.label}}>{{this.label}}</span><br />
+          <span class="ttl-picker-label is-large" data-test-ttl-form-label={{this.label}}>{{t this.label}}</span><br />
           {{#if this.helperText}}
             <div class="sub-text">
-              <span data-test-ttl-form-subtext>{{this.helperText}}</span>
+              <span data-test-ttl-form-subtext>{{t this.helperText}}</span>
               {{#if @description}}
                 <ToolTip @verticalPosition="below" as |T|>
                   <T.Trigger data-test-tooltip-trigger tabindex="-1">
-                    <Icon @name="info" aria-label="description" />
+                    <Icon @name="info" aria-label={{t "description"}} />
                   </T.Trigger>
                   <T.Content @defaultClass="tool-tip">
                     <div class="box" data-test-hover-copy-tooltip-text>
-                      {{this.description}}
+                      {{t this.description}}
                     </div>
                   </T.Content>
                 </ToolTip>
@@ -27,7 +27,7 @@
         </legend>
       {{/if}}
       <div class="control is-marginless" data-test-ttl-inputs>
-        <label for="time-{{this.elementId}}" class="sr-only">Number of units</label>
+        <label for="time-{{this.elementId}}" class="sr-only">{{t "Number of units"}}</label>
         <Input
           id="time-{{this.elementId}}"
           @value={{this.time}}
@@ -40,7 +40,7 @@
         />
       </div>
       <div class="control">
-        <label for="unit-{{this.elementId}}" class="sr-only">Unit for TTL</label>
+        <label for="unit-{{this.elementId}}" class="sr-only">{{t "Unit for TTL"}}</label>
         <Select
           id="unit-{{this.elementId}}"
           @name="ttl-unit"
@@ -56,7 +56,7 @@
             <Icon @name="x-square-fill" class="has-text-danger" />
           </div>
           <div class="has-text-danger">
-            {{this.errorMessage}}
+            {{t this.errorMessage}}
           </div>
         </div>
       {{/if}}
@@ -77,18 +77,18 @@
           {{yield}}
         {{else}}
           <legend>
-            <span class="ttl-picker-label is-large" data-test-ttl-form-label={{this.label}}>{{this.label}}</span><br />
+            <span class="ttl-picker-label is-large" data-test-ttl-form-label={{this.label}}>{{t this.label}}</span><br />
             {{#if this.helperText}}
               <div class="sub-text">
-                <span data-test-ttl-form-subtext>{{this.helperText}}</span>
+                <span data-test-ttl-form-subtext>{{t this.helperText}}</span>
                 {{#if @description}}
                   <ToolTip @verticalPosition="below" as |T|>
                     <T.Trigger data-test-tooltip-trigger tabindex="-1">
-                      <Icon @name="info" aria-label="description" />
+                      <Icon @name="info" aria-label={{t "description"}} />
                     </T.Trigger>
                     <T.Content @defaultClass="tool-tip">
                       <div class="box" data-test-hover-copy-tooltip-text>
-                        {{this.description}}
+                        {{t this.description}}
                       </div>
                     </T.Content>
                   </ToolTip>
@@ -99,7 +99,7 @@
         {{/if}}
         {{#if (or this.enableTTL @hideToggle)}}
           <div class="control is-marginless" data-test-ttl-inputs>
-            <label for="time-{{this.elementId}}" class="sr-only">Number of units</label>
+            <label for="time-{{this.elementId}}" class="sr-only">{{t "Number of units"}}</label>
             <Input
               id="time-{{this.elementId}}"
               @value={{this.time}}
@@ -112,7 +112,7 @@
             />
           </div>
           <div class="control">
-            <label for="unit-{{this.elementId}}" class="sr-only">Unit for TTL</label>
+            <label for="unit-{{this.elementId}}" class="sr-only">{{t "Unit for TTL"}}</label>
             <Select
               id="unit-{{this.elementId}}"
               @name="ttl-unit"
@@ -128,7 +128,7 @@
                 <Icon @name="x-square-fill" class="has-text-danger" />
               </div>
               <div class="has-text-danger">
-                {{this.errorMessage}}
+                {{t this.errorMessage}}
               </div>
             </div>
           {{/if}}

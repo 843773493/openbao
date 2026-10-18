@@ -1,11 +1,11 @@
 <PageHeader as |p|>
   <p.top>
-    <nav class="breadcrumb" aria-label="breadcrumb">
+    <nav class="breadcrumb" aria-label={{t "breadcrumb"}}>
       <ul>
         <li>
           <span class="sep">&#x0002f;</span>
           <LinkTo @route="vault.cluster.access.mfa.enforcements.index">
-            Enforcements
+            {{t "Enforcements"}}
           </LinkTo>
         </li>
       </ul>
@@ -19,21 +19,21 @@
   </p.levelLeft>
 </PageHeader>
 <div class="tabs-container box is-sideless is-fullwidth is-paddingless is-marginless">
-  <nav class="tabs" aria-label="Enforcement tabs">
+  <nav class="tabs" aria-label={{t "Enforcement tabs"}}>
     <ul>
       <LinkTo
         @route="vault.cluster.access.mfa.enforcements.enforcement"
         @query={{hash tab="targets"}}
         data-test-tab="targets"
       >
-        Targets
+        {{t "Targets"}}
       </LinkTo>
       <LinkTo
         @route="vault.cluster.access.mfa.enforcements.enforcement"
         @query={{hash tab="methods"}}
         data-test-tab="methods"
       >
-        Methods
+        {{t "Methods"}}
       </LinkTo>
     </ul>
   </nav>
@@ -46,7 +46,7 @@
       type="button"
       data-test-enforcement-delete
     >
-      Delete
+      {{t "Delete"}}
     </button>
     <div class="toolbar-separator"></div>
     <ToolbarLink
@@ -54,7 +54,7 @@
       @model={{this.model.id}}
       data-test-enforcement-edit
     >
-      Edit enforcement
+      {{t "Edit enforcement"}}
     </ToolbarLink>
   </ToolbarActions>
 </Toolbar>
@@ -73,7 +73,7 @@
             <div>
               <Icon @name={{target.icon}} />
               <span class="has-text-weight-semibold has-text-black">
-                {{target.title}}
+                {{t target.title}}
               </span>
               <div class="has-text-grey is-size-8">
                 <code>
@@ -86,11 +86,11 @@
             <div class="level-right is-flex is-paddingless is-marginless">
               <div class="level-item">
                 <PopupMenu>
-                  <nav class="menu" aria-label="Enforcement target more menu">
+                  <nav class="menu" aria-label={{t "Enforcement target more menu"}}>
                     <ul class="menu-list">
                       <li>
                         <LinkTo @route={{target.link}} @models={{target.linkModels}} data-test-target-link={{target.title}}>
-                          Details
+                          {{t "Details"}}
                         </LinkTo>
                       </li>
                     </ul>
@@ -104,8 +104,8 @@
     {{/each}}
   {{else}}
     <EmptyState
-      @title="No target exists for this enforcement"
-      @message="A target might have been deleted after the enforcement was created."
+      @title={{t "No target exists for this enforcement"}}
+      @message={{t "A target might have been deleted after the enforcement was created."}}
     />
   {{/if}}
 {{else if (eq this.tab "methods")}}
@@ -115,20 +115,20 @@
 {{/if}}
 
 <ConfirmationModal
-  @title="Delete enforcement?"
+  @title={{t "Delete enforcement?"}}
   @confirmText={{this.model.name}}
-  @toConfirmMsg="deleting the transformation."
-  @buttonText="Delete"
+  @toConfirmMsg={{t "deleting the transformation."}}
+  @buttonText={{t "Delete"}}
   @isActive={{this.showDeleteConfirmation}}
   @onClose={{action (mut this.showDeleteConfirmation) false}}
   @onConfirm={{this.delete}}
 >
   <p class="has-bottom-margin-m">
-    Deleting the
+    {{t "Deleting the"}}
     <strong>{{this.model.name}}</strong>
-    enforcement will mean that the MFA method that depends on it will no longer enforce multi-factor authentication.
+    {{t "enforcement will mean that the MFA method that depends on it will no longer enforce multi-factor authentication."}}
     <br /><br />
-    Deleting this enforcement cannot be undone; it will have to be recreated.
+    {{t "Deleting this enforcement cannot be undone; it will have to be recreated."}}
   </p>
-  <MessageError @model={{this.model}} @errorMessage={{this.deleteError}} />
+  <MessageError @model={{this.model}} @errorMessage={{t this.deleteError}} />
 </ConfirmationModal>

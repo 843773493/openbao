@@ -13,7 +13,7 @@
   <Toolbar>
     <ToolbarActions>
       <ToolbarLink @type="add" @route="roles.create" data-test-pki-role-create-link @model={{(current-mount-path)}}>
-        Create role
+        {{t "Create role"}}
       </ToolbarLink>
     </ToolbarActions>
   </Toolbar>
@@ -37,12 +37,12 @@
                   <ul class="menu-list">
                     <li>
                       <LinkTo @route="roles.role.details" @models={{array (current-mount-path) pkiRole.id}}>
-                        Details
+                        {{t "Details"}}
                       </LinkTo>
                     </li>
                     <li>
                       <LinkTo @route="roles.role.edit" @models={{array (current-mount-path) pkiRole.id}}>
-                        Edit
+                        {{t "Edit"}}
                       </LinkTo>
                     </li>
                   </ul>
@@ -54,12 +54,12 @@
       </LinkedBlock>
     {{/each}}
   {{else}}
-    <EmptyState @title="No roles yet">
+    <EmptyState @title={{t "No roles yet"}}>
       <div>
-        <p>When created, roles will be listed here. Create a role to start generating certificates.</p>
+        <p>{{t "When created, roles will be listed here. Create a role to start generating certificates."}}</p>
         <div class="has-top-margin-m">
           <LinkTo @route="roles.create" @model={{(current-mount-path)}}>
-            Create role
+            {{t "Create role"}}
           </LinkTo>
         </div>
       </div>
@@ -67,9 +67,9 @@
   {{/if}}
 {{else}}
   <Toolbar />
-  <EmptyState @title="PKI not configured" @message={{this.notConfiguredMessage}}>
+  <EmptyState @title={{t "PKI not configured"}} @message={{t this.notConfiguredMessage}}>
     <LinkTo @route="configuration.create" @model={{(current-mount-path)}}>
-      Configure PKI
+      {{t "Configure PKI"}}
     </LinkTo>
   </EmptyState>
 {{/if}}

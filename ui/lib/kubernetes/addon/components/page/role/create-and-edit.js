@@ -22,6 +22,7 @@ import errorMessage from 'vault/utils/error-message';
 export default class CreateAndEditRolePageComponent extends Component {
   @service 'host-router';
   @service flashMessages;
+  @service locale;
 
   @tracked roleRulesTemplates;
   @tracked selectedTemplateId;
@@ -82,11 +83,12 @@ export default class CreateAndEditRolePageComponent extends Component {
   }
 
   get roleRulesHelpText() {
-    const message =
-      'This specifies the Role or ClusterRole rules to use when generating a role. Kubernetes documentation is';
-    const link =
-      '<a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/" target="_blank" rel="noopener noreferrer">available here</>';
-    return `${message} ${link}.`;
+    const message = this.locale.translate(
+      'This specifies the Role or ClusterRole rules to use when generating a role. Kubernetes documentation is'
+    );
+    const link = `<a href="https://kubernetes.io/docs/reference/access-authn-authz/rbac/" target="_blank" rel="noopener noreferrer">${this.locale.translate('available here')}</>`;
+    const separator = this.locale.language === 'zh-CN' ? '' : ' ';
+    return `${message}${separator}${link}.`;
   }
 
   @action

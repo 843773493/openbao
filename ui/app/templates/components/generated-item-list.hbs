@@ -6,7 +6,7 @@
           /
         </span>
         <LinkTo @route="vault.cluster.access.methods">
-          methods
+          {{t "methods"}}
         </LinkTo>
       </li>
     </KeyValueHeader>
@@ -29,7 +29,7 @@
                 @models={{array @methodModel.id (get tab.routeParams 1)}}
                 data-test-auth-section-tab={{true}}
               >
-                {{tab.label}}
+                {{t tab.label}}
               </LinkTo>
             </li>
           {{/each}}
@@ -46,27 +46,27 @@
       @type="add"
       data-test-entity-create-link={{this.itemType}}
     >
-      Create
+      {{t "Create"}}
       {{singularize this.itemType}}
     </ToolbarLink>
   </ToolbarActions>
 </Toolbar>
 <ListView
   @items={{this.model}}
-  @itemNoun={{this.itemType}}
+  @itemNoun={{t this.itemType}}
   @paginationRouteName="vault.cluster.access.method.item.list"
   @paginationModels={{array @methodModel.id this.itemType}}
   as |list|
 >
   {{#if list.empty}}
     <list.empty
-      @title="No {{pluralize this.itemType}} yet"
+      @title={{t "No {arg0} yet" arg0=(pluralize this.itemType)}}
       @message="A list of {{pluralize
         this.itemType
       }} will be listed here. Create your first {{this.itemType}} to get started."
     >
       <LinkTo @route="vault.cluster.access.method.item.create" @models={{array @methodModel.id this.itemType}} class="link">
-        Create
+        {{t "Create"}}
         {{singularize this.itemType}}
       </LinkTo>
     </list.empty>
@@ -85,7 +85,7 @@
             @models={{array @methodModel.id this.itemType list.item.id}}
             class="is-block"
           >
-            View
+            {{t "View"}}
             {{singularize this.itemType}}
           </LinkTo>
         </li>
@@ -95,7 +95,7 @@
             @models={{array @methodModel.id this.itemType list.item.id}}
             class="is-block"
           >
-            Edit
+            {{t "Edit"}}
             {{singularize this.itemType}}
           </LinkTo>
         </li>
@@ -113,9 +113,9 @@
                 (action "refreshItemList")
               )
             }}
-            @message={{concat "Are you sure you want to delete " (singularize this.itemType) " " list.item.id "?"}}
+            @message={{t (concat "Are you sure you want to delete " (singularize this.itemType) " " list.item.id "?")}}
             data-test-secret-delete="true"
-            @triggerText={{concat "Delete " (singularize this.itemType)}}
+            @triggerText={{t (concat "Delete " (singularize this.itemType))}}
           />
         </li>
       </Item.menu>

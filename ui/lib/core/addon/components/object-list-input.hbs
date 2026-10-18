@@ -6,14 +6,14 @@
         {{#let (find-by "key" inputKey @objectKeys) as |field|}}
           <div class="control is-expanded">
             {{#if (eq index 0)}}
-              <h2 data-test-object-list-label={{inputKey}}>{{field.label}}</h2>
+              <h2 data-test-object-list-label={{inputKey}}>{{t field.label}}</h2>
             {{/if}}
             {{#let (get rowValidations field.key) as |inputError|}}
               <Input
                 data-test-object-list-input="{{field.key}}-{{index}}"
-                aria-label="{{or field.placeholder field.label}} input for row index {{index}}"
+                aria-label={{t "{arg0} input for row index {arg1}" arg0=(or field.placeholder field.label) arg1=(index)}}
                 class="input {{if (and (not inputError.isValid) inputError.errors) 'has-error-border'}}"
-                placeholder={{or field.placeholder ""}}
+                placeholder={{t (or field.placeholder "")}}
                 @type="text"
                 @value={{value}}
                 name={{field.key}}
@@ -21,7 +21,7 @@
                 {{on "input" (fn this.handleInput index)}}
               />
               {{#if (and (not inputError.isValid) inputError.errors)}}
-                <AlertInline @type="danger" @message={{inputError.errors}} @paddingTop={{true}} />
+                <AlertInline @type="danger" @message={{t inputError.errors}} @paddingTop={{true}} />
               {{/if}}
             {{/let}}
           </div>
@@ -37,17 +37,17 @@
             type="button"
             class="button is-outlined is-primary"
             disabled={{this.disableAdd}}
-            aria-label="add"
+            aria-label={{t "add"}}
             {{on "click" this.addRow}}
           >
-            Add
+            {{t "Add"}}
           </button>
         {{else}}
           <button
             data-test-object-list-delete-button={{index}}
             type="button"
             class="button is-icon"
-            aria-label="remove"
+            aria-label={{t "remove"}}
             {{on "click" (fn this.removeRow index)}}
           >
             <Icon @name="trash" />

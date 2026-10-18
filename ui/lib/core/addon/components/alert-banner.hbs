@@ -5,7 +5,7 @@
     </div>
     <div class="column">
       <div class="message-title">
-        {{or @title this.alertType.text}}
+        {{t (or @title this.alertType.text)}}
         {{#if @showLoading}}
           <Icon class="loading" aria-hidden="true" @name="loading" />
         {{/if}}
@@ -19,7 +19,7 @@
       </div>
       {{#if @message}}
         <p class="alert-banner-message-body">
-          {{@message}}
+          {{t @message}}
         </p>
       {{/if}}
       {{#if (has-block)}}

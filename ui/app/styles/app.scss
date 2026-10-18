@@ -34,3 +34,17 @@
   --token-side-nav-color-surface-interactive-hover: #4f8c77; /* Hover state */
   --token-side-nav-color-surface-interactive-active: #275547; /* Active state */
 }
+/* 页面语言选择器 */
+.locale-picker {
+  position: fixed;
+  z-index: 20;
+  right: 1rem;
+  bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: #fff;
+  border-radius: 0.25rem;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 16%);
+}

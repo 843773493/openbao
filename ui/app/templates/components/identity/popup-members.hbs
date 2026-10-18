@@ -4,11 +4,11 @@
       <li class="action">
         <ConfirmAction
           @buttonClasses="link is-destroy"
-          @confirmButtonText="Remove this group?"
-          @confirmMessage="This may affect permissions for this group."
+          @confirmButtonText={{t "Remove this group?"}}
+          @confirmMessage={{t "This may affect permissions for this group."}}
           @onConfirmAction={{action "performTransaction" this.model this.groupArray this.memberId}}
         >
-          Remove
+          {{t "Remove"}}
         </ConfirmAction>
       </li>
     </ul>

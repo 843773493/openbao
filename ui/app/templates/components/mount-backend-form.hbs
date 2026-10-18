@@ -11,26 +11,26 @@
           {{/if}}
         {{/let}}
       {{else if (eq @mountType "secret")}}
-        Enable a Secrets Engine
+        {{t "Enable a Secrets Engine"}}
       {{else}}
-        Enable an Authentication Method
+        {{t "Enable an Authentication Method"}}
       {{/if}}
     </h1>
   </p.levelLeft>
 </PageHeader>
 
 <div class="box is-sideless is-fullwidth is-marginless">
-  <NamespaceReminder @mode="enable" @noun={{if (eq @mountType "secret") "Secret Engine" "Auth Method"}} />
-  <MessageError @errorMessage={{this.errorMessage}} />
+  <NamespaceReminder @mode="enable" @noun={{t (if (eq @mountType "secret") "Secret Engine" "Auth Method")}} />
+  <MessageError @errorMessage={{t this.errorMessage}} />
   {{#if @mountModel.type}}
     <form {{on "submit" (perform this.mountBackend)}}>
       <FormFieldGroups
         @model={{@mountModel}}
-        @renderGroup="default"
+        @renderGroup={{t "default"}}
         @modelValidations={{this.modelValidations}}
         @onKeyUp={{this.onKeyUp}}
       />
-      <FormFieldGroups @model={{@mountModel}} @renderGroup="Method Options" />
+      <FormFieldGroups @model={{@mountModel}} @renderGroup={{t "Method Options"}} />
 
       <div class="field is-grouped box is-fullwidth is-bottomless">
         <div class="control">
@@ -41,20 +41,20 @@
             disabled={{this.mountBackend.isRunning}}
           >
             {{#if (eq @mountType "secret")}}
-              Enable Engine
+              {{t "Enable Engine"}}
             {{else}}
-              Enable Method
+              {{t "Enable Method"}}
             {{/if}}
           </button>
         </div>
         <div class="control">
           <button data-test-mount-back type="button" class="button" {{on "click" (fn this.setMountType "")}}>
-            Back
+            {{t "Back"}}
           </button>
         </div>
         {{#if this.invalidFormAlert}}
           <div class="control">
-            <AlertInline @type="danger" @paddingTop={{true}} @message={{this.invalidFormAlert}} @mimicRefresh={{true}} />
+            <AlertInline @type="danger" @paddingTop={{true}} @message={{t this.invalidFormAlert}} @mimicRefresh={{true}} />
           </div>
         {{/if}}
       </div>

@@ -6,7 +6,7 @@
         @onConfirmAction={{action "deleteItem" this.model}}
         data-test-entity-item-delete="true"
       >
-        Delete
+        {{t "Delete"}}
         {{this.model.identityType}}
       </ConfirmAction>
     </ToolbarActions>
@@ -15,12 +15,14 @@
 
 <form {{action (perform this.save) on="submit"}}>
   <div class="box is-sideless is-fullwidth is-marginless">
-    <NamespaceReminder @mode={{this.mode}} @noun={{lowercase (humanize this.model.identityType)}} />
+    <NamespaceReminder @mode={{this.mode}} @noun={{t (lowercase (humanize this.model.identityType))}} />
     <MessageError @model={{this.model}} />
     {{#if (eq this.mode "merge")}}
       <AlertBanner
         @type="warning"
-        @message="Metadata on merged entities is not preserved, you will need to recreate it on the entity you merge to."
+        @message={{t
+          "Metadata on merged entities is not preserved, you will need to recreate it on the entity you merge to."
+        }}
       />
     {{/if}}
     {{#each this.model.fields as |attr|}}
@@ -29,7 +31,7 @@
           {{#if this.model.canCreatePolicies}}
             <SearchSelectWithModal
               @id="policies"
-              @label="Policies"
+              @label={{t "Policies"}}
               @labelClass="title is-4"
               @models={{array "policy/acl" "policy/rgp"}}
               @inputValue={{@model.policies}}
@@ -41,7 +43,7 @@
           {{else}}
             <SearchSelect
               @id="policies"
-              @label="Policies"
+              @label={{t "Policies"}}
               @labelClass="title is-4"
               @models={{array "policy/acl" "policy/rgp"}}
               @inputValue={{@model.policies}}
@@ -65,14 +67,14 @@
           disabled={{this.save.isRunning}}
         >
           {{#if (eq this.mode "create")}}
-            Create
+            {{t "Create"}}
           {{else}}
-            Save
+            {{t "Save"}}
           {{/if}}
         </button>
         {{#if (or (eq this.mode "merge") (eq this.mode "create"))}}
           <LinkTo @route={{this.cancelLink}} class="button" data-test-cancel-link={{true}}>
-            Cancel
+            {{t "Cancel"}}
           </LinkTo>
         {{else}}
           <LinkTo
@@ -81,7 +83,7 @@
             class="button"
             data-test-cancel-link={{true}}
           >
-            Cancel
+            {{t "Cancel"}}
           </LinkTo>
         {{/if}}
       </div>

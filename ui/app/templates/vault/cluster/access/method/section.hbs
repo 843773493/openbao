@@ -6,7 +6,7 @@
           /
         </span>
         <LinkTo @route="vault.cluster.access.methods">
-          methods
+          {{t "methods"}}
         </LinkTo>
       </li>
     </KeyValueHeader>
@@ -20,9 +20,9 @@
 
 {{#if (not (includes this.model.type (supported-managed-auth-backends)))}}
   <div class="has-text-grey has-top-bottom-margin" data-test-doc-link>
-    The OpenBao UI only supports configuration for this authentication method. For management, the
-    <DocLink @path="/api-docs">API or CLI</DocLink>
-    should be used.
+    {{t "The OpenBao UI only supports configuration for this authentication method. For management, the"}}
+    <DocLink @path="/api-docs">{{t "API or CLI"}}</DocLink>
+    {{t "should be used."}}
   </div>
 {{/if}}
 
@@ -32,7 +32,7 @@
   <Toolbar>
     <ToolbarActions>
       <ToolbarLink @route="vault.cluster.settings.auth.configure" @model={{this.model.id}} data-test-configure-link="true">
-        Configure
+        {{t "Configure"}}
       </ToolbarLink>
     </ToolbarActions>
   </Toolbar>

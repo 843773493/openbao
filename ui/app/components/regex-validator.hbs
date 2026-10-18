@@ -3,23 +3,23 @@
     <div class="regex-label-wrapper">
       <div class="regex-label">
         <label for={{@attr.name}} class="is-label">
-          {{@labelString}}
+          {{t @labelString}}
           {{#if @attr.options.helpText}}
             <InfoTooltip>
               <span data-test-help-text>
-                {{@attr.options.helpText}}
+                {{t @attr.options.helpText}}
               </span>
             </InfoTooltip>
           {{/if}}
         </label>
         {{#if @attr.options.subText}}
           <p class="sub-text">
-            {{@attr.options.subText}}
+            {{t @attr.options.subText}}
             {{#if @attr.options.docLink}}
               <DocLink @path={{@attr.options.docLink}}>
-                See our documentation
+                {{t "See our documentation"}}
               </DocLink>
-              for help.
+              {{t "for help."}}
             {{/if}}
           </p>
         {{/if}}
@@ -32,7 +32,7 @@
           @checked={{this.showTestValue}}
           @onChange={{this.toggleTestValue}}
         >
-          <span class="has-text-grey">Validation</span>
+          <span class="has-text-grey">{{t "Validation"}}</span>
         </Toggle>
       </div>
     </div>
@@ -70,19 +70,21 @@
         {{#if (not @value)}}
           <AlertInline
             @type="warning"
-            @message={{concat
-              "A pattern has not been entered. Enter a pattern to check this "
-              (lowercase this.testInputLabel)
-              " against it."
+            @message={{t
+              (concat
+                "A pattern has not been entered. Enter a pattern to check this "
+                (lowercase this.testInputLabel)
+                " against it."
+              )
             }}
           />
         {{else if this.regexError}}
-          <AlertInline @type="danger" @message="This test string does not match the pattern regex." />
+          <AlertInline @type="danger" @message={{t "This test string does not match the pattern regex."}} />
         {{else}}
           <div class="message-inline">
             <Icon @name="check-circle-fill" class="has-text-success" />
             <p data-test-inline-success-message>
-              This test string matches the pattern regex.
+              {{t "This test string matches the pattern regex."}}
             </p>
           </div>
         {{/if}}
@@ -92,7 +94,7 @@
 {{/if}}
 {{#if @showGroups}}
   <div class="has-top-margin-l">
-    <label class="is-label">Groups</label>
+    <label class="is-label">{{t "Groups"}}</label>
     {{! check with design but should likely show a placeholder if testValue is blank }}
     {{#if (and @value this.testValue (not this.regexError))}}
       <div class="regex-group">
@@ -107,7 +109,7 @@
       </div>
     {{else}}
       <p class="sub-text" data-test-regex-validator-groups-placeholder>
-        Enter pattern and test string to show groupings.
+        {{t "Enter pattern and test string to show groupings."}}
       </p>
     {{/if}}
   </div>

@@ -1,4 +1,4 @@
-<nav class="key-value-header breadcrumb" aria-label="breadcrumbs">
+<nav class="key-value-header breadcrumb" aria-label={{t "breadcrumbs"}}>
   <ul>
     {{yield}}
     {{#each this.secretPath as |path index|}}
@@ -11,10 +11,10 @@
             data-test-secret-root-link={{if (eq index 0) true false}}
             data-test-secret-breadcrumb={{path.text}}
           >
-            {{path.text}}
+            {{t path.text}}
           </LinkTo>
         {{else}}
-          <span>{{path.text}}</span>
+          <span>{{t path.text}}</span>
         {{/if}}
       </li>
     {{/each}}

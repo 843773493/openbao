@@ -1,13 +1,13 @@
-<AlertBanner @type="warning" class="is-marginless" @title="OpenBao is sealed" />
+<AlertBanner @type="warning" class="is-marginless" @title={{t "OpenBao is sealed"}} />
 {{#if this.showJoinForm}}
   <div class="box is-marginless is-shadowless">
     <h2 class="title is-5" data-test-join-header>
-      Join an existing Raft cluster
+      {{t "Join an existing Raft cluster"}}
     </h2>
     <EditForm
       @model={{compute (action "newModel")}}
-      @saveButtonText="Join"
-      @cancelButtonText="Back"
+      @saveButtonText={{t "Join"}}
+      @cancelButtonText={{t "Back"}}
       @onCancel={{action (mut this.showJoinForm) false}}
       @onSave={{transition-to "vault.cluster.unseal"}}
       @flashEnabled={{false}}
@@ -18,10 +18,10 @@
   <form onsubmit={{action "advanceFirstScreen"}} data-test-join-choice>
     <div class="box is-marginless is-shadowless">
       <h2 class="title is-6">
-        This server is configured to use Raft Storage.
+        {{t "This server is configured to use Raft Storage."}}
         <br />
         <br />
-        How do you want to get started?
+        {{t "How do you want to get started?"}}
       </h2>
       <div class="vlt-radio is-block">
         <RadioButton
@@ -32,7 +32,7 @@
           @onChange={{fn (mut this.preference)}}
         />
         <label for="join"></label>
-        Join an existing Raft cluster
+        {{t "Join an existing Raft cluster"}}
       </div>
       <div class="vlt-radio is-block">
         <RadioButton
@@ -43,12 +43,12 @@
           @onChange={{fn (mut this.preference)}}
         />
         <label for="init" data-test-join-init></label>
-        Create a new Raft cluster
+        {{t "Create a new Raft cluster"}}
       </div>
     </div>
     <div class="box is-marginless is-shadowless">
       <button type="submit" class="button is-primary" data-test-next>
-        Next
+        {{t "Next"}}
       </button>
     </div>
   </form>

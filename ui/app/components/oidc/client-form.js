@@ -24,6 +24,7 @@ import { task } from 'ember-concurrency';
 
 export default class OidcClientForm extends Component {
   @service flashMessages;
+  @service locale;
   @tracked modelValidations;
   @tracked errorBanner;
   @tracked invalidFormAlert;
@@ -82,7 +83,10 @@ export default class OidcClientForm extends Component {
         if (Number(accessTokenTtl) === 0) this.args.model.accessTokenTtl = '24h';
         const { isNew, name } = this.args.model;
         yield this.args.model.save();
-        this.flashMessages.success(`Successfully ${isNew ? 'created' : 'updated'} the application ${name}.`);
+        const message = isNew
+          ? this.locale.translate('Successfully created the application {arg0}.', { arg0: name })
+          : this.locale.translate('Successfully updated the application {arg0}.', { arg0: name });
+        this.flashMessages.success(message);
         this.args.onSave();
       }
     } catch (error) {
