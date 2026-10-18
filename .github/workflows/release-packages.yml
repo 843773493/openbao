@@ -25,7 +25,7 @@ jobs:
   deb:
     name: Release DEBs
     runs-on: ubuntu-latest
-    if: github.event_name != 'release' || !contains(github.ref_name, 'nightly')
+    if: github.repository == 'openbao/openbao' && (github.event_name != 'release' || !contains(github.ref_name, 'nightly'))
     env:
       BUCKET: ${{ secrets.PKG_S3_BUCKET_NAME }}
       AWS_ENDPOINT_URL: "https://${{ secrets.PKG_S3_SERVER_NAME }}"
@@ -97,7 +97,7 @@ jobs:
     name: Release RPMs
     runs-on: ubuntu-latest
     # Skip if triggered by a nightly release being published.
-    if: github.event_name != 'release' || !contains(github.ref_name, 'nightly')
+    if: github.repository == 'openbao/openbao' && (github.event_name != 'release' || !contains(github.ref_name, 'nightly'))
     env:
       BUCKET: ${{ secrets.PKG_S3_BUCKET_NAME }}
       AWS_ENDPOINT_URL: "https://${{ secrets.PKG_S3_SERVER_NAME }}"
